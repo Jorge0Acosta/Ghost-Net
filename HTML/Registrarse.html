@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GHOST_NET — Acceso</title>
+<link rel="stylesheet" href="../CSS/Registrarse.css" />
+</head>
+<body>
+
+<input type="radio" name="authTab" id="tabLoginRadio" class="tab-radio" checked>
+<input type="radio" name="authTab" id="tabRegisterRadio" class="tab-radio">
+
+<header class="navbar">
+  <a href="index.html" class="logo">
+    <span class="logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3.2v5.3c0 4.6-3 7.9-7 9.5-4-1.6-7-4.9-7-9.5V6.2L12 3z"/></svg>
+    </span>
+    <span class="logo-text">GHOST_NET</span>
+  </a>
+
+  <nav class="nav-links">
+    <a href="index.html" class="nav-link">Inicio</a>
+    <div class="nav-dropdown">
+      <button type="button" class="nav-link dropdown-toggle">
+        Herramientas
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+      <div class="dropdown-menu">
+        <a href="EvaluacionContraseña.html" class="dropdown-item">Contraseñas</a>
+        <a href="VerificarCorreo.html" class="dropdown-item">Correos</a>
+        <a href="PerfildeRiesgo.html" class="dropdown-item">Perfil de Riesgo</a>
+      </div>
+    </div>
+    <a href="Estadisticas.html" class="nav-link">Estadísticas</a>
+    <a href="simulador.html" class="nav-link">Simulador</a>
+  </nav>
+
+  <div class="nav-actions">
+    <label for="tabLoginRadio" class="btn btn-outline">Iniciar sesión</label>
+    <label for="tabRegisterRadio" class="btn btn-filled">Registrarse</label>
+  </div>
+</header>
+
+<main class="auth-main">
+  <div class="auth-card">
+
+    <div class="card-header">
+      <div class="icon-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3.2v5.3c0 4.6-3 7.9-7 9.5-4-1.6-7-4.9-7-9.5V6.2L12 3z"/></svg>
+      </div>
+      <h1 class="brand-title">GHOST_NET</h1>
+    </div>
+
+    <div class="tabs">
+      <label for="tabLoginRadio" class="tab">Iniciar sesión</label>
+      <label for="tabRegisterRadio" class="tab">Registrarse</label>
+    </div>
+
+    <!-- LOGIN -->
+    <form class="auth-form" id="loginForm">
+      <div class="form-group">
+        <label for="loginEmail">Correo electrónico</label>
+        <input type="email" id="loginEmail" placeholder="Usuario" autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <label for="loginPassword">Contraseña</label>
+        <div class="password-wrapper">
+          <input type="password" id="loginPassword" placeholder="Contraseña" autocomplete="current-password">
+          <span class="password-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7.5 11-7.5S23 12 23 12s-4 7.5-11 7.5S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <a href="index.html" class="btn-submit" style="text-decoration: none; display: inline-block; text-align: center; width: 100%;">Iniciar sesión</a>
+      <p class="demo-hint">GHOST_NET 2026</p>
+    </form>
+
+    <!-- REGISTER -->
+    <form class="auth-form" id="registerForm">
+      <div class="form-group">
+        <label for="regName">Nombre completo</label>
+        <input type="text" id="regName" placeholder="Tu nombre" autocomplete="name">
+      </div>
+
+      <div class="form-group">
+        <label for="regEmail">Correo electrónico</label>
+        <input type="email" id="regEmail" placeholder="usuario@ejemplo.com" autocomplete="email">
+      </div>
+
+      <div class="form-group">
+        <label for="regPassword">Contraseña</label>
+        <div class="password-wrapper">
+          <input type="password" id="regPassword" placeholder="••••••••" autocomplete="new-password">
+          <span class="password-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7.5 11-7.5S23 12 23 12s-4 7.5-11 7.5S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="regConfirm">Confirmar contraseña</label>
+        <div class="password-wrapper">
+          <input type="password" id="regConfirm" placeholder="••••••••" autocomplete="new-password">
+          <span class="password-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7.5 11-7.5S23 12 23 12s-4 7.5-11 7.5S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+          </span>
+        </div>
+      </div>
+
+      <a href="index.html" class="btn-submit" style="text-decoration: none; display: inline-block; text-align: center; width: 100%;">Crear cuenta</a>
+    </form>
+
+  </div>
+</main>
+</body>
+</html>

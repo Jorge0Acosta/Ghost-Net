@@ -1,0 +1,49 @@
+:root {
+  /* --- Paleta principal --- */
+  --color-fondo:               #061118;
+  --color-azul-claro:          #00C8FB;
+  --color-azul-oscuro:         #1D619B;
+  --color-verde-fosforecente:  #00FD87;
+  --color-verde-medio-oscuro:  #02e06a;
+  --color-verde-oscuro:        #065632;
+  --color-gris-medio-claro:    #5D8A9C;
+  --color-cafe-verdoso:        #606B5F;
+  --color-rojo:                #f92837;
+  --color-roza-fosforecente:   #ef4ce9;
+  --color-naranja:             #f7823e;
+  --color-gris-clarito:        #F6F6F6;
+
+  /* --- Superficies --- */
+  --color-tarjeta:             #0a1e2e;
+  --color-superficie:          #0d2235;
+  --color-texto:               #d8edf7;
+
+  /* --- Bordes --- */
+  --color-borde:               rgba(0, 253, 135, 0.14);
+  --color-borde-activo:        rgba(0, 253, 135, 0.45);
+  --color-borde-rojo:          rgba(249, 40, 55, 0.22);
+  --color-borde-naranja:       rgba(247, 130, 62, 0.22);
+  --color-borde-cyan:          rgba(0, 200, 251, 0.22);
+  --color-borde-rosa:          rgba(239, 76, 233, 0.22);
+
+  /* --- Sombras --- */
+  --sombra-verde:              0 0 20px rgba(0, 253, 135, 0.22);
+  --sombra-cyan:               0 0 18px rgba(0, 200, 251, 0.18);
+  --sombra-panel:              0 4px 24px rgba(0, 0, 0, 0.45);
+
+  /* --- Radios de borde --- */
+  --radio-pequeno:             6px;
+  --radio-mediano:             10px;
+  --radio-grande:              14px;
+  --radio-extra-grande:        18px;
+  --radio-pastilla:            999px;
+
+  /* --- Tipografía --- */
+  --fuente-principal:          Arial, sans-serif;
+  --fuente-codigo:             'Courier New', monospace;
+  --espaciado:                 16px;
+
+  /* --- Transiciones --- */
+  --transicion-rapida:         0.2s ease;
+  --transicion-normal:         0.3s ease;
+}

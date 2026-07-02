@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ghost Internet — Inicio</title>
+  <link rel="stylesheet" href="../CSS/Index.css" />
+</head>
+<body>
+
+  <!-- Fondos decorativos -->
+  <div class="fondo-grilla" aria-hidden="true"></div>
+  <div class="fondo-brillo" aria-hidden="true"></div>
+
+  <!-- ===== NAVEGACIÓN ===== -->
+  <nav class="barra-nav">
+  <div class="contenido-nav">
+
+    <a href="index.html" class="logo" aria-label="Ghost Internet - Ir al inicio">
+      <div class="logo__contenedor-icono">
+        <img src="../SVG/escudo.svg" alt="" class="logo__icono" aria-hidden="true" />
+      </div>
+      <span class="logo__texto">
+        GHOST<span class="logo__guion">_</span>NET
+      </span>
+    </a>
+
+    <ul class="enlaces-nav" role="navigation" aria-label="Menú principal">
+
+      <li class="enlaces-nav__elemento enlaces-nav__elemento--activo">
+        <a href="index.html">Inicio</a>
+      </li>
+
+      <li class="enlaces-nav__elemento menu-desplegable">
+        <a href="#" class="menu-desplegable__toggle">
+          <span>Herramientas</span>
+          <img
+            src="../SVG/flecha-herramientas.svg"
+            alt=""
+            class="icono-flecha"
+            aria-hidden="true"
+          />
+        </a>
+
+        <ul class="submenu">
+          <li><a href="EvaluacionContraseña.html">Contraseñas</a></li>
+          <li><a href="VerificarCorreo.html">Correos</a></li>
+          <li><a href="PerfildeRiesgo.html">Perfil de Riesgo</a></li>
+        </ul>
+      </li>
+
+      <li class="enlaces-nav__elemento">
+        <a href="Estadisticas.html">Estadísticas</a>
+      </li>
+
+      <li class="enlaces-nav__elemento">
+        <a href="simulador.html">Simulador</a>
+      </li>
+
+    </ul>
+
+    <div class="zona-auth">
+      <button class="boton-borde" type="button">Iniciar sesión</button>
+      <a href="Registrarse.html" class="boton-primario" style="text-decoration: none;">Registrarse</a>
+    </div>
+
+  </div>
+</nav>
+
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main class="contenido-principal">
+
+    <!-- HÉROE -->
+    <section class="seccion-heroe">
+
+      <div class="lado-izquierdo">
+        <h1 class="titulo-heroe">
+          Analiza tu<br />
+          <span class="titulo-heroe__verde">seguridad</span><br />
+          <span class="titulo-heroe__cyan">digital</span>
+        </h1>
+
+        <p class="descripcion-heroe">
+          Ghost Internet es la plataforma de ciberseguridad que te ayuda a evaluar,
+          entender y fortalecer tu presencia digital contra las amenazas más comunes.
+        </p>
+
+        <div class="botones-heroe">
+          <a href="#modulos" class="boton-principal-heroe">
+            Analizar ahora
+            <img
+              src="../SVG/flecha.svg"
+              alt=""
+              class="boton-principal-heroe__icono"
+              aria-hidden="true"
+            />
+          </a>
+          <a href="Registrarse.html" class="boton-secundario-heroe">Crear cuenta</a>
+        </div>
+      </div>
+
+      <!-- Terminal -->
+      <div class="terminal" role="region" aria-label="Terminal de estado del sistema">
+        <div class="terminal__barra" aria-hidden="true">
+          <span class="terminal__punto terminal__punto--rojo"></span>
+          <span class="terminal__punto terminal__punto--amarillo"></span>
+          <span class="terminal__punto terminal__punto--verde"></span>
+          <span class="terminal__titulo">ghost-net — terminal</span>
+        </div>
+        <div class="terminal__cuerpo">
+          <code id="texto-terminal" class="terminal__texto"></code>
+          <span id="cursor-terminal" class="terminal__cursor" aria-hidden="true"></span>
+          <div id="estadisticas-terminal" class="terminal__estadisticas" aria-live="polite">
+            <div class="terminal__fila">
+              <span class="terminal__etiqueta">Credenciales filtradas</span>
+              <span class="terminal__valor">15B+</span>
+            </div>
+            <div class="terminal__fila">
+              <span class="terminal__etiqueta">Brechas en 2024</span>
+              <span class="terminal__valor">4,245</span>
+            </div>
+            <div class="terminal__fila">
+              <span class="terminal__etiqueta">Usuarios con claves débiles</span>
+              <span class="terminal__valor">94%</span>
+            </div>
+            <div class="terminal__fila">
+              <span class="terminal__etiqueta">Estado del sistema</span>
+              <span class="terminal__valor terminal__valor--verde">ACTIVO ✓</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- BARRA DE NÚMEROS -->
+    <div class="barra-numeros">
+      <div class="barra-numeros__contenido">
+        <div class="grupo-numero">
+          <span class="grupo-numero__cifra">15B+</span>
+          <span class="grupo-numero__etiqueta">Credenciales filtradas</span>
+        </div>
+        <div class="grupo-numero">
+          <span class="grupo-numero__cifra">3,200+</span>
+          <span class="grupo-numero__etiqueta">Brechas registradas</span>
+        </div>
+        <div class="grupo-numero">
+          <span class="grupo-numero__cifra">94%</span>
+          <span class="grupo-numero__etiqueta">Contraseñas débiles</span>
+        </div>
+        <div class="grupo-numero">
+          <span class="grupo-numero__cifra">8s</span>
+          <span class="grupo-numero__etiqueta">Entre ataques globales</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULOS -->
+    <section class="seccion" id="modulos">
+      <div class="encabezado-seccion">
+        <h2 class="encabezado-seccion__titulo">
+          Todo lo que necesitas para protegerte
+        </h2>
+      </div>
+
+      <div class="grilla-modulos">
+
+        <article class="tarjeta-modulo tarjeta-modulo--verde">
+          <div class="tarjeta-modulo__contenedor-icono tarjeta-modulo__contenedor-icono--verde">
+            <img src="../SVG/candado.svg" alt="Candado" class="tarjeta-modulo__icono" />
+          </div>
+          <h3 class="tarjeta-modulo__titulo">Seguridad de Contraseñas</h3>
+          <p class="tarjeta-modulo__descripcion">
+            Evalúa la fortaleza de tus contraseñas, detecta vulnerabilidades
+            y genera claves seguras con análisis en tiempo real.
+          </p>
+          <a href="EvaluacionContraseña.html" class="tarjeta-modulo__enlace tarjeta-modulo__enlace--verde">
+            Explorar →
+          </a>
+        </article>
+
+        <article class="tarjeta-modulo tarjeta-modulo--cyan">
+          <div class="tarjeta-modulo__contenedor-icono tarjeta-modulo__contenedor-icono--cyan">
+            <img src="../SVG/correo.svg" alt="Correo" class="tarjeta-modulo__icono" />
+          </div>
+          <h3 class="tarjeta-modulo__titulo">Seguridad de Correo</h3>
+          <p class="tarjeta-modulo__descripcion">
+            Verifica si tu correo aparece en brechas conocidas y descubre
+            qué servicios han comprometido tus datos.
+          </p>
+          <a href="VerificarCorreo.html" class="tarjeta-modulo__enlace tarjeta-modulo__enlace--cyan">
+            Explorar →
+          </a>
+        </article>
+
+        <article class="tarjeta-modulo tarjeta-modulo--rosa">
+          <div class="tarjeta-modulo__contenedor-icono tarjeta-modulo__contenedor-icono--rosa">
+            <img src="../SVG/ojo.svg" alt="Ojo" class="tarjeta-modulo__icono" />
+          </div>
+          <h3 class="tarjeta-modulo__titulo">Perfil de Riesgo Digital</h3>
+          <p class="tarjeta-modulo__descripcion">
+            Obtén una puntuación global de riesgo basada en tus hábitos
+            digitales, uso de 2FA y prácticas de seguridad.
+          </p>
+          <a href="PerfildeRiesgo.html" class="tarjeta-modulo__enlace tarjeta-modulo__enlace--rosa">
+            Explorar →
+          </a>
+        </article>
+
+        <article class="tarjeta-modulo tarjeta-modulo--naranja">
+          <div class="tarjeta-modulo__contenedor-icono tarjeta-modulo__contenedor-icono--naranja">
+            <img src="../SVG/barras.svg" alt="Barras estadísticas" class="tarjeta-modulo__icono" />
+          </div>
+          <h3 class="tarjeta-modulo__titulo">Centro de Estadísticas</h3>
+          <p class="tarjeta-modulo__descripcion">
+            Visualiza datos globales sobre filtraciones, tendencias de ataques
+            y las contraseñas más vulnerables del mundo.
+          </p>
+          <a href="Estadisticas.html" class="tarjeta-modulo__enlace tarjeta-modulo__enlace--naranja">
+            Explorar →
+          </a>
+        </article>
+
+        <article class="tarjeta-modulo tarjeta-modulo--rojo">
+          <div class="tarjeta-modulo__contenedor-icono tarjeta-modulo__contenedor-icono--rojo">
+            <img src="../SVG/rayo.svg" alt="Rayo" class="tarjeta-modulo__icono" />
+          </div>
+          <h3 class="tarjeta-modulo__titulo">Simulador de Riesgos</h3>
+          <p class="tarjeta-modulo__descripcion">
+            Simula ataques de fuerza bruta, phishing y credential stuffing
+            en un entorno de red ficticio interactivo.
+          </p>
+          <a href="simulador.html" class="tarjeta-modulo__enlace tarjeta-modulo__enlace--rojo">
+            Explorar →
+          </a>
+        </article>
+
+        <article class="tarjeta-modulo tarjeta-modulo--cyan">
+          <div class="tarjeta-modulo__contenedor-icono tarjeta-modulo__contenedor-icono--cyan">
+            <img src="../SVG/documento.svg" alt="Documento" class="tarjeta-modulo__icono" />
+          </div>
+          <h3 class="tarjeta-modulo__titulo">Reportes e Historial</h3>
+          <p class="tarjeta-modulo__descripcion">
+            Genera reportes detallados de tus análisis, visualiza la evolución
+            de tu seguridad y descarga informes personalizados.
+          </p>
+          <a href="#" class="tarjeta-modulo__enlace tarjeta-modulo__enlace--cyan">
+            Explorar →
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CÓMO FUNCIONA -->
+    <div class="bloque-proceso">
+      <section class="seccion">
+        <div class="encabezado-seccion">
+          <h2 class="encabezado-seccion__titulo">Cómo funciona</h2>
+        </div>
+        <div class="grilla-pasos">
+          <div class="paso">
+            <div class="paso__numero" aria-hidden="true">01</div>
+            <h3 class="paso__titulo">Analiza</h3>
+            <p class="paso__descripcion">
+              Ingresa tus contraseñas o correos para un análisis profundo
+              de vulnerabilidades en segundos.
+            </p>
+          </div>
+          <div class="paso">
+            <div class="paso__numero" aria-hidden="true">02</div>
+            <h3 class="paso__titulo">Evalúa</h3>
+            <p class="paso__descripcion">
+              Obtén una puntuación de riesgo personalizada y visualiza
+              tu exposición digital en tiempo real.
+            </p>
+          </div>
+          <div class="paso">
+            <div class="paso__numero" aria-hidden="true">03</div>
+            <h3 class="paso__titulo">Protege</h3>
+            <p class="paso__descripcion">
+              Aplica las recomendaciones específicas para reducir tu huella
+              digital y fortalecer tu seguridad.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- ===== PIE DE PÁGINA ===== -->
+  <footer class="pie-pagina">
+    <div class="contenido-pie">
+      <a href="index.html" class="logo" aria-label="Ghost Internet - inicio">
+        <div class="logo__contenedor-icono">
+          <img src="../SVG/escudo.svg" alt="" class="logo__icono" aria-hidden="true" />
+        </div>
+        <span class="logo__texto logo__texto--pie">
+          GHOST<span class="logo__guion">_</span>NET
+        </span>
+        <span class="logo__version"></span>
+      </a>
+
+      <small class="derechos-reservados">
+        2026 Ghost Internet
+      </small>
+    </div>
+  </footer>
+
+  <script src="../JS/Index.JS" defer></script>
+
+</body>
+</html>

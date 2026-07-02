@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ghost Internet — Estadísticas</title>
+  <link rel="stylesheet" href="../CSS/Estadisticas.css" />
+</head>
+<body>
+
+  <div class="fondo-grilla" aria-hidden="true"></div>
+  <div class="fondo-brillo" aria-hidden="true"></div>
+
+ <!-- ===== NAVEGACIÓN ===== -->
+  <nav class="barra-nav">
+  <div class="contenido-nav">
+
+    <a href="index.html" class="logo" aria-label="Ghost Internet - Ir al inicio">
+      <div class="logo__contenedor-icono">
+        <img src="../SVG/escudo.svg" alt="" class="logo__icono" aria-hidden="true" />
+      </div>
+      <span class="logo__texto">
+        GHOST<span class="logo__guion">_</span>NET
+      </span>
+    </a>
+
+    <ul class="enlaces-nav" role="navigation" aria-label="Menú principal">
+
+      <li class="enlaces-nav__elemento">
+        <a href="index.html">Inicio</a>
+      </li>
+
+      <li class="enlaces-nav__elemento menu-desplegable">
+        <a href="#" class="menu-desplegable__toggle">
+          <span>Herramientas</span>
+          <img
+            src="../SVG/flecha-herramientas.svg"
+            alt=""
+            class="icono-flecha"
+            aria-hidden="true"
+          />
+        </a>
+
+        <ul class="submenu">
+          <li><a href="EvaluacionContraseña.html">Contraseñas</a></li>
+          <li><a href="VerificarCorreo.html">Correos</a></li>
+          <li><a href="PerfildeRiesgo.html">Perfil de Riesgo</a></li>
+        </ul>
+      </li>
+
+      <li class="enlaces-nav__elemento enlaces-nav__elemento--activo">
+        <a href="Estadisticas.html">Estadísticas</a>
+      </li>
+
+      <li class="enlaces-nav__elemento">
+        <a href="simulador.html">Simulador</a>
+      </li>
+
+    </ul>
+
+    <div class="zona-auth">
+      <button class="boton-borde" type="button">Iniciar sesión</button>
+      <a href="Registrarse.html" class="boton-primario" style="text-decoration: none; display: inline-block; line-height: 1;">Registrarse</a>
+    </div>
+
+  </div>
+</nav>
+
+  <!-- ===== CONTENIDO PRINCIPAL ===== -->
+  <main class="contenido-principal">
+    <div class="pagina">
+
+      <!-- ENCABEZADO DE PÁGINA -->
+      <header class="encabezado-pagina">
+        <div class="encabezado-pagina__contenedor-icono">
+          <img
+            src="../SVG/barras.svg"
+            alt="Gráfica de barras"
+            class="encabezado-pagina__icono"
+          />
+        </div>
+        <div>
+          <h1 class="encabezado-pagina__titulo">Centro de Estadísticas</h1>
+          <p class="encabezado-pagina__subtitulo">
+            Datos globales sobre filtraciones, contraseñas comprometidas
+            y tendencias de ciberseguridad.
+          </p>
+        </div>
+      </header>
+
+      <!-- TARJETAS RESUMEN -->
+      <div class="grilla-resumen">
+
+        <article class="tarjeta-resumen tarjeta-resumen--rojo">
+          <div class="tarjeta-resumen__contenedor-icono">
+            <img src="../SVG/base-datos.svg" alt="Base de datos" class="tarjeta-resumen__icono" />
+          </div>
+          <span class="tarjeta-resumen__cifra tarjeta-resumen__cifra--rojo">15.2B+</span>
+          <span class="tarjeta-resumen__etiqueta">Total de registros filtrados</span>
+          <span class="tarjeta-resumen__subtexto">+23% vs 2023</span>
+        </article>
+
+        <article class="tarjeta-resumen tarjeta-resumen--naranja">
+          <div class="tarjeta-resumen__contenedor-icono">
+            <img src="../SVG/alerta.svg" alt="Alerta" class="tarjeta-resumen__icono" />
+          </div>
+          <span class="tarjeta-resumen__cifra tarjeta-resumen__cifra--naranja">4,245</span>
+          <span class="tarjeta-resumen__etiqueta">Brechas documentadas 2024</span>
+          <span class="tarjeta-resumen__subtexto">+32% vs 2023</span>
+        </article>
+
+        <article class="tarjeta-resumen tarjeta-resumen--rosa">
+          <div class="tarjeta-resumen__contenedor-icono">
+            <img src="../SVG/tendencia.svg" alt="Tendencia" class="tarjeta-resumen__icono" />
+          </div>
+          <span class="tarjeta-resumen__cifra tarjeta-resumen__cifra--rosa">10.3B</span>
+          <span class="tarjeta-resumen__etiqueta">Contraseñas en texto plano</span>
+          <span class="tarjeta-resumen__subtexto">RockYou2024</span>
+        </article>
+
+        <article class="tarjeta-resumen tarjeta-resumen--cyan">
+          <div class="tarjeta-resumen__contenedor-icono">
+            <img src="../SVG/servicios.svg" alt="Servicios" class="tarjeta-resumen__icono" />
+          </div>
+          <span class="tarjeta-resumen__cifra tarjeta-resumen__cifra--cyan">29,000+</span>
+          <span class="tarjeta-resumen__etiqueta">Servicios comprometidos</span>
+          <span class="tarjeta-resumen__subtexto">En 40 años de registro</span>
+        </article>
+
+      </div>
+
+      <!-- GRÁFICA TENDENCIA -->
+      <section class="panel">
+        <h2 class="panel__titulo">// Evolución de brechas de datos (2016–2024)</h2>
+        <div class="panel__lienzo">
+          <canvas id="grafica-tendencia" role="img" aria-label="Gráfica de evolución de brechas"></canvas>
+        </div>
+      </section>
+
+      <!-- DOS COLUMNAS -->
+      <div class="columnas-dobles">
+
+        <section class="panel">
+          <h2 class="panel__titulo">// Mayores filtraciones (millones de registros)</h2>
+          <div class="panel__lienzo">
+            <canvas id="grafica-barras" role="img" aria-label="Gráfica de mayores filtraciones"></canvas>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2 class="panel__titulo">// Tipos de datos comprometidos</h2>
+          <div class="panel__lienzo panel__lienzo--pequeno">
+            <canvas id="grafica-pastel" role="img" aria-label="Gráfica de tipos de datos comprometidos"></canvas>
+          </div>
+          <div id="leyenda-pastel" class="leyenda-pastel" aria-label="Leyenda del gráfico"></div>
+        </section>
+
+      </div>
+
+      <!-- CONTRASEÑAS MÁS FILTRADAS -->
+      <section class="panel">
+        <h2 class="panel__titulo">// Contraseñas más filtradas del mundo</h2>
+        <div class="grilla-contrasenas">
+          <div class="fila-contrasena">
+            <span class="fila-contrasena__posicion">#1</span>
+            <code class="fila-contrasena__texto">123456</code>
+            <span class="fila-contrasena__etiqueta">EVITAR</span>
+          </div>
+          <div class="fila-contrasena">
+            <span class="fila-contrasena__posicion">#2</span>
+            <code class="fila-contrasena__texto">password</code>
+            <span class="fila-contrasena__etiqueta">EVITAR</span>
+          </div>
+          <div class="fila-contrasena">
+            <span class="fila-contrasena__posicion">#3</span>
+            <code class="fila-contrasena__texto">123456789</code>
+            <span class="fila-contrasena__etiqueta">EVITAR</span>
+          </div>
+          <div class="fila-contrasena">
+            <span class="fila-contrasena__posicion">#4</span>
+            <code class="fila-contrasena__texto">12345678</code>
+            <span class="fila-contrasena__etiqueta">EVITAR</span>
+          </div>
+          <div class="fila-contrasena">
+            <span class="fila-contrasena__posicion">#5</span>
+            <code class="fila-contrasena__texto">qwerty</code>
+            <span class="fila-contrasena__etiqueta">EVITAR</span>
+          </div>
+          <div class="fila-contrasena">
+            <span class="fila-contrasena__posicion">#6</span>
+            <code class="fila-contrasena__texto">111111</code>
+            <span class="fila-contrasena__etiqueta">EVITAR</span>
+          </div>
+          <div class="fila-contrasena">
+            <span class="fila-contrasena__posicion">#7</span>
+            <code class="fila-contrasena__texto">1234567890</code>
+            <span class="fila-contrasena__etiqueta">EVITAR</span>
+          </div>
+          <div class="fila-contrasena">
+            <span class="fila-contrasena__posicion">#8</span>
+            <code class="fila-contrasena__texto">iloveyou</code>
+            <span class="fila-contrasena__etiqueta">EVITAR</span>
+          </div>
+        </div>
+        <small class="panel__nota">
+          * Basado en colecciones filtradas públicas. Fuentes: HaveIBeenPwned, RockYou, NordPass.
+        </small>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ===== PIE DE PÁGINA ===== -->
+  <footer class="pie-pagina">
+    <div class="contenido-pie">
+      <a href="index.html" class="logo" aria-label="Ghost Internet - inicio">
+        <div class="logo__contenedor-icono">
+          <img src="../SVG/escudo.svg" alt="" class="logo__icono" aria-hidden="true" />
+        </div>
+        <span class="logo__texto logo__texto--pie">
+          GHOST<span class="logo__guion">_</span>NET
+        </span>
+      </a>
+      <small class="derechos-reservados">
+         2026 Ghost Internet
+      </small>
+    </div>
+  </footer>
+
+  <!-- Chart.js desde CDN (requerido para las gráficas) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="../JS/Estadisticas.js" defer></script>
+
+</body>
+</html>
