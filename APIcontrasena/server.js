@@ -1,5 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const { testConnection } = require("./config/db");
 
 const app = express();
 
@@ -13,11 +15,15 @@ app.use(cors({
 // Middleware para entender formato JSON que algien me diga que va antes xdxdxd
 app.use(express.json());
 
-//Importación y uso de rutas con prefijo 
+//Importación y uso de rutas con prefijo
 const passwordRoutes = require("./routers/contrasenaRouter");
 app.use("/api", passwordRoutes);
 
-// 4. Encendido del servidor
-app.listen(3000, () => {
+const usuarioRoutes = require("./routers/usuarioRouter");
+app.use("/api", usuarioRoutes);
+
+// Encendido del servidor
+app.listen(3000, async () => {
     console.log("Servidor iniciado en http://localhost:3000");
+    await testConnection();
 });
