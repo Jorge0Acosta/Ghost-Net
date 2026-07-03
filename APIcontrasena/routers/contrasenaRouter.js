@@ -1,16 +1,18 @@
+// routers/contrasenaRouter.js
 const express = require("express");
 const router = express.Router();
+const contrasenaControladores = require("../controladores/contrasenaControladores");
 
-// Importar el servicio encargado de la lógica de evaluación
-const { analizarPassword } = require("../services/passwordService");
+// Evaluar fortaleza de una contraseña (tu endpoint original, sin cambios de comportamiento)
+router.post("/evaluar", contrasenaControladores.evaluarPassword);
 
-// Endpoint POST que procesa la contraseña
-router.post("/evaluar", (req, res) => {
-    const { password } = req.body;
+// Cuestionario de perfil de riesgo
+router.get("/cuestionario", contrasenaControladores.obtenerCuestionario);
 
-    const resultado = analizarPassword(password);
+// Crear una evaluación de perfil de riesgo (guarda respuestas + calcula resultado)
+router.post("/evaluaciones", contrasenaControladores.crearEvaluacion);
 
-    res.json(resultado);
-});
+// Historial de evaluaciones de un usuario
+router.get("/evaluaciones/usuario/:id_usuario", contrasenaControladores.historialPorUsuario);
 
 module.exports = router;
