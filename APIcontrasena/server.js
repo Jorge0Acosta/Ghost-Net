@@ -1,7 +1,5 @@
-require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const { testConnection } = require("./config/db");
 
 const app = express();
 
@@ -19,11 +17,7 @@ app.use(express.json());
 const passwordRoutes = require("./routers/contrasenaRouter");
 app.use("/api", passwordRoutes);
 
-const usuarioRoutes = require("./routers/usuarioRouter");
-app.use("/api", usuarioRoutes);
-
 // Encendido del servidor
-app.listen(3000, async () => {
-    console.log("Servidor iniciado en http://localhost:3000");
-    await testConnection();
+app.listen(3000, () => {
+    console.log("🔑 API Contraseña iniciada en http://localhost:3000");
 });
