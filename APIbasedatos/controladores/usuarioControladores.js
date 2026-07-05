@@ -1,4 +1,3 @@
-// controladores/usuarioControladores.js
 const usuarioService = require("../services/usuarioService");
 
 async function registrar(req, res) {

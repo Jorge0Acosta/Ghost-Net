@@ -1,8 +1,6 @@
-// services/usuarioService.js
 const bcrypt = require("bcryptjs");
 const { pool } = require("../config/db");
 
-// Registrar un nuevo usuario
 async function registrarUsuario(nombre, correo, password) {
     const password_hash = await bcrypt.hash(password, 10);
     const [result] = await pool.query(
@@ -12,7 +10,6 @@ async function registrarUsuario(nombre, correo, password) {
     return { id_usuario: result.insertId, nombre, correo };
 }
 
-// Validar credenciales de login
 async function validarCredenciales(correo, password) {
     const [rows] = await pool.query("SELECT * FROM usuarios WHERE correo = ?", [correo]);
     if (rows.length === 0) return null;
@@ -24,7 +21,6 @@ async function validarCredenciales(correo, password) {
     return usuario;
 }
 
-// Registrar el inicio de sesión (historial)
 async function registrarInicioSesion(id_usuario, ip, dispositivo) {
     await pool.query(
         "INSERT INTO inicios_sesion (id_usuario, direccion_ip, dispositivo) VALUES (?, ?, ?)",

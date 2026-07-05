@@ -997,3 +997,16 @@ label:focus-visible {
     grid-template-columns: 1fr;
   }
 }
+
+/* Resultado del analizador de contraseña */
+.resultado {
+  margin-top: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  min-height: 18px; /* evita que la tarjeta "salte" cuando aparece/desaparece el texto */
+}
+
+.result-medium {
+  color: #f59e0b;
+}
