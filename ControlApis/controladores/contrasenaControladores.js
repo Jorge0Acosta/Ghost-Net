@@ -1,6 +1,5 @@
 // controladores/contrasenaControladores.js
-const { analizarPassword } = require("../services/passwordService");
-
+const { analizarPassword } = require("../servicios/passwordService");
 // POST /api/evaluar -> evalúa la fortaleza de una contraseña (no toca ninguna BD)
 function evaluarPassword(req, res) {
     const { password } = req.body;
