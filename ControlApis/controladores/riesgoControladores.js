@@ -1,5 +1,5 @@
-const cuestionarioService = require("../services/cuestionarioService");
-const evaluacionService = require("../services/evaluacionService");
+const cuestionarioService = require("../servicios/cuestionarioService");
+const evaluacionService = require("../servicios/evaluacionService");
 
 async function obtenerCuestionario(req, res) {
     try {

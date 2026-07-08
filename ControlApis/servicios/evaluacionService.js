@@ -1,4 +1,4 @@
-const { pool } = require("../config/db");
+const { pool } = require("../configuracion/db");
 
 // Escala real: 10 preguntas x 3 puntos máx = 30 puntos totales
 function calcularNivelRiesgo(puntajeTotal) {

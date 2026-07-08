@@ -1,5 +1,5 @@
 const bcrypt = require("bcryptjs");
-const { pool } = require("../config/db");
+const { pool } = require("../configuracion/db");
 
 async function registrarUsuario(nombre, correo, password) {
     const password_hash = await bcrypt.hash(password, 10);

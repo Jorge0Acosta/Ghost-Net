@@ -1,4 +1,4 @@
-const { pool } = require("../config/db");
+const { pool } = require("../configuracion/db");
 
 async function obtenerCuestionario() {
     const [preguntas] = await pool.query("SELECT * FROM preguntas");
