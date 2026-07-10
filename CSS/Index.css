@@ -540,3 +540,37 @@
   .botones-heroe,
   .caja-accion__botones   { flex-direction: column; align-items: flex-start; }
 }
+
+/* ===== ESTADO DE SESIÓN (zona-auth) ===== */
+
+.oculto {
+  display: none !important;
+}
+
+.auth-estado {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.auth-usuario__nombre {
+  font-family: var(--fuente-codigo);
+  font-size: 13px;
+  color: var(--color-gris-medio-claro);
+  white-space: nowrap;
+}
+
+.auth-usuario__nombre::before {
+  content: "> ";
+  color: var(--color-verde-fosforecente);
+}
+
+#btn-cerrar-sesion {
+  border-color: rgba(249, 40, 55, 0.35);
+  color: var(--color-rojo);
+}
+
+#btn-cerrar-sesion:hover {
+  border-color: var(--color-rojo);
+  background: rgba(249, 40, 55, 0.08);
+}

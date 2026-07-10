@@ -22,9 +22,14 @@ async function validarCredenciales(correo, password) {
 }
 
 async function registrarInicioSesion(id_usuario, ip, dispositivo) {
+    // La columna 'dispositivo' es VARCHAR(100); el User-Agent del navegador
+    // puede superar ese límite, así que lo recortamos para evitar el error
+    // "Data too long for column 'dispositivo'".
+    const dispositivoRecortado = (dispositivo || "desconocido").substring(0, 100);
+
     await pool.query(
         "INSERT INTO inicios_sesion (id_usuario, direccion_ip, dispositivo) VALUES (?, ?, ?)",
-        [id_usuario, ip, dispositivo]
+        [id_usuario, ip, dispositivoRecortado]
     );
 }
 

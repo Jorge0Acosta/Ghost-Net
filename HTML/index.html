@@ -46,6 +46,7 @@
           <li><a href="EvaluacionContraseña.html">Contraseñas</a></li>
           <li><a href="VerificarCorreo.html">Correos</a></li>
           <li><a href="PerfildeRiesgo.html">Perfil de Riesgo</a></li>
+          <li><a href="Correo.html">Filtraciones</a></li>
         </ul>
       </li>
 
@@ -60,11 +61,20 @@
     </ul>
 
     <div class="zona-auth">
-      <button class="boton-borde" type="button">Iniciar sesión</button>
-      <a href="Registrarse.html" class="boton-primario" style="text-decoration: none;">Registrarse</a>
-    </div>
 
-  </div>
+      <!-- Se muestra cuando NO hay sesión iniciada -->
+      <div id="auth-invitado" class="auth-estado">
+        <button class="boton-borde" type="button" onclick="window.location.href='Registrarse.html'">Iniciar sesión</button>
+        <a href="Registrarse.html" class="boton-primario" style="text-decoration: none;">Registrarse</a>
+      </div>
+
+      <!-- Se muestra cuando SÍ hay sesión iniciada -->
+      <div id="auth-usuario" class="auth-estado oculto">
+        <span class="auth-usuario__nombre" id="nombre-usuario">Usuario</span>
+        <button class="boton-borde" type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
+      </div>
+
+    </div>
 </nav>
 
   <!-- ===== CONTENIDO PRINCIPAL ===== -->
@@ -95,7 +105,12 @@
               aria-hidden="true"
             />
           </a>
-          <a href="Registrarse.html" class="boton-secundario-heroe">Crear cuenta</a>
+
+          <!-- Se muestra cuando NO hay sesión -->
+          <a href="Registrarse.html" class="boton-secundario-heroe auth-estado" id="crear-cuenta-heroe">Crear cuenta</a>
+
+          <!-- Se muestra cuando SÍ hay sesión -->
+          <button type="button" class="boton-secundario-heroe auth-estado oculto" id="btn-cerrar-sesion-heroe">Cerrar sesión</button>
         </div>
       </div>
 
@@ -309,6 +324,7 @@
   </footer>
 
   <script src="../JS/Index.JS" defer></script>
+  <script src="../JS/Sesion.js"></script>
 
 </body>
 </html>
