@@ -1,5 +1,4 @@
-const API_URL = "http://localhost:3001/api/correo";
-
+const API_URL = "http://localhost:3000/api/correo";
 // =============================
 // VERIFICAR CORREO
 // =============================
