@@ -33,9 +33,20 @@
     <a href="simulador.html" class="nav-link">Simulador</a>
   </nav>
 
-  <div class="nav-actions">
-    <a href="Registrarse.html" class="btn btn-outline">Iniciar sesión</a>
-    <a href="Registrarse.html" class="btn btn-filled">Registrarse</a>
+<div class="nav-actions">
+
+    <!-- Se muestra cuando NO hay sesión iniciada -->
+    <div id="auth-invitado" class="auth-estado">
+      <a href="Registrarse.html" class="btn btn-outline">Iniciar sesión</a>
+      <a href="Registrarse.html" class="btn btn-filled">Registrarse</a>
+    </div>
+
+    <!-- Se muestra cuando SÍ hay sesión iniciada -->
+    <div id="auth-usuario" class="auth-estado oculto">
+      <span class="auth-usuario__nombre" id="nombre-usuario">Usuario</span>
+      <button class="btn btn-outline" type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
+    </div>
+
   </div>
 </header>
 
@@ -154,6 +165,7 @@
 </footer>
 
 <script src="../JS/Evaluacioncontrasena.js"></script>
+<script src="../JS/Sesion.js"></script>
 
 </body>
 </html>

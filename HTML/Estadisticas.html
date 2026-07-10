@@ -59,8 +59,19 @@
     </ul>
 
     <div class="zona-auth">
-      <button class="boton-borde" type="button">Iniciar sesión</button>
-      <a href="Registrarse.html" class="boton-primario" style="text-decoration: none; display: inline-block; line-height: 1;">Registrarse</a>
+
+      <!-- Se muestra cuando NO hay sesión iniciada -->
+      <div id="auth-invitado" class="auth-estado">
+        <button class="boton-borde" type="button" onclick="window.location.href='Registrarse.html'">Iniciar sesión</button>
+        <a href="Registrarse.html" class="boton-primario" style="text-decoration: none;">Registrarse</a>
+      </div>
+
+      <!-- Se muestra cuando SÍ hay sesión iniciada -->
+      <div id="auth-usuario" class="auth-estado oculto">
+        <span class="auth-usuario__nombre" id="nombre-usuario">Usuario</span>
+        <button class="boton-borde" type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
+      </div>
+
     </div>
 
   </div>
@@ -230,6 +241,7 @@
   <!-- Chart.js desde CDN (requerido para las gráficas) -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="../JS/Estadisticas.js" defer></script>
+  <script src="../JS/Sesion.js"></script>
 
 </body>
 </html>

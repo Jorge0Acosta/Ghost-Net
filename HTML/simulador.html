@@ -28,10 +28,20 @@
         <a href="Estadisticas.html">Estadísticas</a>
         <a href="simulador.html" class="active">Simulador</a>
     </nav>
+<div class="auth">
 
-    <div class="auth">
-        <button class="btn-outline">Iniciar sesión</button>
+      <!-- Se muestra cuando NO hay sesión iniciada -->
+      <div id="auth-invitado" class="auth-estado">
+        <a href="Registrarse.html" class="btn-outline" style="text-decoration: none; display: inline-block;">Iniciar sesión</a>
         <a href="Registrarse.html" class="btn-primary" style="text-decoration: none; display: inline-block;">Registrarse</a>
+      </div>
+
+      <!-- Se muestra cuando SÍ hay sesión iniciada -->
+      <div id="auth-usuario" class="auth-estado oculto">
+        <span class="auth-usuario__nombre" id="nombre-usuario">Usuario</span>
+        <button class="btn-outline" type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
+      </div>
+
     </div>
 </header>
 
@@ -148,6 +158,8 @@
     </div>
 
 </main>
+
+<script src="../JS/Sesion.js"></script>
 
 <footer>
     <span>GHOST_NET</span>

@@ -1,6 +1,6 @@
 // Conecta los formularios de Registrarse.html con la API de Base de Datos (puerto 3001)
 
-const API_URL = "http://localhost:3002/api";
+const API_URL = "http://localhost:3000/api";
 
 // ---------- REGISTRO ----------
 const registerForm = document.getElementById("registerForm");
@@ -81,7 +81,7 @@ if (loginForm) {
       window.location.href = "index.html";
     } catch (error) {
       console.error("Error al conectar con la API:", error);
-      alert("No se pudo conectar con el servidor de base de datos (puerto 3001). ¿Está corriendo?");
+      alert("No se pudo conectar con el servidor de base de datos (puerto 3000). ¿Está corriendo?");
     }
   });
 }
