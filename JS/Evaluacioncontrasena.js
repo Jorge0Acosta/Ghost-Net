@@ -1,12 +1,24 @@
 const input = document.querySelector(".card-pass-input");
 const resultado = document.querySelector(".resultado");
+const togglePassword = document.querySelector(".card-eye");
+
+if (togglePassword && input) {
+    togglePassword.addEventListener("click", () => {
+        const isPassword = input.type === "password";
+        input.type = isPassword ? "text" : "password";
+        togglePassword.setAttribute("aria-label", isPassword ? "Ocultar contraseña" : "Mostrar contraseña");
+        togglePassword.setAttribute("title", isPassword ? "Ocultar contraseña" : "Mostrar contraseña");
+    });
+}
 
 input.addEventListener("input", async () => {
     const contraseña = input.value;
 
     if (!contraseña) {
-        resultado.textContent = "";
-        resultado.className = "resultado";
+        if (resultado) {
+            resultado.textContent = "Escribe una contraseña para ver su nivel de seguridad.";
+            resultado.className = "resultado result-neutral";
+        }
         return;
     }
 
@@ -26,18 +38,23 @@ input.addEventListener("input", async () => {
 
     } catch (error) {
         console.log("Error: no se conectó a la api chaval", error);
-        resultado.textContent = "No se pudo conectar con el servidor.";
-        resultado.className = "resultado result-bad";
+        if (resultado) {
+            resultado.textContent = "No se pudo conectar con el servidor.";
+            resultado.className = "resultado result-bad";
+        }
     }
 });
 
 function mostrarResultado(data) {
-    resultado.textContent = `${data.nivel} (${data.score} pts)`;
+    if (!resultado) return;
+    const nivel = data.nivel || "Débil";
+    const puntos = data.score ?? 0;
+    resultado.textContent = `${nivel} (${puntos} pts)`;
     resultado.className = "resultado";
 
-    if (data.nivel === "Fuerte") {
+    if (nivel === "Fuerte") {
         resultado.classList.add("result-ok");
-    } else if (data.nivel === "Media") {
+    } else if (nivel === "Media") {
         resultado.classList.add("result-medium");
     } else {
         resultado.classList.add("result-bad");
@@ -57,25 +74,19 @@ const CARACTERES = {
 
 function generarPasswordSegura(longitud = 16) {
     const todos = CARACTERES.minusculas + CARACTERES.mayusculas + CARACTERES.numeros + CARACTERES.simbolos;
-
-    // Usamos crypto.getRandomValues para números aleatorios criptográficamente seguros
     const randomValues = new Uint32Array(longitud);
     crypto.getRandomValues(randomValues);
 
     let password = "";
-
-    // Garantizamos al menos un carácter de cada tipo
     password += CARACTERES.minusculas[randomValues[0] % CARACTERES.minusculas.length];
     password += CARACTERES.mayusculas[randomValues[1] % CARACTERES.mayusculas.length];
     password += CARACTERES.numeros[randomValues[2] % CARACTERES.numeros.length];
     password += CARACTERES.simbolos[randomValues[3] % CARACTERES.simbolos.length];
 
-    // Rellenamos el resto de forma aleatoria
     for (let i = 4; i < longitud; i++) {
         password += todos[randomValues[i] % todos.length];
     }
 
-    // Mezclamos los caracteres para que los primeros 4 no siempre sigan el mismo patrón
     return password.split("").sort(() => Math.random() - 0.5).join("");
 }
 
@@ -88,11 +99,8 @@ if (btnGenerate && genDisplay) {
         genDisplay.style.cursor = "pointer";
     });
 
-    // Clic en el display copia la contraseña generada al portapapeles
     genDisplay.addEventListener("click", async () => {
         const texto = genDisplay.textContent;
-
-        // Si todavía no se generó nada, no hacemos nada
         if (!texto || texto === "Genera una contraseña segura...") return;
 
         try {
