@@ -74,12 +74,10 @@ const CARACTERES = {
 
 function generarPasswordSegura(longitud = 16) {
     const todos = CARACTERES.minusculas + CARACTERES.mayusculas + CARACTERES.numeros + CARACTERES.simbolos;
-
     const randomValues = new Uint32Array(longitud);
     crypto.getRandomValues(randomValues);
 
     let password = "";
-
     password += CARACTERES.minusculas[randomValues[0] % CARACTERES.minusculas.length];
     password += CARACTERES.mayusculas[randomValues[1] % CARACTERES.mayusculas.length];
     password += CARACTERES.numeros[randomValues[2] % CARACTERES.numeros.length];

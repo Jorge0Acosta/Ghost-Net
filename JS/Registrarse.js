@@ -1,4 +1,4 @@
-// Conecta los formularios de Registrarse.html con la API (server.js en localhost:3000)
+// Conecta los formularios de Registrarse.html con la API de Base de Datos (puerto 3001)
 
 const API_URL = "http://localhost:3000/api";
 
@@ -7,7 +7,7 @@ const registerForm = document.getElementById("registerForm");
 
 if (registerForm) {
   registerForm.addEventListener("submit", async (e) => {
-    e.preventDefault(); // evita que la página se recargue
+    e.preventDefault();
 
     const nombre = document.getElementById("regName").value.trim();
     const correo = document.getElementById("regEmail").value.trim();
@@ -42,7 +42,7 @@ if (registerForm) {
       window.location.href = "index.html";
     } catch (error) {
       console.error("Error al conectar con la API:", error);
-      alert("No se pudo conectar con el servidor. ¿Está corriendo npm run dev?");
+      alert("No se pudo conectar con el servidor de base de datos (puerto 3001). ¿Está corriendo?");
     }
   });
 }
@@ -76,14 +76,12 @@ if (loginForm) {
         return;
       }
 
-      // Guardamos el usuario logueado para usarlo en otras páginas
       localStorage.setItem("usuario", JSON.stringify(data.usuario));
-
       alert(`Bienvenido, ${data.usuario.nombre}`);
       window.location.href = "index.html";
     } catch (error) {
       console.error("Error al conectar con la API:", error);
-      alert("No se pudo conectar con el servidor. ¿Está corriendo npm run dev?");
+      alert("No se pudo conectar con el servidor de base de datos (puerto 3000). ¿Está corriendo?");
     }
   });
 }

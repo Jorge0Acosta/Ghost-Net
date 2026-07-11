@@ -1,8 +1,6 @@
-// services/usuarioService.js
 const bcrypt = require("bcryptjs");
-const { pool } = require("../config/db");
+const { pool } = require("../configuracion/db");
 
-// Registrar un nuevo usuario
 async function registrarUsuario(nombre, correo, password) {
     const password_hash = await bcrypt.hash(password, 10);
     const [result] = await pool.query(
@@ -12,7 +10,6 @@ async function registrarUsuario(nombre, correo, password) {
     return { id_usuario: result.insertId, nombre, correo };
 }
 
-// Validar credenciales de login
 async function validarCredenciales(correo, password) {
     const [rows] = await pool.query("SELECT * FROM usuarios WHERE correo = ?", [correo]);
     if (rows.length === 0) return null;
@@ -24,11 +21,15 @@ async function validarCredenciales(correo, password) {
     return usuario;
 }
 
-// Registrar el inicio de sesión (historial)
 async function registrarInicioSesion(id_usuario, ip, dispositivo) {
+    // La columna 'dispositivo' es VARCHAR(100); el User-Agent del navegador
+    // puede superar ese límite, así que lo recortamos para evitar el error
+    // "Data too long for column 'dispositivo'".
+    const dispositivoRecortado = (dispositivo || "desconocido").substring(0, 100);
+
     await pool.query(
         "INSERT INTO inicios_sesion (id_usuario, direccion_ip, dispositivo) VALUES (?, ?, ?)",
-        [id_usuario, ip, dispositivo]
+        [id_usuario, ip, dispositivoRecortado]
     );
 }
 

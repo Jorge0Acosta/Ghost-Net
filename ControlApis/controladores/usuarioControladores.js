@@ -1,6 +1,4 @@
-// controladores/usuarioControladores.js
-const usuarioService = require("../services/usuarioService");
-
+const usuarioService = require("../servicios/usuarioService");
 async function registrar(req, res) {
     try {
         const { nombre, correo, password } = req.body;

@@ -1,16 +1,6 @@
-// controladores/contrasenaControladores.js
-const { analizarPassword } = require("../services/passwordService");
-const cuestionarioService = require("../services/cuestionarioService");
-const evaluacionService = require("../services/evaluacionService");
+const cuestionarioService = require("../servicios/cuestionarioService");
+const evaluacionService = require("../servicios/evaluacionService");
 
-// POST /api/evaluar -> evalúa la fortaleza de una contraseña (no toca la BD)
-function evaluarPassword(req, res) {
-    const { password } = req.body;
-    const resultado = analizarPassword(password);
-    res.json(resultado);
-}
-
-// GET /api/cuestionario -> preguntas del perfil de riesgo con sus opciones
 async function obtenerCuestionario(req, res) {
     try {
         const preguntas = await cuestionarioService.obtenerCuestionario();
@@ -20,8 +10,6 @@ async function obtenerCuestionario(req, res) {
     }
 }
 
-// POST /api/evaluaciones -> guarda las respuestas del cuestionario y calcula el resultado
-// body: { id_usuario: 1, respuestas: [{ id_pregunta: 1, id_opcion: 3 }, ...] }
 async function crearEvaluacion(req, res) {
     try {
         const { id_usuario, respuestas } = req.body;
@@ -35,7 +23,6 @@ async function crearEvaluacion(req, res) {
     }
 }
 
-// GET /api/evaluaciones/usuario/:id_usuario -> historial para Estadisticas/PerfilRiesgo
 async function historialPorUsuario(req, res) {
     try {
         const historial = await evaluacionService.obtenerHistorialPorUsuario(req.params.id_usuario);
@@ -45,4 +32,4 @@ async function historialPorUsuario(req, res) {
     }
 }
 
-module.exports = { evaluarPassword, obtenerCuestionario, crearEvaluacion, historialPorUsuario };
+module.exports = { obtenerCuestionario, crearEvaluacion, historialPorUsuario };

@@ -1,16 +1,12 @@
-// services/evaluacionService.js
-const { pool } = require("../config/db");
+const { pool } = require("../configuracion/db");
 
-// AJUSTA estos rangos según cómo definas Bajo/Medio/Alto en tu proyecto.
-// Se compara contra el puntaje_total sumado de las 10 respuestas.
+// Escala real: 10 preguntas x 3 puntos máx = 30 puntos totales
 function calcularNivelRiesgo(puntajeTotal) {
-    if (puntajeTotal <= 10) return "Alto";
-    if (puntajeTotal <= 20) return "Medio";
+    if (puntajeTotal <= 13) return "Alto";
+    if (puntajeTotal <= 21) return "Medio";
     return "Bajo";
 }
 
-// Crea una evaluación completa: guarda las respuestas y calcula el resultado
-// respuestas = [{ id_pregunta: 1, id_opcion: 3 }, ...]
 async function crearEvaluacion(id_usuario, respuestas) {
     const connection = await pool.getConnection();
     try {
@@ -55,7 +51,6 @@ async function crearEvaluacion(id_usuario, respuestas) {
     }
 }
 
-// Historial de evaluaciones de un usuario (para Estadisticas.html / PerfilRiesgo.html)
 async function obtenerHistorialPorUsuario(id_usuario) {
     const [rows] = await pool.query(
         `SELECT e.id_evaluacion, e.fecha, r.puntaje_total, r.nivel_riesgo

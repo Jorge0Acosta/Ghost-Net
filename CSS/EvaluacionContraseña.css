@@ -997,3 +997,49 @@ label:focus-visible {
     grid-template-columns: 1fr;
   }
 }
+
+/* Resultado del analizador de contraseña */
+.resultado {
+  margin-top: 10px;
+  font-size: 13.5px;
+  font-weight: 600;
+  font-family: var(--font-mono);
+  min-height: 18px; /* evita que la tarjeta "salte" cuando aparece/desaparece el texto */
+}
+
+.result-medium {
+  color: #f59e0b;
+}
+
+/* ===== ESTADO DE SESIÓN (navbar-actions) ===== */
+.oculto {
+  display: none !important;
+}
+
+.auth-estado {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.auth-usuario__nombre {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.auth-usuario__nombre::before {
+  content: "> ";
+  color: var(--accent);
+}
+
+#btn-cerrar-sesion {
+  border-color: rgba(248, 113, 113, 0.4);
+  color: #f87171;
+}
+
+#btn-cerrar-sesion:hover {
+  border-color: #f87171;
+  background: rgba(248, 113, 113, 0.08);
+}
