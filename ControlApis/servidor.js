@@ -31,6 +31,9 @@ const correoRoutes = require("./rutas/correoRoutes");
 const passwordRoutes = require("./rutas/contrasenaRouter");
 const usuarioRoutes = require("./rutas/usuarioRouter");
 const riesgoRoutes = require("./rutas/riesgoRouter");
+const filtracionesRoutes = require("./rutas/filtracionesRouter");
+
+
 
 // ==============================
 // Rutas de la API
@@ -40,6 +43,7 @@ app.use("/api/correo", correoRoutes);
 app.use("/api/contrasena", passwordRoutes);
 app.use("/api", usuarioRoutes);
 app.use("/api", riesgoRoutes);
+app.use("/api/filtraciones", filtracionesRoutes);
 
 // ==============================
 // Puerto del servidor

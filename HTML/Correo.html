@@ -65,13 +65,13 @@
         </div>
       </div>
       <div class="verify-row">
-        <input type="email" class="verify-input" placeholder="correo@ejemplo.com" value="correo@ejemplo.com">
-        <button type="button" class="btn-verify">
+        <input type="email" id="emailInput" class="verify-input" placeholder="correo@ejemplo.com" value="correo@ejemplo.com">
+        <button type="button" id="btnVerificar" class="btn-verify">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
-          Verificar
+          <span class="btn-verify-text">Verificar</span>
         </button>
       </div>
-      <p class="fine-print">* Simulación con datos de referencia. En producción se integrará con HaveIBeenPwned API.</p>
+      <p class="fine-print">* Datos en tiempo real vía XposedOrNot API (fuente gratuita de brechas de seguridad).</p>
     </div>
 
     <div class="dash-card risk-card">
@@ -81,11 +81,11 @@
       <div class="risk-ring">
         <div class="risk-ring-inner">
           <div class="shield">🛡</div>
-          <div class="label">ALTO</div>
+          <div class="label" id="nivelRiesgo">—</div>
         </div>
       </div>
-      <p class="risk-desc">Este correo ha sido encontrado en<br><b>3 brechas de seguridad</b></p>
-      <p class="risk-updated">Última actualización: <span>24/06/2025</span></p>
+      <p class="risk-desc" id="descripcionRiesgo">Ingresa un correo y presiona <b>Verificar</b></p>
+      <p class="risk-updated">Última actualización: <span id="fechaActualizacion">—</span></p>
     </div>
   </div>
 
@@ -94,7 +94,7 @@
       <div class="stat-top">
         <div class="stat-icon accent">🗄</div>
       </div>
-      <div class="stat-value accent">3</div>
+      <div class="stat-value accent" id="numBrechas">0</div>
       <div class="stat-label">Brechas encontradas</div>
       <div class="stat-bar accent"></div>
     </div>
@@ -102,7 +102,7 @@
       <div class="stat-top">
         <div class="stat-icon amber">👥</div>
       </div>
-      <div class="stat-value amber">1.2B+</div>
+      <div class="stat-value amber" id="registrosExpuestos">0</div>
       <div class="stat-label">Registros expuestos</div>
       <div class="stat-bar amber"></div>
     </div>
@@ -110,7 +110,7 @@
       <div class="stat-top">
         <div class="stat-icon blue">📅</div>
       </div>
-      <div class="stat-value blue">2024</div>
+      <div class="stat-value blue" id="ultimaBrecha">—</div>
       <div class="stat-label">Última brecha</div>
       <div class="stat-bar blue"></div>
     </div>
@@ -118,7 +118,7 @@
       <div class="stat-top">
         <div class="stat-icon purple">🛡</div>
       </div>
-      <div class="stat-value purple">ALTO</div>
+      <div class="stat-value purple" id="nivelRiesgoMini">—</div>
       <div class="stat-label">Nivel de riesgo</div>
       <div class="stat-bar purple"></div>
     </div>
@@ -131,25 +131,8 @@
         <thead>
           <tr><th>Servicio</th><th>Fecha</th><th>Registros expuestos</th><th>Gravedad</th></tr>
         </thead>
-        <tbody>
-          <tr>
-            <td><div class="service-cell"><div class="service-logo logo-linkedin">in</div> LinkedIn</div></td>
-            <td>2021</td>
-            <td>700M+</td>
-            <td><span class="badge alto">Alto</span></td>
-          </tr>
-          <tr>
-            <td><div class="service-cell"><div class="service-logo logo-adobe">A</div> Adobe</div></td>
-            <td>2013</td>
-            <td>152M+</td>
-            <td><span class="badge alto">Alto</span></td>
-          </tr>
-          <tr>
-            <td><div class="service-cell"><div class="service-logo logo-dropbox">⬡</div> Dropbox</div></td>
-            <td>2012</td>
-            <td>68M+</td>
-            <td><span class="badge media">Media</span></td>
-          </tr>
+        <tbody id="tablaBrechas">
+          <tr><td colspan="4" style="text-align:center; opacity:.6;">Verifica un correo para ver resultados</td></tr>
         </tbody>
       </table>
       <a href="#" class="view-all">Ver todas las brechas</a>
@@ -205,5 +188,6 @@
 </footer>
 
 <script src="../JS/Sesion.js"></script>
+<script src="../JS/Filtraciones.js"></script>
 </body>
 </html>
