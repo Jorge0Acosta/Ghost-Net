@@ -1013,3 +1013,11 @@ ul li:hover {
   content: "⚡ ";
   color: var(--accent-blue);
 }
+
+
+/* ===== ESTADO DE SESIÓN (navbar-actions) ===== */
+
+.oculto {
+  display: none !important;
+
+}
