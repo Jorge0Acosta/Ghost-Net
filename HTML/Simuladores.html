@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ghost Internet — Laboratorio</title>
+  <link rel="stylesheet" href="../CSS/Simuladores.css" />
+</head>
+<body>
+
+  <div class="fondo-grilla" aria-hidden="true"></div>
+  <div class="fondo-brillo" aria-hidden="true"></div>
+
+  <nav class="barra-nav">
+    <div class="contenido-nav">
+      <a href="Inicio.html" class="logo">
+        <div class="logo__contenedor-icono">
+          <img src="../SVG/escudo.svg" alt="" class="logo__icono" aria-hidden="true" />
+        </div>
+        <span class="logo__texto">GHOST<span class="logo__guion">_</span>NET</span>
+      </a>
+      <ul class="enlaces-nav">
+        <li class="enlaces-nav__elemento"><a href="Inicio.html">Inicio</a></li>
+        <li class="enlaces-nav__elemento"><a href="#">Contraseñas</a></li>
+        <li class="enlaces-nav__elemento"><a href="#">Correos</a></li>
+        <li class="enlaces-nav__elemento"><a href="Estadisticas.html">Estadísticas</a></li>
+        <li class="enlaces-nav__elemento enlaces-nav__elemento--activo"><a href="Simuladores.html">Simulador</a></li>
+      </ul>
+      <div class="zona-auth">
+        <button class="boton-borde" type="button">Iniciar sesión</button>
+        <button class="boton-primario" type="button">Registrarse</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="contenido-principal">
+    <div class="pagina-lab">
+
+      <div class="lab-encabezado">
+        <div class="lab-encabezado__icono-contenedor">
+          <img src="../SVG/rayo.svg" alt="" aria-hidden="true" class="lab-encabezado__icono" />
+        </div>
+        <div>
+          <h1 class="lab-encabezado__titulo">Ghost-Net Lab</h1>
+          <p class="lab-encabezado__subtitulo">
+            Simuladores interactivos de ciberseguridad. Practica en un entorno seguro
+            y aprende a protegerte de amenazas reales.
+          </p>
+        </div>
+      </div>
+
+      <div class="grilla-lab">
+
+        <a href="FuerzaBruta.html" class="tarjeta-lab tarjeta-lab--verde">
+          <div class="tarjeta-lab__cabecera">
+            <div class="tarjeta-lab__icono-contenedor tarjeta-lab__icono-contenedor--verde">
+              <img src="../SVG/candado.svg" alt="Candado" class="tarjeta-lab__icono" />
+            </div>
+            <span class="tarjeta-lab__dificultad tarjeta-lab__dificultad--facil">Fácil</span>
+          </div>
+          <h2 class="tarjeta-lab__titulo">Ataque de Fuerza Bruta</h2>
+          <p class="tarjeta-lab__descripcion">
+            Descubre si tu contraseña resistiría un ataque automatizado. Ingresa una clave
+            y observa cómo un sistema intenta descifrarla en tiempo real.
+          </p>
+          <span class="tarjeta-lab__cta tarjeta-lab__cta--verde">Iniciar simulación →</span>
+        </a>
+
+        <a href="Phishing.html" class="tarjeta-lab tarjeta-lab--cyan">
+          <div class="tarjeta-lab__cabecera">
+            <div class="tarjeta-lab__icono-contenedor tarjeta-lab__icono-contenedor--cyan">
+              <img src="../SVG/correo.svg" alt="Correo" class="tarjeta-lab__icono" />
+            </div>
+            <span class="tarjeta-lab__dificultad tarjeta-lab__dificultad--intermedio">Intermedio</span>
+          </div>
+          <h2 class="tarjeta-lab__titulo">Detección de Phishing</h2>
+          <p class="tarjeta-lab__descripcion">
+            Recibe mensajes sospechosos y toma decisiones. Aprende a identificar intentos
+            de suplantación de identidad en conversaciones reales.
+          </p>
+          <span class="tarjeta-lab__cta tarjeta-lab__cta--cyan">Iniciar simulación →</span>
+        </a>
+
+        <a href="Descarga.html" class="tarjeta-lab tarjeta-lab--rosa">
+          <div class="tarjeta-lab__cabecera">
+            <div class="tarjeta-lab__icono-contenedor tarjeta-lab__icono-contenedor--rosa">
+              <img src="../SVG/documento.svg" alt="Descarga" class="tarjeta-lab__icono" />
+            </div>
+            <span class="tarjeta-lab__dificultad tarjeta-lab__dificultad--avanzado">Avanzado</span>
+          </div>
+          <h2 class="tarjeta-lab__titulo">Descarga Segura</h2>
+          <p class="tarjeta-lab__descripcion">
+            Navega por sitios web y decide desde dónde descargar software.
+            Distingue fuentes oficiales de sitios maliciosos y anuncios trampa.
+          </p>
+          <span class="tarjeta-lab__cta tarjeta-lab__cta--rosa">Iniciar simulación →</span>
+        </a>
+
+      </div>
+    </div>
+  </main>
+</body>
+</html>

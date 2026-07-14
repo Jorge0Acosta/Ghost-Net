@@ -1,4 +1,4 @@
-const verificarCorreo = require("../../ControlApis/servicios/verificarcorreo");
+const verificarCorreo = require("./verificarCorreo");
 
 function compararCorreo(correo1, correo2) {
 

@@ -2,9 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
-
 const { testConnection } = require("./configuracion/db");
-
 const app = express();
 
 // ==============================
@@ -28,19 +26,19 @@ app.use(express.json());
 // ==============================
 
 const correoRoutes = require("./rutas/correoRoutes");
-const passwordRoutes = require("./rutas/contrasenaRouter");
+const passwordRoutes = require("./rutas/contrasenaRoutes");
 const usuarioRoutes = require("./rutas/usuarioRouter");
 const riesgoRoutes = require("./rutas/riesgoRouter");
+const estadisticasRoutes = require("./rutas/rutaEstadistica");
 
 // ==============================
 // Rutas de la API
 // ==============================
-
-app.use("/api/correo", correoRoutes);
 app.use("/api/contrasena", passwordRoutes);
+app.use("/api/correo", correoRoutes);
 app.use("/api", usuarioRoutes);
 app.use("/api", riesgoRoutes);
-
+app.use("/api/estadisticas", estadisticasRoutes);
 // ==============================
 // Puerto del servidor
 // ==============================

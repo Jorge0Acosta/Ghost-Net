@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ghost Internet — Phishing</title>
+  <link rel="stylesheet" href="../CSS/Phishing.css" />
+</head>
+<body>
+
+  <div class="fondo-grilla" aria-hidden="true"></div>
+  <div class="fondo-brillo" aria-hidden="true"></div>
+
+  <nav class="barra-nav">
+    <div class="contenido-nav">
+      <a href="Inicio.html" class="logo">
+        <div class="logo__contenedor-icono">
+          <img src="../SVG/escudo.svg" alt="" class="logo__icono" aria-hidden="true" />
+        </div>
+        <span class="logo__texto">GHOST<span class="logo__guion">_</span>NET</span>
+      </a>
+      <ul class="enlaces-nav">
+        <li class="enlaces-nav__elemento"><a href="Inicio.html">Inicio</a></li>
+        <li class="enlaces-nav__elemento menu-desplegable">
+        <a href="#" class="menu-desplegable__toggle">
+            <span>Herramientas</span>
+            <img
+              src="../SVG/flecha-herramientas.svg"
+              alt=""
+              class="icono-flecha"
+              aria-hidden="true"
+            />
+          </a>
+
+          <ul class="submenu">
+            <li><a href="EvaluacionContraseña.html">Contraseñas</a></li>
+            <li><a href="VerificarCorreo.html">Correos</a></li>
+            <li><a href="PerfildeRiesgo.html">Perfil de Riesgo</a></li>
+            <li><a href="Correo.html">Filtraciones</a></li>
+          </ul>
+        </li>
+        <li class="enlaces-nav__elemento"><a href="Estadisticas.html">Estadísticas</a></li>
+        <li class="enlaces-nav__elemento enlaces-nav__elemento--activo"><a href="Simuladores.html">Simulador</a></li>
+      </ul>
+      
+      
+      <div class="zona-auth">
+        <button class="boton-borde" type="button">Iniciar sesión</button>
+        <button class="boton-primario" type="button">Registrarse</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="contenido-principal">
+    <div class="pagina-sim">
+
+      <a href="Simuladores.html" class="boton-volver">← Volver al laboratorio</a>
+
+      <div class="sim-encabezado">
+        <div class="sim-encabezado__icono-contenedor sim-encabezado__icono-contenedor--cyan">
+          <img src="../SVG/correo.svg" alt="Correo" class="sim-encabezado__icono" />
+        </div>
+        <div>
+          <h1 class="sim-encabezado__titulo sim-encabezado__titulo--cyan">Simulador de Phishing</h1>
+          <p class="sim-encabezado__subtitulo">
+            Recibe mensajes y toma decisiones. Aprende a identificar intentos de suplantación.
+          </p>
+        </div>
+      </div>
+
+      <!-- ===== FASE 1: BANDEJA DE ENTRADA ===== -->
+      <section id="fase-bandeja" class="fase fase--activa">
+        <p class="instruccion-bandeja">
+          Tienes 3 mensajes nuevos. Abre cada conversación y decide cómo responder.
+        </p>
+        <div class="lista-contactos">
+
+          <button class="tarjeta-contacto" data-conversacion="banco" type="button">
+            <div class="contacto-avatar contacto-avatar--azul">🏦</div>
+            <div class="contacto-info">
+              <div class="contacto-nombre">BancoNacional</div>
+              <div class="contacto-preview">Actividad sospechosa detectada...</div>
+              <div class="contacto-etiqueta">Institución financiera</div>
+            </div>
+            <span class="contacto-badge">1</span>
+          </button>
+
+          <button class="tarjeta-contacto" data-conversacion="reclutador" type="button">
+            <div class="contacto-avatar contacto-avatar--morado">👔</div>
+            <div class="contacto-info">
+              <div class="contacto-nombre">Carlos M. — Reclutador</div>
+              <div class="contacto-preview">Tenemos una vacante perfecta para ti...</div>
+              <div class="contacto-etiqueta">LinkedIn</div>
+            </div>
+            <span class="contacto-badge">1</span>
+          </button>
+
+          <button class="tarjeta-contacto" data-conversacion="mama" type="button">
+            <div class="contacto-avatar contacto-avatar--verde">👩</div>
+            <div class="contacto-info">
+              <div class="contacto-nombre">Mamá 💙</div>
+              <div class="contacto-preview">Hola mi amor, perdí el celular...</div>
+              <div class="contacto-etiqueta">Contacto guardado</div>
+            </div>
+            <span class="contacto-badge">1</span>
+          </button>
+
+        </div>
+      </section>
+
+      <!-- ===== FASE 2: CHAT ===== -->
+      <section id="fase-chat" class="fase">
+        <div class="interfaz-chat">
+
+          <div class="panel-contactos">
+            <div class="panel-contactos__titulo">Mensajes</div>
+            <button class="mini-contacto mini-contacto--activo" id="mini-banco" data-conversacion="banco" type="button">
+              <div class="mini-avatar mini-avatar--azul">🏦</div>
+              <div class="mini-nombre">BancoNacional</div>
+            </button>
+            <button class="mini-contacto" id="mini-reclutador" data-conversacion="reclutador" type="button">
+              <div class="mini-avatar mini-avatar--morado">👔</div>
+              <div class="mini-nombre">Reclutador</div>
+            </button>
+            <button class="mini-contacto" id="mini-mama" data-conversacion="mama" type="button">
+              <div class="mini-avatar mini-avatar--verde">👩</div>
+              <div class="mini-nombre">Mamá</div>
+            </button>
+          </div>
+
+          <div class="panel-mensajes">
+            <div class="chat-cabecera">
+              <div class="chat-avatar" id="chat-avatar"></div>
+              <div>
+                <div class="chat-nombre" id="chat-nombre"></div>
+                <div class="chat-estado" id="chat-estado">escribiendo...</div>
+              </div>
+            </div>
+
+            <div class="chat-mensajes" id="chat-mensajes" role="log" aria-live="polite"></div>
+
+            <div class="chat-opciones" id="chat-opciones" aria-label="Opciones de respuesta"></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===== FASE 3: RESULTADO ===== -->
+      <section id="fase-resultado-phishing" class="fase">
+        <div class="resultado-phishing">
+          <div class="resultado-phishing__cabecera">
+            <div class="resultado-phishing__icono" id="res-phi-icono">📊</div>
+            <h2 class="resultado-phishing__titulo">Resultado del Análisis</h2>
+            <div class="resultado-phishing__nivel" id="res-phi-nivel"></div>
+          </div>
+
+          <div class="resultado-phishing__decisiones" id="res-phi-decisiones"></div>
+
+          <div class="resultado-phishing__explicacion" id="res-phi-explicacion">
+            <h3 class="resultado-phishing__subtitulo">// ¿Dónde estuvo el error?</h3>
+            <p class="resultado-phishing__texto" id="res-phi-donde"></p>
+          </div>
+
+          <div class="resultado-phishing__consejos">
+            <h3 class="resultado-phishing__subtitulo">// Recomendaciones</h3>
+            <ul class="resultado-phishing__lista" id="res-phi-consejos"></ul>
+          </div>
+
+          <div class="resultado-acciones">
+            <button id="boton-repetir-phi" class="boton-accion boton-accion--cyan" type="button">
+              ↩ Repetir simulación
+            </button>
+            <a href="Simuladores.html" class="boton-accion boton-accion--secundario">
+              ← Volver al laboratorio
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../JS/Phishing.js" defer></script>
+</body>
+</html>

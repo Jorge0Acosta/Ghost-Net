@@ -1,0 +1,607 @@
+/* ===== ESTILOS DEL SIMULADOR DE PHISHING ===== */
+@import url('./Compartido.css');
+
+@keyframes aparecerMensaje {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulsarPunto {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ===== LAYOUT ===== */
+
+.pagina-sim { 
+  max-width: 960px; 
+  margin: 0 auto; 
+  padding: 120px 24px 64px;
+ }
+
+.boton-volver {
+  display: inline-block;
+  font-family: var(--fuente-codigo);
+  font-size: 13px;
+  color: var(--color-texto);
+  border: 1px solid var(--color-borde);
+  padding: 8px 16px;
+  border-radius: var(--radio-mediano);
+  margin-bottom: 24px;
+  text-decoration: none;
+  transition: all var(--transicion-rapida);
+}
+
+.boton-volver:hover { color: var(--color-azul-claro); border-color: rgba(0, 200, 251, 0.4); }
+
+/* ===== ENCABEZADO ===== */
+
+.sim-encabezado {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.sim-encabezado__icono-contenedor {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--radio-grande);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sim-encabezado__icono-contenedor--cyan {
+  background: rgba(0, 200, 251, 0.1);
+  border: 1px solid rgba(0, 200, 251, 0.28);
+}
+
+.sim-encabezado__icono { width: 22px; height: 22px; }
+
+.sim-encabezado__titulo {
+  font-family: var(--fuente-codigo);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.sim-encabezado__titulo--cyan { color: var(--color-azul-claro); }
+.sim-encabezado__subtitulo { font-family: var(--fuente-principal); color: var(--color-gris-medio-claro); font-size: 14px; margin-top: 3px; }
+
+/* ===== FASES ===== */
+
+.fase { display: none; }
+.fase--activa { display: block; }
+
+/* ===== FASE 1: BANDEJA ===== */
+
+.instruccion-bandeja {
+  font-family: var(--fuente-principal);
+  color: var(--color-gris-medio-claro);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.lista-contactos {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+}
+
+.tarjeta-contacto {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--color-card);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-grande);
+  padding: 16px 18px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: all var(--transicion-rapida);
+}
+
+.tarjeta-contacto:hover {
+  border-color: rgba(0, 200, 251, 0.4);
+  background: rgba(0, 200, 251, 0.04);
+  transform: translateX(3px);
+}
+
+.contacto-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.contacto-avatar--azul   { background: rgba(59, 130, 246, 0.2); border: 1px solid rgba(59, 130, 246, 0.3); }
+.contacto-avatar--morado { background: rgba(176, 68, 255, 0.2); border: 1px solid rgba(176, 68, 255, 0.3); }
+.contacto-avatar--verde  { background: rgba(34, 197, 94, 0.2);  border: 1px solid rgba(34, 197, 94, 0.3); }
+
+.contacto-info { flex: 1; min-width: 0; }
+
+.contacto-nombre {
+  font-family: var(--fuente-codigo);
+  color: var(--color-texto);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.contacto-preview {
+  font-family: var(--fuente-principal);
+  color: var(--color-gris-medio-claro);
+  font-size: 13px;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.contacto-etiqueta {
+  font-family: var(--fuente-codigo);
+  color: var(--color-cafe-verdoso);
+  font-size: 10px;
+  margin-top: 3px;
+}
+
+.contacto-badge {
+  background: var(--color-azul-claro);
+  color: var(--color-fondo);
+  font-family: var(--fuente-codigo);
+  font-size: 11px;
+  font-weight: 700;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ===== FASE 2: CHAT ===== */
+
+.interfaz-chat {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  height: 560px;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-extra-grande);
+  overflow: hidden;
+}
+
+/* Panel izquierdo */
+.panel-contactos {
+  background: var(--color-superficie);
+  border-right: 1px solid var(--color-borde);
+  padding: 16px 0;
+}
+
+.panel-contactos__titulo {
+  font-family: var(--fuente-codigo);
+  color: var(--color-gris-medio-claro);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  padding: 0 16px 12px;
+  border-bottom: 1px solid var(--color-borde);
+  margin-bottom: 8px;
+}
+
+.mini-contacto {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 0;
+  transition: background var(--transicion-rapida);
+}
+
+.mini-contacto:hover { background: rgba(0, 200, 251, 0.05); }
+.mini-contacto--activo { background: rgba(0, 200, 251, 0.08); border-right: 2px solid var(--color-azul-claro); }
+
+.mini-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.mini-avatar--azul   { background: rgba(59, 130, 246, 0.2); }
+.mini-avatar--morado { background: rgba(176, 68, 255, 0.2); }
+.mini-avatar--verde  { background: rgba(34, 197, 94, 0.2);  }
+
+.mini-nombre {
+  font-family: var(--fuente-codigo);
+  color: var(--color-texto);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Panel de chat */
+.panel-mensajes {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-card);
+}
+
+.chat-cabecera {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--color-borde);
+}
+
+.chat-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.chat-nombre {
+  font-family: var(--fuente-codigo);
+  color: var(--color-texto);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.chat-estado {
+  font-family: var(--fuente-codigo);
+  color: var(--color-azul-claro);
+  font-size: 11px;
+  margin-top: 1px;
+}
+
+.chat-mensajes {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-behavior: smooth;
+}
+
+.chat-mensajes::-webkit-scrollbar { width: 4px; }
+.chat-mensajes::-webkit-scrollbar-thumb { background: rgba(0, 200, 251, 0.2); border-radius: 2px; }
+
+/* Burbujas de mensajes */
+.burbuja {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  animation: aparecerMensaje 0.3s ease both;
+}
+
+.burbuja__avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+
+.burbuja__texto {
+  font-family: var(--fuente-principal);
+  font-size: 14px;
+  line-height: 1.55;
+  padding: 10px 14px;
+  border-radius: 14px;
+  max-width: 78%;
+}
+
+.burbuja--otro .burbuja__texto {
+  background: var(--color-superficie);
+  color: var(--color-texto);
+  border-bottom-left-radius: 4px;
+}
+
+/* Indicador de escritura */
+.indicador-escritura {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.indicador-escritura__burbuja {
+  background: var(--color-superficie);
+  border-radius: 14px;
+  border-bottom-left-radius: 4px;
+  padding: 10px 14px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.indicador-escritura__punto {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-azul-claro);
+  animation: pulsarPunto 1s infinite;
+}
+
+.indicador-escritura__punto:nth-child(2) { animation-delay: 0.2s; }
+.indicador-escritura__punto:nth-child(3) { animation-delay: 0.4s; }
+
+/* Opciones de respuesta */
+.chat-opciones {
+  padding: 12px 16px;
+  border-top: 1px solid var(--color-borde);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.boton-opcion {
+  padding: 8px 16px;
+  border-radius: var(--radio-pastilla);
+  font-family: var(--fuente-codigo);
+  font-size: 12px;
+  cursor: pointer;
+  border: 1px solid rgba(0, 200, 251, 0.35);
+  color: var(--color-azul-claro);
+  background: rgba(0, 200, 251, 0.06);
+  transition: all var(--transicion-rapida);
+  animation: aparecerMensaje 0.25s ease both;
+}
+
+.boton-opcion:hover {
+  background: rgba(0, 200, 251, 0.14);
+  border-color: rgba(0, 200, 251, 0.6);
+}
+
+/* ===== FASE 3: RESULTADO ===== */
+
+.resultado-phishing {
+  background: var(--color-card);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-extra-grande);
+  padding: 32px;
+  max-width: 680px;
+}
+
+.resultado-phishing__cabecera {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.resultado-phishing__icono { font-size: 36px; margin-bottom: 8px; }
+
+.resultado-phishing__titulo {
+  font-family: var(--fuente-codigo);
+  color: var(--color-texto);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.resultado-phishing__nivel {
+  display: inline-block;
+  font-family: var(--fuente-codigo);
+  font-size: 12px;
+  padding: 4px 14px;
+  border-radius: var(--radio-pastilla);
+  border: 1px solid;
+}
+
+.nivel--bajo   { color: var(--color-verde-fosforecente); border-color: var(--color-verde-fosforecente); background: rgba(0,253,135,0.07); }
+.nivel--medio  { color: #ffb800; border-color: #ffb800; background: rgba(255,184,0,0.07); }
+.nivel--alto   { color: var(--color-rojo); border-color: var(--color-rojo); background: rgba(249,40,55,0.07); }
+
+.resultado-phishing__decisiones {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.decision-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radio-mediano);
+  font-family: var(--fuente-principal);
+  font-size: 13px;
+}
+
+.decision-item--ok     { background: rgba(0,253,135,0.06); border: 1px solid rgba(0,253,135,0.18); color: var(--color-texto); }
+.decision-item--error  { background: rgba(249,40,55,0.06); border: 1px solid rgba(249,40,55,0.18); color: var(--color-texto); }
+
+.decision-item__icono  { font-size: 14px; flex-shrink: 0; }
+
+.resultado-phishing__explicacion,
+.resultado-phishing__consejos {
+  background: rgba(255,255,255,0.03);
+  border-radius: var(--radio-mediano);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.resultado-phishing__subtitulo {
+  font-family: var(--fuente-codigo);
+  color: var(--color-azul-claro);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.resultado-phishing__texto {
+  font-family: var(--fuente-principal);
+  color: var(--color-gris-medio-claro);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.resultado-phishing__lista {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.resultado-phishing__lista li {
+  font-family: var(--fuente-principal);
+  color: var(--color-gris-medio-claro);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.resultado-acciones {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.boton-accion {
+  padding: 11px 22px;
+  border-radius: var(--radio-mediano);
+  font-family: var(--fuente-codigo);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all var(--transicion-rapida);
+}
+
+.boton-accion--cyan {
+  background: var(--color-azul-claro);
+  color: var(--color-fondo);
+  border: none;
+  box-shadow: 0 0 16px rgba(0,200,251,0.3);
+}
+
+.boton-accion--cyan:hover { background: #00b0dd; }
+
+.boton-accion--secundario {
+  background: transparent;
+  color: var(--color-gris-medio-claro);
+  border: 1px solid var(--color-borde);
+}
+
+.boton-accion--secundario:hover { color: var(--color-texto); border-color: rgba(93,138,156,0.5); }
+
+@media (max-width: 700px) {
+  .interfaz-chat { grid-template-columns: 1fr; height: auto; }
+  .panel-contactos { display: none; }
+}
+
+/* ===== DROPDOWN HERRAMIENTAS ===== */
+
+
+
+.menu-desplegable {
+  position: relative;
+}
+
+/* botón principal (Herramientas + flecha) */
+.menu-desplegable__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  gap: 8px;
+
+  text-decoration: none;
+  white-space: nowrap; /* evita que se baje la flecha */
+}
+
+/* flecha alineada correctamente */
+.icono-flecha {
+  width: 12px;
+  height: 12px;
+
+  display: inline-block; 
+  vertical-align: middle;
+
+  flex-shrink: 0; /* evita que se deforme o baje */
+  transition: transform 0.25s ease;
+}
+
+/* submenu oculto */
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 15px;
+
+  background: #118baa;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+
+  padding: 8px 0;
+  min-width: 180px;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s ease;
+
+  z-index: 1000;
+}
+
+/* mostrar submenu al pasar mouse */
+.menu-desplegable:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* rotar flecha cuando hover */
+.menu-desplegable:hover .icono-flecha {
+  transform: rotate(180deg);
+}
+
+/* links del submenu */
+.submenu li a {
+  display: block;
+  padding: 10px 14px;
+  color: var(--color-texto);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.submenu li a:hover {
+  color: var(--color-verde-fosforecente);
+}
+
+.insignia__punto {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color-verde-fosforecente);
+  animation: pulso 2s infinite;
+}
+
+.insignia__texto {
+  font-family: var(--fuente-codigo);
+  font-size: 11px;
+  color: var(--color-verde-fosforecente);
+  letter-spacing: 0.12em;
+}

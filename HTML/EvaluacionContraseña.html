@@ -1,168 +1,221 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GHOST_NET — Seguridad de Contraseñas</title>
-<link rel="stylesheet" href="../CSS/EvaluacionContraseña.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GHOST_NET — Seguridad de Contraseñas</title>
+    <link rel="stylesheet" href="../CSS/EvaluacionContraseña.css">
 </head>
+
 <body>
 
-<header class="navbar">
-  <a href="index.html" class="logo">
-    <span class="logo-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3.2v5.3c0 4.6-3 7.9-7 9.5-4-1.6-7-4.9-7-9.5V6.2L12 3z"/></svg>
-    </span>
-    <span class="logo-text">GHOST_NET</span>
-  </a>
+    <header class="navbar">
+        <a href="index.html" class="logo">
+            <span class="logo-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <path d="M12 3l7 3.2v5.3c0 4.6-3 7.9-7 9.5-4-1.6-7-4.9-7-9.5V6.2L12 3z"/>
+                </svg>
+            </span>
+            <span class="logo-text">GHOST_NET</span>
+        </a>
 
-  <nav class="nav-links">
-    <a href="index.html" class="nav-link">Inicio</a>
-    <div class="nav-dropdown">
-      <button type="button" class="nav-link dropdown-toggle is-active">
-        Herramientas
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="dropdown-menu">
-        <a href="EvaluacionContraseña.html" class="dropdown-item is-current">Contraseñas</a>
-        <a href="VerificarCorreo.html" class="dropdown-item">Correos</a>
-        <a href="PerfildeRiesgo.html" class="dropdown-item">Perfil de Riesgo</a>
-        <a href="Correo.html" class="dropdown-item">Filtraciones</a>
-      </div>
-    </div>
-    <a href="Estadisticas.html" class="nav-link">Estadísticas</a>
-    <a href="simulador.html" class="nav-link">Simulador</a>
-  </nav>
+        <nav class="nav-links">
+            <a href="index.html" class="nav-link">Inicio</a>
+            <div class="nav-dropdown">
+                <button class="nav-link dropdown-toggle is-active">
+                    Herramientas
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+                </button>
+                <div class="dropdown-menu">
+                    <a href="EvaluacionContraseña.html" class="dropdown-item is-current">Contraseñas</a>
+                    <a href="VerificarCorreo.html" class="dropdown-item">Correos</a>
+                    <a href="PerfildeRiesgo.html" class="dropdown-item">Perfil de Riesgo</a>
+                    <a href="Correo.html" class="dropdown-item">Filtraciones</a>
+                </div>
+            </div>
+            <a href="Estadisticas.html" class="nav-link">Estadísticas</a>
+            <a href="Simuladores.html" class="nav-link">Simulador</a>
+        </nav>
 
-<div class="nav-actions">
-
-    <!-- Se muestra cuando NO hay sesión iniciada -->
-    <div id="auth-invitado" class="auth-estado">
-      <a href="Registrarse.html" class="btn btn-outline">Iniciar sesión</a>
-      <a href="Registrarse.html" class="btn btn-filled">Registrarse</a>
-    </div>
-
-    <!-- Se muestra cuando SÍ hay sesión iniciada -->
-    <div id="auth-usuario" class="auth-estado oculto">
-      <span class="auth-usuario__nombre" id="nombre-usuario">Usuario</span>
-      <button class="btn btn-outline" type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
-    </div>
-
-  </div>
-</header>
-
-<main class="tool-page">
-
-  <!-- ── Encabezado de herramienta ─────────────────────────── -->
-  <section class="tool-header">
-    <div class="tool-icon-box tool-icon-box-green">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="5" y="11" width="14" height="10" rx="2"/>
-        <path d="M8 11V7a4 4 0 118 0v4"/>
-      </svg>
-    </div>
-    <div>
-      <h1 class="tool-title">Seguridad de Contraseñas</h1>
-      <p class="tool-subtitle">Analiza la fortaleza de tus contraseñas, detecta vulnerabilidades y genera claves seguras.</p>
-    </div>
-  </section>
-
-  <!-- ── Analizador ────────────────────────────────────────── -->
-  <section class="verify-card">
-    <h2 class="section-label section-card-title">// Analizador</h2>
-    <div class="card-pass-wrap">
-      <input type="password" class="card-pass-input" placeholder="Ingresa tu contraseña...">
-        <div class="resultado result-neutral">Escribe una contraseña para ver su nivel de seguridad.</div>
-        <button type="button" class="card-eye" aria-label="Mostrar contraseña" title="Mostrar contraseña">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M1 12s4-7.5 11-7.5S23 12 23 12s-4 7.5-11 7.5S1 12 1 12z"/>
-            <circle cx="12" cy="12" r="3"/>
-          </svg>
-        </button>
-  <section class="verify-card">
-    <h2 class="section-label section-card-title">// Generador seguro</h2>
-    <div class="gen-display">Genera una contraseña segura...</div>
-    <button type="button" class="btn-generate">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M23 4v6h-6"/>
-        <path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/>
-      </svg>
-      Generar contraseña
-    </button>
-  </section>
-
-  <!-- ── Comparador (collapsible, sin JS) ───────────────────── -->
-  <section class="collapse-section">
-    <input type="checkbox" id="comparadorToggle" class="collapse-checkbox">
-    <div class="collapse-header">
-      <span class="section-label">// Comparador</span>
-      <label for="comparadorToggle" class="collapse-toggle">
-        <span class="show-text">Mostrar</span>
-        <span class="hide-text">Ocultar</span>
-      </label>
-    </div>
-    <div class="collapse-content">
-      <div class="compare-table">
-        <div class="compare-row compare-row-head">
-          <span>Contraseña</span>
-          <span>Nivel de seguridad</span>
+        <div class="nav-actions">
+            <a href="Registrarse.html" class="btn btn-outline">Iniciar Sesión</a>
+            <a href="Registrarse.html" class="btn btn-filled">Registrarse</a>
         </div>
-        <div class="compare-row">
-          <span>abc123</span>
-          <span class="result-bad">Muy débil</span>
+    </header>
+
+    <main class="tool-page">
+
+        <section class="tool-header">
+            <div class="tool-icon-box">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <rect x="5" y="11" width="14" height="10" rx="2"/>
+                    <path d="M8 11V7a4 4 0 118 0v4"/>
+                </svg>
+            </div>
+            <div>
+                <h1 class="tool-title">Seguridad de Contraseñas</h1>
+                <p class="tool-subtitle">
+                    Analiza la fortaleza de tus contraseñas, detecta vulnerabilidades y genera claves seguras.
+                </p>
+            </div>
+        </section>
+
+        <section class="verify-card">
+            <h2 class="section-label">// Verificar contraseña</h2>
+            <div class="verify-row">
+                <div class="password-wrapper">
+                    <input type="password" id="password" class="verify-input" placeholder="Ingresa tu contraseña...">
+                    <button type="button" id="mostrarPassword" class="card-eye">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </button>
+                </div>
+                <button id="evaluarBtn" class="btn-verify">Evaluar</button>
+            </div>
+
+            <div class="resultado-card">
+                <div class="barra">
+                    <div id="barraSeguridad" class="progreso"></div>
+                </div>
+                <h2 id="porcentaje">0%</h2>
+                <h3 id="nivel">Sin analizar</h3>
+
+                <div class="listas">
+                    <div>
+                        <h4>Fortalezas</h4>
+                        <ul id="fortalezas">
+                            <li>Sin analizar</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Debilidades</h4>
+                        <ul id="debilidades">
+                            <li>Sin analizar</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Recomendaciones</h4>
+                        <ul id="recomendaciones">
+                            <li>Sin analizar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="generator-card">
+            <h2>Generar contraseña segura</h2>
+            <div class="gen-display" id="passwordGenerada">
+                Genera una contraseña segura...
+            </div>
+            <button id="btnGenerarPassword" class="btn-verify btn-generate">
+                Generar contraseña
+            </button>
+        </section>
+
+        <section class="compare-card">
+            <h2>Comparar contraseñas</h2>
+
+            <div class="compare-inputs">
+                <input 
+                    type="text" 
+                    id="password1" 
+                    placeholder="Primera contraseña"
+                >
+
+                <input 
+                    type="text" 
+                    id="password2" 
+                    placeholder="Segunda contraseña"
+                >
+
+                <button id="btnComparar" class="btn-verify">
+                    Comparar
+                </button>
+            </div>
+
+            <div class="compare-result">
+                <div class="tarjeta">
+                    <h3>Contraseña 1</h3>
+                    <div class="barra">
+                        <div id="barraPassword1" class="progreso"></div>
+                    </div>
+                    <p id="puntajePassword1">0%</p>
+                    <p id="nivelPassword1">Sin analizar</p>
+                </div>
+
+                <div class="tarjeta">
+                    <h3>Contraseña 2</h3>
+                    <div class="barra">
+                        <div id="barraPassword2" class="progreso"></div>
+                    </div>
+                    <p id="puntajePassword2">0%</p>
+                    <p id="nivelPassword2">Sin analizar</p>
+                </div>
+            </div>
+
+            <div class="compare-analysis" style="margin-top: 20px;">
+                <h3>Análisis comparativo</h3>
+                <p>Resultado: <strong id="ganadorComparacion">-</strong></p>
+                <ul id="diferenciasComparar">
+                    <li>Introduce ambas contraseñas para ver las diferencias.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="tips-section">
+            <h2 class="section-label">// Cómo proteger tus contraseñas</h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <span class="tip-num">1</span>
+                    <p>Usa contraseñas de mínimo 12 caracteres para aumentar la seguridad.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-num">2</span>
+                    <p>Combina letras mayúsculas, minúsculas, números y símbolos.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-num">3</span>
+                    <p>No reutilices la misma contraseña en diferentes servicios.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-num">4</span>
+                    <p>Evita usar nombres, fechas o información personal.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-num">5</span>
+                    <p>Activa autenticación de dos factores (2FA) siempre que sea posible.</p>
+                </div>
+                <div class="tip-card">
+                    <span class="tip-num">6</span>
+                    <p>Usa un gestor de contraseñas para almacenar claves seguras.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-brand">
+            <a href="index.html" style="display:flex;align-items:center;text-decoration:none;color:inherit;gap:8px;">
+                <span class="logo-icon-sm">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <path d="M12 3l7 3.2v5.3c0 4.6-3 7.9-7 9.5-4-1.6-7-4.9-7-9.5V6.2L12 3z"/>
+                    </svg>
+                </span>
+                <span class="logo-text-sm">GHOST_NET</span>
+            </a>
         </div>
-        <div class="compare-row">
-          <span>MiPerro2024</span>
-          <span style="color:#f59e0b">Media</span>
-        </div>
-        <div class="compare-row">
-          <span>X#9mK@2wLp!q</span>
-          <span class="result-ok">Fuerte</span>
-        </div>
-      </div>
-      <p class="collapse-note">Comparativa ilustrativa — no refleja contraseñas reales.</p>
-    </div>
-  </section>
+        <p class="footer-copy">2026 Ghost Internet</p>
+    </footer>
 
-  <!-- ── ¿Qué hace segura una contraseña? ─────────────────── -->
-  <section class="info-section">
-    <h2 class="section-label">// ¿Qué hace segura una contraseña?</h2>
-    <div class="info-grid">
-      <div class="info-card">
-        <p class="info-title info-title-green">Longitud</p>
-        <p>Al menos 12 caracteres. Más larga = más segura.</p>
-      </div>
-      <div class="info-card">
-        <p class="info-title info-title-cyan">Complejidad</p>
-        <p>Mezcla mayúsculas, minúsculas, números y símbolos.</p>
-      </div>
-      <div class="info-card">
-        <p class="info-title info-title-purple">Unicidad</p>
-        <p>Una contraseña diferente para cada servicio.</p>
-      </div>
-      <div class="info-card">
-        <p class="info-title info-title-orange">Sin patrones</p>
-        <p>Evita fechas, nombres y secuencias predecibles.</p>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="footer-brand">
-    <a href="index.html" style="display: flex; align-items: center; text-decoration: none; color: inherit; gap: 8px;">
-      <span class="logo-icon-sm">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3.2v5.3c0 4.6-3 7.9-7 9.5-4-1.6-7-4.9-7-9.5V6.2L12 3z"/></svg>
-      </span>
-      <span class="logo-text-sm">GHOST_NET</span>
-    </a>
-  </div>
-  <p class="footer-copy">2026 Ghost Internet</p>
-</footer>
-
-<script src="../JS/Evaluacioncontrasena.js"></script>
-<script src="../JS/Sesion.js"></script>
+    <script src="../JS/Evaluacioncontrasena.js"></script>
+    <script src="../JS/Sesion.js"></script>
 
 </body>
 </html>

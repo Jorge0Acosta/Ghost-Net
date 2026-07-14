@@ -853,36 +853,163 @@ label:focus-visible {
   }
 }
 
-/* ===== ESTADO DE SESIÓN (navbar-actions) ===== */
-
-.oculto {
-  display: none !important;
+.compare-card,
+.generator-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 24px;
 }
 
-.auth-estado {
+.compare-inputs {
   display: flex;
-  align-items: center;
   gap: 14px;
+  margin-top: 12px;
 }
 
-.auth-usuario__nombre {
-  font-family: var(--font-mono);
+.compare-inputs input {
+  flex: 1;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+
+.compare-inputs button {
+  padding: 0 22px;
+  border-radius: 10px;
+  border: none;
+  background: var(--accent-purple);
+  color: #0a0e14;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.compare-result {
+  display: flex;
+  gap: 16px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.tarjeta {
+  flex: 1;
+  min-width: 220px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.generator-card input,
+.generator-card select {
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+
+.generator-card button {
+  margin-top: 12px;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: var(--accent);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.barra {
+  width: 100%;
+  height: 10px;
+  background: var(--bg-input);
+  border-radius: 999px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.progreso {
+  height: 100%;
+  width: 0%;
+  background: var(--accent-blue);
+  transition: width 0.4s ease;
+}
+
+
+/*Diseño de los resultados de la API*/
+/*Convertir listas en “chips / badges*/
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  display: inline-block;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  border-radius: 999px;
+  margin: 6px 6px 0 0;
   font-size: 13px;
-  color: var(--text-secondary);
-  white-space: nowrap;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
 }
 
-.auth-usuario__nombre::before {
-  content: "> ";
+/*Tipo de texto*/
+
+ul li:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 12px var(--accent-blue-soft);
+}
+
+#listaFortalezas li {
+  background: rgba(20, 255, 140, 0.08);
+  border-color: var(--accent);
   color: var(--accent);
 }
 
-#btn-cerrar-sesion {
-  border-color: rgba(248, 113, 113, 0.4);
-  color: #f87171;
+#listaDebilidades li {
+  background: rgba(248, 113, 113, 0.08);
+  border-color: var(--danger);
+  color: var(--danger);
 }
 
-#btn-cerrar-sesion:hover {
-  border-color: #f87171;
-  background: rgba(248, 113, 113, 0.08);
+#listaRecomendaciones li {
+  background: rgba(56, 189, 248, 0.08);
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+}
+
+/*que se note el ganador*/
+#ganadorComparacion {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 10px;
+  text-shadow: 0 0 12px var(--accent-glow);
+}
+
+/*texto tipo explicacion*/
+#listaDiferencias li {
+  background: var(--bg-input);
+  border-left: 3px solid var(--accent-blue);
+  padding: 10px 14px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  color: var(--text-secondary);
+  font-size: 13.5px;
+}
+
+/*mejoras visuales*/
+#listaRecomendaciones li::before {
+  content: "⚡ ";
+  color: var(--accent-blue);
 }
