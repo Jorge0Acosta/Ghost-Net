@@ -147,7 +147,7 @@
 
 .tarjeta-lab__cta--verde { color: var(--color-verde-fosforecente); border-color: var(--color-verde-fosforecente); }
 .tarjeta-lab__cta--cyan  { color: var(--color-azul-claro); border-color: var(--color-azul-claro); }
-.tarjeta-lab__cta--rosa  { color: var(--color-roza-fosforecente); border-color: var(--color-roza-fosforecente); }
+.tarjeta-lab__cta--rosa  { color: var(--color-rosa-fosforecente); border-color: var(--color-rosa-fosforecente); }
 
 .tarjeta-lab--verde:hover .tarjeta-lab__cta { background: rgba(0, 253, 135, 0.08); }
 .tarjeta-lab--cyan:hover  .tarjeta-lab__cta { background: rgba(0, 200, 251, 0.08); }
@@ -157,4 +157,114 @@
 
 @media (max-width: 860px) {
   .grilla-lab { grid-template-columns: 1fr; }
+}
+
+/* ===== ESTADO DE SESIÓN (zona-auth) ===== */
+
+.oculto {
+  display: none !important;
+}
+
+.auth-estado {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.auth-usuario__nombre {
+  font-family: var(--fuente-codigo);
+  font-size: 13px;
+  color: var(--color-gris-medio-claro);
+  white-space: nowrap;
+}
+
+.auth-usuario__nombre::before {
+  content: "> ";
+  color: var(--color-verde-fosforecente);
+}
+
+#btn-cerrar-sesion {
+  border-color: rgba(249, 40, 55, 0.35);
+  color: var(--color-rojo);
+}
+
+#btn-cerrar-sesion:hover {
+  border-color: var(--color-rojo);
+  background: rgba(249, 40, 55, 0.08);
+}
+
+/* ===== MENÚ DESPLEGABLE "HERRAMIENTAS" ===== */
+/* NOTA: idealmente estas reglas viven en Compartido.css junto al resto
+   del nav, ya que ese menú se repite en todas las páginas. Las agrego
+   aquí temporalmente para resolver el bug de que el submenú se ve
+   siempre abierto y tapa el contenido. */
+
+.menu-desplegable {
+  position: relative;
+}
+
+.menu-desplegable__toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.icono-flecha {
+  width: 10px;
+  height: 10px;
+  transition: transform var(--transicion-rapida);
+}
+
+.menu-desplegable:hover .icono-flecha,
+.menu-desplegable:focus-within .icono-flecha {
+  transform: rotate(180deg);
+}
+
+.submenu {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 0;
+  min-width: 180px;
+  background: var(--color-card);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-mediano);
+  padding: 8px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition:
+    opacity var(--transicion-rapida),
+    transform var(--transicion-rapida),
+    visibility var(--transicion-rapida);
+  pointer-events: none;
+  z-index: 50;
+}
+
+.menu-desplegable:hover .submenu,
+.menu-desplegable:focus-within .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.submenu li a {
+  display: block;
+  padding: 8px 10px;
+  border-radius: var(--radio-pequeno, 6px);
+  color: var(--color-gris-medio-claro);
+  text-decoration: none;
+  font-size: 13px;
+  white-space: nowrap;
+  transition: background var(--transicion-rapida), color var(--transicion-rapida);
+}
+
+.submenu li a:hover {
+  background: rgba(0, 253, 135, 0.08);
+  color: var(--color-verde-fosforecente);
 }

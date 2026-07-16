@@ -21,17 +21,26 @@
       </a>
       <ul class="enlaces-nav">
         <li class="enlaces-nav__elemento"><a href="Inicio.html">Inicio</a></li>
-        <li class="enlaces-nav__elemento"><a href="#">Contraseñas</a></li>
-        <li class="enlaces-nav__elemento"><a href="#">Correos</a></li>
+        <li class="enlaces-nav__elemento"><a href="EvaluacionContraseña.html">Contraseñas</a></li>
+        <li class="enlaces-nav__elemento"><a href="VerificarCorreo.html">Correos</a></li>
         <li class="enlaces-nav__elemento"><a href="Estadisticas.html">Estadísticas</a></li>
         <li class="enlaces-nav__elemento enlaces-nav__elemento--activo"><a href="Simuladores.html">Simulador</a></li>
       </ul>
-      <div class="zona-auth">
-        <button class="boton-borde" type="button">Iniciar sesión</button>
-        <button class="boton-primario" type="button">Registrarse</button>
+    <div class="zona-auth">
+       
+      <!-- Se muestra cuando NO hay sesión iniciada -->
+      <div id="auth-invitado" class="auth-estado">
+        <button class="boton-borde" type="button" onclick="window.location.href='Registrarse.html'">Iniciar sesión</button>
+        <a href="Registrarse.html" class="boton-primario" style="text-decoration: none;">Registrarse</a>
+      </div>
+
+      <!-- Se muestra cuando SÍ hay sesión iniciada -->
+      <div id="auth-usuario" class="auth-estado oculto">
+        <span class="auth-usuario__nombre" id="nombre-usuario">Usuario</span>
+        <button class="boton-borde" type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
       </div>
     </div>
-  </nav>
+  </div>
 
   <main class="contenido-principal">
     <div class="pagina-lab">
@@ -99,5 +108,6 @@
       </div>
     </div>
   </main>
+  <script src="../JS/Sesion.js"></script>
 </body>
 </html>
