@@ -1,6 +1,6 @@
 // Filtraciones.js — Ghost_Net: conecta el botón "Verificar" con el backend real (XposedOrNot)
 
-const API_URL = 'http://ghost-net-api.onrender.com/api/filtraciones/verificar';
+const API_URL = 'https://ghost-net-api.onrender.com/api/filtraciones/verificar';
 
 const emailInput = document.getElementById('emailInput');
 const btnVerificar = document.getElementById('btnVerificar');

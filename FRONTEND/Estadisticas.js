@@ -76,7 +76,7 @@ async function cargarEstadisticas(){
     try{
 
         const respuesta =
-        await fetch("http://ghost-net-api.onrender.com/api/estadisticas");
+        await fetch("https://ghost-net-api.onrender.com/api/estadisticas");
         if(!respuesta.ok){
 
             throw new Error("No fue posible obtener las estadísticas.");
