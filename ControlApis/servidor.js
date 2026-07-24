@@ -15,12 +15,27 @@ actualizarCache();
 // Actualizar automáticamente cada hora
 setInterval(actualizarCache, 60 * 60 * 1000);
 
+
 // Configuración de CORS
+const allowedOrigins = [
+    "http://127.0.0.1:5500",
+    "http://localhost:5500",
+    "https://ghost-net-cwz5.onrender.com" // Tu Frontend en Render
+];
 
 app.use(cors({
-    origin: "http://127.0.0.1:5500",
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"]
+    origin: function (origin, callback) {
+        // Permite peticiones sin origen (como llamadas desde herramientas tipo Postman)
+        // o si el origen está en la lista permitida
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Bloqueado por la política de CORS"));
+        }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
 }));
 
 // Middleware
