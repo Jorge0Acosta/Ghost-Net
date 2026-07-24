@@ -8,39 +8,63 @@
 </head>
 <body>
 
+<!-- Fondos decorativos -->
+<div class="fondo-grilla" aria-hidden="true"></div>
+<div class="fondo-brillo" aria-hidden="true"></div>
+
 <input type="radio" name="authTab" id="tabLoginRadio" class="tab-radio" checked>
 <input type="radio" name="authTab" id="tabRegisterRadio" class="tab-radio">
 
-<header class="navbar">
-  <a href="index.html" class="logo">
-    <span class="logo-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3.2v5.3c0 4.6-3 7.9-7 9.5-4-1.6-7-4.9-7-9.5V6.2L12 3z"/></svg>
-    </span>
-    <span class="logo-text">GHOST_NET</span>
-  </a>
+<!-- ===== NAVEGACIÓN (IGUAL AL INDEX) ===== -->
+<nav class="barra-nav">
+  <div class="contenido-nav">
 
-  <nav class="nav-links">
-    <a href="index.html" class="nav-link">Inicio</a>
-    <div class="nav-dropdown">
-      <button type="button" class="nav-link dropdown-toggle">
-        Herramientas
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="dropdown-menu">
-        <a href="EvaluacionContraseña.html" class="dropdown-item">Contraseñas</a>
-        <a href="VerificarCorreo.html" class="dropdown-item">Correos</a>
-        <a href="PerfildeRiesgo.html" class="dropdown-item">Perfil de Riesgo</a>
+    <a href="index.html" class="logo" aria-label="Ghost Internet - Ir al inicio">
+      <div class="logo__contenedor-icono">
+        <img src="../SVG/escudo.svg" alt="" class="logo__icono" aria-hidden="true" />
+      </div>
+      <span class="logo__texto">
+        GHOST<span class="logo__guion">_</span>NET
+      </span>
+    </a>
+
+    <ul class="enlaces-nav" role="navigation" aria-label="Menú principal">
+      <li class="enlaces-nav__elemento">
+        <a href="index.html">Inicio</a>
+      </li>
+      <li class="enlaces-nav__elemento menu-desplegable">
+        <a href="#" class="menu-desplegable__toggle">
+          <span>Herramientas</span>
+          <img src="../SVG/flecha-herramientas.svg" alt="" class="icono-flecha" aria-hidden="true" />
+        </a>
+        <ul class="submenu">
+          <li><a href="EvaluacionContraseña.html">Contraseñas</a></li>
+          <li><a href="VerificarCorreo.html">Correos</a></li>
+          <li><a href="PerfildeRiesgo.html">Perfil de Riesgo</a></li>
+          <li><a href="Correo.html">Filtraciones</a></li>
+        </ul>
+      </li>
+      <li class="enlaces-nav__elemento">
+        <a href="Estadisticas.html">Estadísticas</a>
+      </li>
+      <li class="enlaces-nav__elemento">
+        <a href="Simuladores.html">Simulador</a>
+      </li>
+    </ul>
+
+    <div class="zona-auth">
+      <div id="auth-invitado" class="auth-estado">
+        <label for="tabLoginRadio" class="boton-borde">Iniciar sesión</label>
+        <label for="tabRegisterRadio" class="boton-primario">Registrarse</label>
+      </div>
+      <div id="auth-usuario" class="auth-estado oculto">
+        <span class="auth-usuario__nombre" id="nombre-usuario">Usuario</span>
+        <button class="boton-borde" type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
       </div>
     </div>
-    <a href="Estadisticas.html" class="nav-link">Estadísticas</a>
-    <a href="simulador.html" class="nav-link">Simulador</a>
-  </nav>
 
-  <div class="nav-actions">
-    <label for="tabLoginRadio" class="btn btn-outline">Iniciar sesión</label>
-    <label for="tabRegisterRadio" class="btn btn-filled">Registrarse</label>
   </div>
-</header>
+</nav>
 
 <main class="auth-main">
   <div class="auth-card">
@@ -68,9 +92,12 @@
         <label for="loginPassword">Contraseña</label>
         <div class="password-wrapper">
           <input type="password" id="loginPassword" placeholder="Contraseña" autocomplete="current-password">
-          <span class="password-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7.5 11-7.5S23 12 23 12s-4 7.5-11 7.5S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
-          </span>
+          <button type="button" class="password-toggle" id="toggleLoginPassword" aria-label="Mostrar contraseña">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-7.5 11-7.5S23 12 23 12s-4 7.5-11 7.5S1 12 1 12z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -94,9 +121,12 @@
         <label for="regPassword">Contraseña</label>
         <div class="password-wrapper">
           <input type="password" id="regPassword" placeholder="••••••••" autocomplete="new-password">
-          <span class="password-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7.5 11-7.5S23 12 23 12s-4 7.5-11 7.5S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
-          </span>
+          <button type="button" class="password-toggle" id="toggleRegisterPassword" aria-label="Mostrar contraseña">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-7.5 11-7.5S23 12 23 12s-4 7.5-11 7.5S1 12 1 12z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -104,9 +134,12 @@
         <label for="regConfirm">Confirmar contraseña</label>
         <div class="password-wrapper">
           <input type="password" id="regConfirm" placeholder="••••••••" autocomplete="new-password">
-          <span class="password-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7.5 11-7.5S23 12 23 12s-4 7.5-11 7.5S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
-          </span>
+          <button type="button" class="password-toggle" id="toggleRegisterConfirm" aria-label="Mostrar contraseña">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-7.5 11-7.5S23 12 23 12s-4 7.5-11 7.5S1 12 1 12z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </button>
         </div>
       </div>
 
@@ -116,6 +149,43 @@
   </div>
 </main>
 
+<script>
+  // ===== TOGGLE DE CONTRASEÑA (OJO FUNCIONAL) =====
+  document.addEventListener('DOMContentLoaded', function() {
+    // Login toggle
+    const toggleLogin = document.getElementById('toggleLoginPassword');
+    const loginInput = document.getElementById('loginPassword');
+    if (toggleLogin && loginInput) {
+      toggleLogin.addEventListener('click', function() {
+        const isPassword = loginInput.type === 'password';
+        loginInput.type = isPassword ? 'text' : 'password';
+        toggleLogin.classList.toggle('active');
+      });
+    }
+
+    // Register toggle
+    const toggleRegister = document.getElementById('toggleRegisterPassword');
+    const registerInput = document.getElementById('regPassword');
+    if (toggleRegister && registerInput) {
+      toggleRegister.addEventListener('click', function() {
+        const isPassword = registerInput.type === 'password';
+        registerInput.type = isPassword ? 'text' : 'password';
+        toggleRegister.classList.toggle('active');
+      });
+    }
+
+    // Confirm toggle
+    const toggleConfirm = document.getElementById('toggleRegisterConfirm');
+    const confirmInput = document.getElementById('regConfirm');
+    if (toggleConfirm && confirmInput) {
+      toggleConfirm.addEventListener('click', function() {
+        const isPassword = confirmInput.type === 'password';
+        confirmInput.type = isPassword ? 'text' : 'password';
+        toggleConfirm.classList.toggle('active');
+      });
+    }
+  });
+</script>
+
 </body>
-<script src="../JS/Registrarse.js"></script>
 </html>

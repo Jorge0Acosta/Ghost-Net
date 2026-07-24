@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ghost Internet — Laboratorio</title>
+  <link rel="stylesheet" href="../CSS/Simuladores.css" />
+</head>
+<body>
+
+  <div class="fondo-grilla" aria-hidden="true"></div>
+  <div class="fondo-brillo" aria-hidden="true"></div>
+
+<!-- ===== NAVEGACIÓN ===== -->
+  <nav class="barra-nav">
+    <div class="contenido-nav">
+
+      <!-- Logo -->
+      <a href="index.html" class="logo" aria-label="Ghost Internet - Ir al inicio">
+        <div class="logo__contenedor-icono">
+          <img src="../SVG/escudo.svg" alt="" class="logo__icono" aria-hidden="true" />
+        </div>
+        <span class="logo__texto">
+          GHOST<span class="logo__guion">_</span>NET
+        </span>
+      </a>
+
+      <!-- Menú principal de navegación -->
+      <ul class="enlaces-nav" role="navigation" aria-label="Menú principal">
+        <li class="enlaces-nav__elemento">
+          <a href="index.html">Inicio</a>
+        </li>
+
+        <!-- Dropdown Herramientas -->
+        <li class="enlaces-nav__elemento menu-desplegable">
+          <a href="#" class="menu-desplegable__toggle">
+            <span>Herramientas</span>
+            <img
+              src="../SVG/flecha-herramientas.svg"
+              alt=""
+              class="icono-flecha"
+              aria-hidden="true"
+            />
+          </a>
+          <ul class="submenu">
+            <li><a href="EvaluacionContraseña.html">Contraseñas</a></li>
+            <li><a href="VerificarCorreo.html">Correos</a></li>
+            <li><a href="PerfildeRiesgo.html">Perfil de Riesgo</a></li>
+            <li><a href="Correo.html">Filtraciones</a></li>
+          </ul>
+        </li>
+
+        <li class="enlaces-nav__elemento">
+          <a href="Estadisticas.html">Estadísticas</a>
+        </li>
+
+        <li class="enlaces-nav__elemento">
+          <a href="Simuladores.html">Simulador</a>
+        </li>
+      </ul>
+
+      <!-- Zona de Autenticación (Iniciar Sesión / Registro / Cerrar Sesión) -->
+      <div class="zona-auth">
+        <!-- Se muestra cuando NO hay sesión iniciada -->
+        <div id="auth-invitado" class="auth-estado">
+          <button class="boton-borde" type="button" onclick="window.location.href='Registrarse.html'">Iniciar sesión</button>
+          <a href="Registrarse.html" class="boton-primario" style="text-decoration: none;">Registrarse</a>
+        </div>
+
+        <!-- Se muestra cuando SÍ hay sesión iniciada -->
+        <div id="auth-usuario" class="auth-estado oculto">
+          <span class="auth-usuario__nombre" id="nombre-usuario">Usuario</span>
+          <button class="boton-borde" type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+  <main class="contenido-principal">
+    <div class="pagina-lab">
+
+      <div class="lab-encabezado">
+        <div class="lab-encabezado__icono-contenedor">
+          <img src="../SVG/rayo.svg" alt="" aria-hidden="true" class="lab-encabezado__icono" />
+        </div>
+        <div>
+          <h1 class="lab-encabezado__titulo">Ghost-Net Lab</h1>
+          <p class="lab-encabezado__subtitulo">
+            Simuladores interactivos de ciberseguridad. Practica en un entorno seguro
+            y aprende a protegerte de amenazas reales.
+          </p>
+        </div>
+      </div>
+
+      <div class="grilla-lab">
+
+        <a href="FuerzaBruta.html" class="tarjeta-lab tarjeta-lab--verde">
+          <div class="tarjeta-lab__cabecera">
+            <div class="tarjeta-lab__icono-contenedor tarjeta-lab__icono-contenedor--verde">
+              <img src="../SVG/candado.svg" alt="Candado" class="tarjeta-lab__icono" />
+            </div>
+            <span class="tarjeta-lab__dificultad tarjeta-lab__dificultad--facil">Fácil</span>
+          </div>
+          <h2 class="tarjeta-lab__titulo">Ataque de Fuerza Bruta</h2>
+          <p class="tarjeta-lab__descripcion">
+            Descubre si tu contraseña resistiría un ataque automatizado. Ingresa una clave
+            y observa cómo un sistema intenta descifrarla en tiempo real.
+          </p>
+          <span class="tarjeta-lab__cta tarjeta-lab__cta--verde">Iniciar simulación →</span>
+        </a>
+
+        <a href="Phishing.html" class="tarjeta-lab tarjeta-lab--cyan">
+          <div class="tarjeta-lab__cabecera">
+            <div class="tarjeta-lab__icono-contenedor tarjeta-lab__icono-contenedor--cyan">
+              <img src="../SVG/correo.svg" alt="Correo" class="tarjeta-lab__icono" />
+            </div>
+            <span class="tarjeta-lab__dificultad tarjeta-lab__dificultad--intermedio">Intermedio</span>
+          </div>
+          <h2 class="tarjeta-lab__titulo">Detección de Phishing</h2>
+          <p class="tarjeta-lab__descripcion">
+            Recibe mensajes sospechosos y toma decisiones. Aprende a identificar intentos
+            de suplantación de identidad en conversaciones reales.
+          </p>
+          <span class="tarjeta-lab__cta tarjeta-lab__cta--cyan">Iniciar simulación →</span>
+        </a>
+
+        <a href="Descarga.html" class="tarjeta-lab tarjeta-lab--rosa">
+          <div class="tarjeta-lab__cabecera">
+            <div class="tarjeta-lab__icono-contenedor tarjeta-lab__icono-contenedor--rosa">
+              <img src="../SVG/documento.svg" alt="Descarga" class="tarjeta-lab__icono" />
+            </div>
+            <span class="tarjeta-lab__dificultad tarjeta-lab__dificultad--avanzado">Avanzado</span>
+          </div>
+          <h2 class="tarjeta-lab__titulo">Descarga Segura</h2>
+          <p class="tarjeta-lab__descripcion">
+            Navega por sitios web y decide desde dónde descargar software.
+            Distingue fuentes oficiales de sitios maliciosos y anuncios trampa.
+          </p>
+          <span class="tarjeta-lab__cta tarjeta-lab__cta--rosa">Iniciar simulación →</span>
+        </a>
+
+        <a href="Guardian.html" class="tarjeta-lab tarjeta-lab--rojo">
+          <div class="tarjeta-lab__cabecera">
+            <div class="tarjeta-lab__icono-contenedor tarjeta-lab__icono-contenedor--rojo">
+              <img src="../SVG/rayo.svg" alt="Ataque" class="tarjeta-lab__icono" />
+            </div>
+            <span class="tarjeta-lab__dificultad tarjeta-lab__dificultad--avanzado">Boss</span>
+          </div>
+          <h2 class="tarjeta-lab__titulo">Ataque Total — Jefe Final</h2>
+          <p class="tarjeta-lab__descripcion">
+            5 fases de ataque consecutivas. Minijuegos bajo presión, pistas ocultas y decisiones críticas.
+            El escenario más difícil del laboratorio.
+          </p>
+          <span class="tarjeta-lab__cta tarjeta-lab__cta--rojo">Iniciar misión →</span>
+        </a>
+
+      </div>
+    </div>
+  </main>
+  <script src="../JS/Sesion.js"></script>
+</body>
+</html>

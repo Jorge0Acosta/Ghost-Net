@@ -11,8 +11,7 @@
   <div class="fondo-grilla" aria-hidden="true"></div>
   <div class="fondo-brillo" aria-hidden="true"></div>
 
- <!-- ===== NAVEGACIÓN ===== -->
-  <nav class="barra-nav">
+ <nav class="barra-nav">
   <div class="contenido-nav">
 
     <a href="index.html" class="logo" aria-label="Ghost Internet - Ir al inicio">
@@ -54,20 +53,18 @@
       </li>
 
       <li class="enlaces-nav__elemento">
-        <a href="simulador.html">Simulador</a>
+        <a href="Simuladores.html">Simulador</a>
       </li>
 
     </ul>
 
     <div class="zona-auth">
 
-      <!-- Se muestra cuando NO hay sesión iniciada -->
       <div id="auth-invitado" class="auth-estado">
         <button class="boton-borde" type="button" onclick="window.location.href='Registrarse.html'">Iniciar sesión</button>
         <a href="Registrarse.html" class="boton-primario" style="text-decoration: none;">Registrarse</a>
       </div>
 
-      <!-- Se muestra cuando SÍ hay sesión iniciada -->
       <div id="auth-usuario" class="auth-estado oculto">
         <span class="auth-usuario__nombre" id="nombre-usuario">Usuario</span>
         <button class="boton-borde" type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
@@ -78,11 +75,9 @@
   </div>
 </nav>
 
-  <!-- ===== CONTENIDO PRINCIPAL ===== -->
   <main class="contenido-principal">
     <div class="pagina">
 
-      <!-- ENCABEZADO DE PÁGINA -->
       <header class="encabezado-pagina">
         <div class="encabezado-pagina__contenedor-icono">
           <img
@@ -92,75 +87,73 @@
           />
         </div>
         <div>
-          <h1 class="encabezado-pagina__titulo">Centro de Estadísticas</h1>
+          <h1 class="encabezado-pagina__titulo">Centro de Inteligencia de Amenazas</h1>
           <p class="encabezado-pagina__subtitulo">
-            Datos globales sobre filtraciones, contraseñas comprometidas
-            y tendencias de ciberseguridad.
+            Consulta información actualizada sobre vulnerabilidades,
+            tecnologías afectadas, niveles de riesgo y contraseñas
+            inseguras obtenida de fuentes oficiales de ciberseguridad.
           </p>
         </div>
       </header>
 
-      <!-- TARJETAS RESUMEN -->
       <div class="grilla-resumen">
 
         <article class="tarjeta-resumen tarjeta-resumen--rojo">
           <div class="tarjeta-resumen__contenedor-icono">
             <img src="../SVG/base-datos.svg" alt="Base de datos" class="tarjeta-resumen__icono" />
           </div>
-          <span class="tarjeta-resumen__cifra tarjeta-resumen__cifra--rojo">15.2B+</span>
-          <span class="tarjeta-resumen__etiqueta">Total de registros filtrados</span>
-          <span class="tarjeta-resumen__subtexto">+23% vs 2023</span>
+          <span class="tarjeta-resumen__cifra tarjeta-resumen__cifra--rojo"></span>
+          <span class="tarjeta-resumen__etiqueta">Vulnerabilidades analizadas</span>
+          <span class="tarjeta-resumen__subtexto">Base de datos NVD</span>
         </article>
 
         <article class="tarjeta-resumen tarjeta-resumen--naranja">
           <div class="tarjeta-resumen__contenedor-icono">
             <img src="../SVG/alerta.svg" alt="Alerta" class="tarjeta-resumen__icono" />
           </div>
-          <span class="tarjeta-resumen__cifra tarjeta-resumen__cifra--naranja">4,245</span>
-          <span class="tarjeta-resumen__etiqueta">Brechas documentadas 2024</span>
-          <span class="tarjeta-resumen__subtexto">+32% vs 2023</span>
+          <span class="tarjeta-resumen__cifra tarjeta-resumen__cifra--naranja"></span>
+          <span class="tarjeta-resumen__etiqueta">Vulnerabilidades explotadas</span>
+          <span class="tarjeta-resumen__subtexto">Catálogo CISA KEV</span>
         </article>
 
         <article class="tarjeta-resumen tarjeta-resumen--rosa">
           <div class="tarjeta-resumen__contenedor-icono">
             <img src="../SVG/tendencia.svg" alt="Tendencia" class="tarjeta-resumen__icono" />
           </div>
-          <span class="tarjeta-resumen__cifra tarjeta-resumen__cifra--rosa">10.3B</span>
-          <span class="tarjeta-resumen__etiqueta">Contraseñas en texto plano</span>
-          <span class="tarjeta-resumen__subtexto">RockYou2024</span>
+          <span class="tarjeta-resumen__cifra tarjeta-resumen__cifra--rosa"></span>
+          <span class="tarjeta-resumen__etiqueta">Vulnerabilidades críticas</span>
+          <span class="tarjeta-resumen__subtexto">Nivel de riesgo crítico</span>
         </article>
 
         <article class="tarjeta-resumen tarjeta-resumen--cyan">
           <div class="tarjeta-resumen__contenedor-icono">
             <img src="../SVG/servicios.svg" alt="Servicios" class="tarjeta-resumen__icono" />
           </div>
-          <span class="tarjeta-resumen__cifra tarjeta-resumen__cifra--cyan">29,000+</span>
-          <span class="tarjeta-resumen__etiqueta">Servicios comprometidos</span>
-          <span class="tarjeta-resumen__subtexto">En 40 años de registro</span>
+          <span class="tarjeta-resumen__cifra tarjeta-resumen__cifra--cyan"></span>
+          <span class="tarjeta-resumen__etiqueta">Fabricantes con más incidencias</span>
+          <span class="tarjeta-resumen__subtexto">Top fabricantes encontrados</span>
         </article>
 
       </div>
 
-      <!-- GRÁFICA TENDENCIA -->
       <section class="panel">
-        <h2 class="panel__titulo">// Evolución de brechas de datos (2016–2024)</h2>
+        <h2 class="panel__titulo">// Tendencia anual de vulnerabilidades detectadas</h2>
         <div class="panel__lienzo">
           <canvas id="grafica-tendencia" role="img" aria-label="Gráfica de evolución de brechas"></canvas>
         </div>
       </section>
 
-      <!-- DOS COLUMNAS -->
       <div class="columnas-dobles">
 
         <section class="panel">
-          <h2 class="panel__titulo">// Mayores filtraciones (millones de registros)</h2>
+          <h2 class="panel__titulo">// Tecnologías con más vulnerabilidades detectadas</h2>
           <div class="panel__lienzo">
             <canvas id="grafica-barras" role="img" aria-label="Gráfica de mayores filtraciones"></canvas>
           </div>
         </section>
 
         <section class="panel">
-          <h2 class="panel__titulo">// Tipos de datos comprometidos</h2>
+          <h2 class="panel__titulo">// Nivel de riesgo de las vulnerabilidades</h2>
           <div class="panel__lienzo panel__lienzo--pequeno">
             <canvas id="grafica-pastel" role="img" aria-label="Gráfica de tipos de datos comprometidos"></canvas>
           </div>
@@ -169,7 +162,6 @@
 
       </div>
 
-      <!-- CONTRASEÑAS MÁS FILTRADAS -->
       <section class="panel">
         <h2 class="panel__titulo">// Contraseñas más filtradas del mundo</h2>
         <div class="grilla-contrasenas">
@@ -215,14 +207,13 @@
           </div>
         </div>
         <small class="panel__nota">
-          * Basado en colecciones filtradas públicas. Fuentes: HaveIBeenPwned, RockYou, NordPass.
+          * Información obtuvo de la National Vulnerability Database (NVD), el catálogo CISA Known Exploited Vulnerabilities (KEV) y bases públicas de contraseñas filtradas.
         </small>
       </section>
 
     </div>
   </main>
 
-  <!-- ===== PIE DE PÁGINA ===== -->
   <footer class="pie-pagina">
     <div class="contenido-pie">
       <a href="index.html" class="logo" aria-label="Ghost Internet - inicio">
@@ -234,12 +225,11 @@
         </span>
       </a>
       <small class="derechos-reservados">
-         2026 Ghost Internet
+          2026 Ghost Internet
       </small>
     </div>
   </footer>
 
-  <!-- Chart.js desde CDN (requerido para las gráficas) -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <script src="../JS/Estadisticas.js" defer></script>
   <script src="../JS/Sesion.js"></script>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ghost Internet — Ataque Total</title>
+  <link rel="stylesheet" href="../CSS/Guardian.css" />
+</head>
+<body>
+
+  <!-- Fondos decorativos -->
+  <div class="fondo-grilla" aria-hidden="true"></div>
+  <div class="fondo-brillo" aria-hidden="true"></div>
+
+  <!-- ===== NAVEGACIÓN ===== -->
+  <nav class="barra-nav">
+  <div class="contenido-nav">
+
+    <a href="index.html" class="logo" aria-label="Ghost Internet - Ir al inicio">
+      <div class="logo__contenedor-icono">
+        <img src="../SVG/escudo.svg" alt="" class="logo__icono" aria-hidden="true" />
+      </div>
+      <span class="logo__texto">
+        GHOST<span class="logo__guion">_</span>NET
+      </span>
+    </a>
+
+    <ul class="enlaces-nav" role="navigation" aria-label="Menú principal">
+
+      <li class="enlaces-nav__elemento enlaces-nav__elemento--activo">
+        <a href="index.html">Inicio</a>
+      </li>
+
+      <li class="enlaces-nav__elemento menu-desplegable">
+        <a href="#" class="menu-desplegable__toggle">
+          <span>Herramientas</span>
+          <img
+            src="../SVG/flecha-herramientas.svg"
+            alt=""
+            class="icono-flecha"
+            aria-hidden="true"
+          />
+        </a>
+
+        <ul class="submenu">
+          <li><a href="EvaluacionContraseña.html">Contraseñas</a></li>
+          <li><a href="VerificarCorreo.html">Correos</a></li>
+          <li><a href="PerfildeRiesgo.html">Perfil de Riesgo</a></li>
+          <li><a href="Correo.html">Filtraciones</a></li>
+        </ul>
+      </li>
+
+      <li class="enlaces-nav__elemento">
+        <a href="Estadisticas.html">Estadísticas</a>
+      </li>
+
+      <li class="enlaces-nav__elemento">
+        <a href="Simuladores.html">Simulador</a>
+      </li>
+
+    </ul>
+
+    <div class="zona-auth">
+
+      <!-- Se muestra cuando NO hay sesión iniciada -->
+      <div id="auth-invitado" class="auth-estado">
+        <button class="boton-borde" type="button" onclick="window.location.href='Registrarse.html'">Iniciar sesión</button>
+        <a href="Registrarse.html" class="boton-primario" style="text-decoration: none;">Registrarse</a>
+      </div>
+
+      <!-- Se muestra cuando SÍ hay sesión iniciada -->
+      <div id="auth-usuario" class="auth-estado oculto">
+        <span class="auth-usuario__nombre" id="nombre-usuario">Usuario</span>
+        <button class="boton-borde" type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
+      </div>
+
+    </div>
+</nav>
+
+  <main class="contenido-principal">
+    <div class="guardian-contenedor">
+      <!-- Aquí se renderiza el simulador dinámicamente -->
+      <div id="guardian-app"></div>
+    </div>
+  </main>
+
+  <script src="../JS/Guardian.js" defer></script>
+  <script src="../JS/Sesion.js"></script>
+
+</body>
+</html>

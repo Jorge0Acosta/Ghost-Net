@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ghost Internet — Descarga Segura</title>
+  <link rel="stylesheet" href="../CSS/Descarga.css" />
+</head>
+<body>
+
+  <div class="fondo-grilla" aria-hidden="true"></div>
+  <div class="fondo-brillo" aria-hidden="true"></div>
+
+  <nav class="barra-nav">
+    <div class="contenido-nav">
+      <a href="Inicio.html" class="logo">
+        <div class="logo__contenedor-icono">
+          <img src="../SVG/escudo.svg" alt="" class="logo__icono" aria-hidden="true" />
+        </div>
+        <span class="logo__texto">GHOST<span class="logo__guion">_</span>NET</span>
+      </a>
+      <ul class="enlaces-nav">
+        <li class="enlaces-nav__elemento"><a href="Inicio.html">Inicio</a></li>
+        <li class="enlaces-nav__elemento menu-desplegable">
+        <a href="#" class="menu-desplegable__toggle">
+            <span>Herramientas</span>
+            <img
+              src="../SVG/flecha-herramientas.svg"
+              alt=""
+              class="icono-flecha"
+              aria-hidden="true"
+            />
+          </a>
+
+          <ul class="submenu">
+            <li><a href="EvaluacionContraseña.html">Contraseñas</a></li>
+            <li><a href="VerificarCorreo.html">Correos</a></li>
+            <li><a href="PerfildeRiesgo.html">Perfil de Riesgo</a></li>
+            <li><a href="Correo.html">Filtraciones</a></li>
+          </ul>
+        </li>
+        <li class="enlaces-nav__elemento"><a href="Estadisticas.html">Estadísticas</a></li>
+        <li class="enlaces-nav__elemento enlaces-nav__elemento--activo"><a href="Simuladores.html">Simulador</a></li>
+      </ul>
+      
+      
+      <div class="zona-auth">
+        <button class="boton-borde" type="button">Iniciar sesión</button>
+        <button class="boton-primario" type="button">Registrarse</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="contenido-principal">
+    <div class="pagina-sim">
+
+      <a href="Simuladores.html" class="boton-volver">← Volver al laboratorio</a>
+
+      <div class="sim-encabezado">
+        <div class="sim-encabezado__icono-contenedor sim-encabezado__icono-contenedor--rosa">
+          <img src="../SVG/documento.svg" alt="Descarga" class="sim-encabezado__icono" />
+        </div>
+        <div>
+          <h1 class="sim-encabezado__titulo sim-encabezado__titulo--rosa">Simulador de Descarga Segura</h1>
+          <p class="sim-encabezado__subtitulo">
+            Elige dónde descargar el software. Solo una fuente es oficial y segura.
+          </p>
+        </div>
+      </div>
+
+      <!-- ===== FASE 1: SELECCIÓN DE URL ===== -->
+      <section id="fase-url" class="fase fase--activa">
+        <div class="instruccion-descarga">
+          <p class="instruccion-descarga__texto">
+            Necesitas descargar <strong>Gorila Aplasta ciudad Ataque Prisión Escape juego</strong>. Selecciona el sitio desde donde deseas hacerlo:
+          </p>
+        </div>
+        <div class="grilla-urls">
+          <button class="tarjeta-url" data-url-id="oficial" type="button">
+            <span class="tarjeta-url__texto">https://www.mediafire.com/</span>
+            <span class="tarjeta-url__ir">Ir al sitio →</span>
+          </button>
+          <button class="tarjeta-url" data-url-id="falso1" type="button">
+            <span class="tarjeta-url__texto">https://www.mediaf1re.com/</span>
+            <span class="tarjeta-url__ir">Ir al sitio →</span>
+          </button>
+          <button class="tarjeta-url" data-url-id="falso2" type="button">
+            <span class="tarjeta-url__texto">https://www.mediafire-download.com/</span>
+            <span class="tarjeta-url__ir">Ir al sitio →</span>
+          </button>
+          <button class="tarjeta-url" data-url-id="falso3" type="button">
+            <span class="tarjeta-url__texto">https://www.mediafirefiles.net/</span>
+            <span class="tarjeta-url__ir">Ir al sitio →</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- ===== FASE 2: NAVEGADOR ===== -->
+      <section id="fase-navegador" class="fase">
+        <div class="navegador">
+          <div class="navegador__barra-chrome">
+            <div class="navegador__controles">
+              <span class="navegador__boton-chrome">←</span>
+              <span class="navegador__boton-chrome">→</span>
+              <span class="navegador__boton-chrome">↻</span>
+            </div>
+            <div class="navegador__url">
+              <span class="navegador__candado" id="nav-candado">🔒</span>
+              <span class="navegador__direccion" id="nav-direccion">videolan.org</span>
+            </div>
+            <div class="navegador__pestanas">
+              <span class="navegador__pestana navegador__pestana--activa" id="nav-pestana">VLC Media Player</span>
+            </div>
+          </div>
+
+          <div class="navegador__contenido" id="navegador-contenido">
+
+            <!-- Sitio oficial -->
+            <div id="sitio-oficial" class="sitio-web sitio-web--oculto">
+              <div class="anuncio-banner" id="anuncio-top">
+                <span>DOWNLOAD NOW — Fast &amp; Free! ⬇</span>
+              </div>
+              <div class="sitio-oficial-header">
+                <span class="sitio-oficial-logo">🔶 VLC media player</span>
+                <nav class="sitio-oficial-nav">
+                  <span>Inicio</span>
+                  <span>Noticias</span>
+                  <span>Características</span>
+                  <span>Foro</span>
+                </nav>
+              </div>
+              <div class="sitio-oficial-contenido">
+                <div class="sitio-oficial-main">
+                  <h1 class="sitio-oficial-titulo">VLC media player 3.0.21</h1>
+                  <p class="sitio-oficial-descripcion">
+                    VLC es un reproductor multimedia libre y de código abierto.
+                    Reproduce la mayoría de archivos multimedia, DVDs, Audio CDs
+                    y protocolos de transmisión sin necesidad de codecs adicionales.
+                  </p>
+                  <button class="boton-descarga-oficial" id="btn-descarga-oficial" type="button">
+                    <span>⬇ Descargar VLC 3.0.21 para Windows</span>
+                    <small>Versión: 3.0.21 | Windows 64-bit | 40.6 MB</small>
+                  </button>
+                  <div class="anuncio-inline" id="anuncio-inline">
+                    DESCARGAR GRATIS ★★★★★
+                  </div>
+                </div>
+                <div class="sitio-oficial-barra-lateral">
+                  <div class="anuncio-lateral" id="anuncio-lateral">
+                    <div class="anuncio-lateral__titulo">⚡ Descarga Instantánea</div>
+                    <div class="anuncio-lateral__subtitulo">VLC Premium</div>
+                  </div>
+                  <div class="publicidad-etiqueta">Publicidad</div>
+                  <div class="sitio-oficial-info">
+                    <p><strong>VLC</strong> es desarrollado por VideoLAN</p>
+                    <p>100% gratuito y de código abierto</p>
+                    <p>Disponible en 80+ idiomas</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sitio falso -->
+            <div id="sitio-falso" class="sitio-web sitio-web--oculto">
+              <div class="falso-popup" id="falso-popup">
+                <div class="falso-popup__titulo">¡ERES EL VISITANTE 1,000,000!</div>
+                <div class="falso-popup__subtitulo">DESCARGA GRATIS — Solo por hoy</div>
+                <button class="falso-popup__boton" id="btn-popup" type="button">
+                  RECLAMAR AHORA
+                </button>
+              </div>
+              <div class="falso-overlay-blur">
+                <div class="falso-alerta">
+                  ⚠️ ¡Tu computadora necesita actualización URGENTE! Descarga ahora para protegerte
+                </div>
+                <div class="falso-header">
+                  <span class="falso-header__titulo" id="falso-nombre-sitio">vlc-download.net</span>
+                  <span class="falso-header__badge">✅ SITIO SEGURO</span>
+                </div>
+                <div class="falso-contenido">
+                  <h1 class="falso-titulo">Descargar VLC — GRATIS</h1>
+                  <p class="falso-contador">
+                    <span class="falso-contador__numero">12,483</span> personas descargando ahora
+                  </p>
+                  <div class="falso-botones">
+                    <button class="falso-boton falso-boton--verde" id="btn-falso-1" type="button">⬇ DESCARGAR VLC GRATIS</button>
+                    <button class="falso-boton falso-boton--azul"  id="btn-falso-2" type="button">DOWNLOAD FREE NOW</button>
+                    <button class="falso-boton falso-boton--rojo"  id="btn-falso-3" type="button">⚡ DESCARGAR AHORA</button>
+                    <button class="falso-boton falso-boton--naranja" id="btn-falso-4" type="button">DESCARGAR VLC PREMIUM</button>
+                  </div>
+                  <div class="falso-badges">
+                    <span>✅ 100% GRATIS</span>
+                    <span>🛡 SIN VIRUS</span>
+                    <span>🔄 ACTUALIZADO HOY</span>
+                  </div>
+                  <p class="falso-advertencia">
+                    ⚠ Tu versión de VLC está DESACTUALIZADA. Actualiza inmediatamente para evitar vulnerabilidades.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FASE 3: DESCARGANDO ===== -->
+      <section id="fase-descargando" class="fase">
+        <div class="panel-descarga">
+          <div class="descarga-paso" id="paso-descargando">
+            <div class="descarga-paso__titulo">📥 Descargando archivo...</div>
+            <div class="barra-progreso-descarga">
+              <div class="barra-progreso-descarga__relleno" id="barra-descarga"></div>
+            </div>
+            <div class="descarga-paso__porcentaje" id="pct-descarga">0%</div>
+          </div>
+          <div class="descarga-paso descarga-paso--oculto" id="paso-verificando">
+            <div class="descarga-paso__titulo">🔍 Verificando archivo...</div>
+            <div class="descarga-spinner"></div>
+          </div>
+          <div class="descarga-paso descarga-paso--oculto" id="paso-instalando">
+            <div class="descarga-paso__titulo">⚙️ Instalando...</div>
+            <div class="barra-progreso-descarga">
+              <div class="barra-progreso-descarga__relleno barra-progreso-descarga__relleno--verde" id="barra-instalacion"></div>
+            </div>
+            <div class="descarga-paso__porcentaje" id="pct-instalacion">0%</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FASE 4: RESULTADO ===== -->
+      <section id="fase-resultado-descarga" class="fase">
+        <div class="resultado-descarga" id="tarjeta-resultado-descarga">
+          <div class="resultado-descarga__icono" id="res-desc-icono">✓</div>
+          <h2 class="resultado-descarga__titulo" id="res-desc-titulo"></h2>
+          <p class="resultado-descarga__subtitulo" id="res-desc-subtitulo"></p>
+
+          <div class="malware-lista" id="malware-lista"></div>
+
+          <div class="resultado-descarga__seccion">
+            <h3 class="resultado-descarga__seccion-titulo" id="res-donde-titulo">// ¿Dónde estuvo el error?</h3>
+            <p class="resultado-descarga__texto" id="res-donde-texto"></p>
+          </div>
+
+          <div class="resultado-descarga__seccion">
+            <h3 class="resultado-descarga__seccion-titulo">// ¿Cómo evitarlo?</h3>
+            <ul class="resultado-descarga__lista" id="res-como-lista"></ul>
+          </div>
+
+          <div class="resultado-acciones">
+            <button id="boton-reintentar" class="boton-accion boton-accion--rosa" type="button">
+              ↩ Intentar de nuevo
+            </button>
+            <a href="Simuladores.html" class="boton-accion boton-accion--secundario">
+              ← Volver al laboratorio
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../JS/Descarga.js" defer></script>
+</body>
+</html>

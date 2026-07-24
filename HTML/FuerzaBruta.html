@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ghost Internet — Fuerza Bruta</title>
+  <link rel="stylesheet" href="../CSS/FuerzaBruta.css" />
+</head>
+<body>
+
+  <div class="fondo-grilla" aria-hidden="true"></div>
+  <div class="fondo-brillo" aria-hidden="true"></div>
+
+  <nav class="barra-nav">
+    <div class="contenido-nav">
+      <a href="Inicio.html" class="logo">
+        <div class="logo__contenedor-icono">
+          <img src="../SVG/escudo.svg" alt="" class="logo__icono" aria-hidden="true" />
+        </div>
+        <span class="logo__texto">GHOST<span class="logo__guion">_</span>NET</span>
+      </a>
+      <ul class="enlaces-nav">
+        <li class="enlaces-nav__elemento"><a href="Inicio.html">Inicio</a></li>
+        <li class="enlaces-nav__elemento menu-desplegable">
+        <a href="#" class="menu-desplegable__toggle">
+            <span>Herramientas</span>
+            <img
+              src="../SVG/flecha-herramientas.svg"
+              alt=""
+              class="icono-flecha"
+              aria-hidden="true"
+            />
+          </a>
+
+          <ul class="submenu">
+            <li><a href="EvaluacionContraseña.html">Contraseñas</a></li>
+            <li><a href="VerificarCorreo.html">Correos</a></li>
+            <li><a href="PerfildeRiesgo.html">Perfil de Riesgo</a></li>
+            <li><a href="Correo.html">Filtraciones</a></li>
+          </ul>
+        </li>
+        <li class="enlaces-nav__elemento"><a href="Estadisticas.html">Estadísticas</a></li>
+        <li class="enlaces-nav__elemento enlaces-nav__elemento--activo"><a href="Simuladores.html">Simulador</a></li>
+      </ul>
+      
+      
+      <div class="zona-auth">
+        <button class="boton-borde" type="button">Iniciar sesión</button>
+        <button class="boton-primario" type="button">Registrarse</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="contenido-principal">
+    <div class="pagina-sim">
+
+      <a href="Simuladores.html" class="boton-volver">← Volver al laboratorio</a>
+
+      <div class="sim-encabezado">
+        <div class="sim-encabezado__icono-contenedor sim-encabezado__icono-contenedor--verde">
+          <img src="../SVG/candado.svg" alt="Candado" class="sim-encabezado__icono" />
+        </div>
+        <div>
+          <h1 class="sim-encabezado__titulo">Simulador de Fuerza Bruta</h1>
+          <p class="sim-encabezado__subtitulo">Introduce una contraseña y observa cómo un atacante intenta descubrirla.</p>
+        </div>
+      </div>
+
+      <!-- ===== FASE 1: CONFIGURACIÓN ===== -->
+      <section id="fase-configuracion" class="fase fase--activa">
+        <div class="panel-configuracion">
+          <p class="panel-configuracion__descripcion">
+            Ingresa una contraseña para simular un ataque de fuerza bruta. El sistema intentará descifrarla usando técnicas reales de ataque automatizado.
+          </p>
+
+          <div class="campo-contrasena">
+            <label for="entrada-contrasena" class="campo-contrasena__etiqueta">
+              Contraseña a analizar
+            </label>
+            <div class="campo-contrasena__contenedor">
+              <input
+                type="password"
+                id="entrada-contrasena"
+                class="campo-contrasena__input"
+                placeholder="Escribe tu contraseña..."
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <button id="boton-ver-contrasena" class="campo-contrasena__boton-ver" type="button" aria-label="Mostrar contraseña">
+                👁
+              </button>
+            </div>
+          </div>
+
+          <div class="fortaleza-contenedor" id="contenedor-fortaleza" aria-hidden="true">
+            <div class="fortaleza-barra">
+              <span class="fortaleza-segmento" id="segmento-1"></span>
+              <span class="fortaleza-segmento" id="segmento-2"></span>
+              <span class="fortaleza-segmento" id="segmento-3"></span>
+              <span class="fortaleza-segmento" id="segmento-4"></span>
+              <span class="fortaleza-segmento" id="segmento-5"></span>
+            </div>
+            <span class="fortaleza-etiqueta" id="etiqueta-fortaleza"></span>
+          </div>
+
+          <div class="indicadores-contrasena" id="indicadores-contrasena">
+            <span class="indicador" id="ind-mayuscula">A Mayúscula</span>
+            <span class="indicador" id="ind-numero">0 Número</span>
+            <span class="indicador" id="ind-simbolo">! Símbolo</span>
+            <span class="indicador" id="ind-longitud">8+ chars</span>
+          </div>
+
+          <button id="boton-iniciar" class="boton-iniciar" type="button" disabled>
+            ⚡ Iniciar simulación
+          </button>
+        </div>
+      </section>
+
+      <!-- ===== FASE 2: EJECUCIÓN ===== -->
+      <section id="fase-ejecutando" class="fase" aria-live="polite">
+        <div class="metricas-barra">
+          <div class="metrica">
+            <span class="metrica__valor" id="metrica-tiempo">00:00.00</span>
+            <span class="metrica__etiqueta">Tiempo transcurrido</span>
+          </div>
+          <div class="metrica">
+            <span class="metrica__valor" id="metrica-velocidad">280</span>
+            <span class="metrica__etiqueta">Intentos / seg.</span>
+          </div>
+          <div class="metrica">
+            <span class="metrica__valor metrica__valor--rojo" id="metrica-intentos">0</span>
+            <span class="metrica__etiqueta">Combinaciones probadas</span>
+          </div>
+        </div>
+
+        <div class="terminal">
+          <div class="terminal__barra" aria-hidden="true">
+            <span class="terminal__punto terminal__punto--rojo"></span>
+            <span class="terminal__punto terminal__punto--amarillo"></span>
+            <span class="terminal__punto terminal__punto--verde-term"></span>
+            <span class="terminal__titulo">ghost-attack — brute-force</span>
+          </div>
+          <div class="terminal__cuerpo" id="cuerpo-terminal" role="log" aria-live="polite"></div>
+        </div>
+
+        <div class="progreso-contenedor">
+          <div class="progreso-barra">
+            <div class="progreso-relleno" id="progreso-relleno"></div>
+          </div>
+          <span class="progreso-porcentaje" id="progreso-porcentaje">0%</span>
+        </div>
+      </section>
+
+      <!-- ===== FASE 3: RESULTADO ===== -->
+      <section id="fase-resultado" class="fase">
+        <div id="tarjeta-resultado" class="tarjeta-resultado">
+          <div class="tarjeta-resultado__icono" id="resultado-icono">✗</div>
+          <h2 class="tarjeta-resultado__titulo" id="resultado-titulo"></h2>
+          <div class="tarjeta-resultado__estadisticas">
+            <div class="estadistica-resultado">
+              <span class="estadistica-resultado__valor" id="res-tiempo-descifrado"></span>
+              <span class="estadistica-resultado__etiqueta">Tiempo estimado para descifrar</span>
+            </div>
+            <div class="estadistica-resultado">
+              <span class="estadistica-resultado__valor" id="res-combinaciones"></span>
+              <span class="estadistica-resultado__etiqueta">Combinaciones posibles</span>
+            </div>
+          </div>
+          <div class="resultado-explicacion">
+            <h3 class="resultado-explicacion__titulo" id="res-explicacion-titulo"></h3>
+            <ul class="resultado-explicacion__lista" id="res-explicacion-lista"></ul>
+          </div>
+          <div class="resultado-acciones">
+            <button id="boton-repetir" class="boton-accion boton-accion--rojo" type="button">
+              ⚡ Repetir con otra contraseña
+            </button>
+            <a href="Simuladores.html" class="boton-accion boton-accion--secundario">
+              ← Volver al laboratorio
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script src="../JS/FuerzaBruta.js" defer></script>
+</body>
+</html>

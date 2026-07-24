@@ -4,148 +4,281 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GHOST_NET — Seguridad de Correo</title>
-<link rel="stylesheet" href="../CSS/VerificarCorreo.css" />
+<link rel="stylesheet" href="../CSS/VerificarCorreo.css">
 </head>
 <body>
 
-<header class="navbar">
-  <a href="index.html" class="logo">
-    <span class="logo-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3.2v5.3c0 4.6-3 7.9-7 9.5-4-1.6-7-4.9-7-9.5V6.2L12 3z"/></svg>
-    </span>
-    <span class="logo-text">GHOST_NET</span>
-  </a>
 
-  <nav class="nav-links">
-    <a href="index.html" class="nav-link">Inicio</a>
-    <div class="nav-dropdown">
-      <button type="button" class="nav-link dropdown-toggle is-active">
-        Herramientas
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="dropdown-menu">
-        <a href="EvaluacionContraseña.html" class="dropdown-item">Contraseñas</a>
-        <a href="VerificarCorreo.html" class="dropdown-item is-current">Correos</a>
-        <a href="PerfildeRiesgo.html" class="dropdown-item">Perfil de Riesgo</a>
-        <a href="Correo.html" class="dropdown-item">Filtraciones</a>
+ <!-- Fondos decorativos -->
+  <div class="fondo-grilla" aria-hidden="true"></div>
+  <div class="fondo-brillo" aria-hidden="true"></div>
+
+ <nav class="barra-nav">
+  <div class="contenido-nav">
+    <a href="index.html" class="logo" aria-label="Ghost Internet - Ir al inicio">
+      <div class="logo__contenedor-icono">
+        <img src="../SVG/escudo.svg" alt="" class="logo__icono" aria-hidden="true" />
+      </div>
+      <span class="logo__texto">
+        GHOST<span class="logo_guion">-</span>NET
+      </span>
+    </a>
+
+    <ul class="enlaces-nav" role="navigation" aria-label="Menú principal">
+      <li class="enlaces-nav_elemento enlaces-nav_elemento--activo">
+        <a href="index.html">Inicio</a>
+      </li>
+
+      <li class="enlaces-nav__elemento menu-desplegable">
+        <a href="#" class="menu-desplegable__toggle">
+          <span>Herramientas</span>
+          <img
+            src="../SVG/flecha-herramientas.svg"
+            alt=""
+            class="icono-flecha"
+            aria-hidden="true"
+          />
+        </a>
+        <ul class="submenu">
+          <li><a href="EvaluacionContraseña.html">Contraseñas</a></li>
+          <li><a href="VerificarCorreo.html">Correos</a></li>
+          <li><a href="PerfildeRiesgo.html">Perfil de Riesgo</a></li>
+          <li><a href="Correo.html">Filtraciones</a></li>
+        </ul>
+      </li>
+
+      <li class="enlaces-nav__elemento">
+        <a href="Estadisticas.html">Estadísticas</a>
+      </li>
+
+      <li class="enlaces-nav__elemento">
+        <a href="Simuladores.html">Simulador</a>
+      </li>
+    </ul>
+
+    <div class="zona-auth">
+      <div id="auth-invitado" class="auth-estado">
+        <button class="boton-borde" type="button" onclick="window.location.href='Registrarse.html'">Iniciar sesión</button>
+        <a href="Registrarse.html" class="boton-primario">Registrarse</a>
+      </div>
+
+      <div id="auth-usuario" class="auth-estado oculto">
+        <span class="auth-usuario__nombre" id="nombre-usuario">Usuario</span>
+        <button class="boton-borde" type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
       </div>
     </div>
-    <a href="Estadisticas.html" class="nav-link">Estadísticas</a>
-    <a href="simulador.html" class="nav-link">Simulador</a>
-  </nav>
-
-<div class="nav-actions">
-
-    <!-- Se muestra cuando NO hay sesión iniciada -->
-    <div id="auth-invitado" class="auth-estado">
-      <a href="Registrarse.html" class="btn btn-outline">Iniciar sesión</a>
-      <a href="Registrarse.html" class="btn btn-filled">Registrarse</a>
-    </div>
-
-    <!-- Se muestra cuando SÍ hay sesión iniciada -->
-    <div id="auth-usuario" class="auth-estado oculto">
-      <span class="auth-usuario__nombre" id="nombre-usuario">Usuario</span>
-      <button class="btn btn-outline" type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
-    </div>
-
   </div>
-</header>
+</nav>
 
 <main class="tool-page">
 
-  <section class="tool-header">
-    <div class="tool-icon-box">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-    </div>
-    <div>
-      <h1 class="tool-title">Seguridad de Correo</h1>
-      <p class="tool-subtitle">Verifica si tu correo ha aparecido en brechas de seguridad conocidas.</p>
-    </div>
-  </section>
+        <section class="tool-header">
+            <h1 class="tool-title">Seguridad de Correo</h1>
+            <p class="tool-subtitle">Analiza, compara y genera correos más seguros.</p>
+        </section>
 
-  <section class="verify-card">
-    <div class="verify-row">
-      <input type="email" class="verify-input" placeholder="correo@ejemplo.com">
-      <button type="button" class="btn-verify">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
-        Verificar
-      </button>
-    </div>
-    <p class="verify-disclaimer">* Simulación con datos de referencia. En producción se integraría con HaveIBeenPwned API.</p>
-  </section>
+        <section class="verify-card">
 
-  <section class="collapse-section">
-    <input type="checkbox" id="compareToggle" class="collapse-checkbox">
-    <div class="collapse-header">
-      <span class="section-label">// Comparar correos</span>
-      <label for="compareToggle" class="collapse-toggle">
-        <span class="show-text">Mostrar</span>
-        <span class="hide-text">Ocultar</span>
-      </label>
-    </div>
-    <div class="collapse-content">
-      <div class="compare-table">
-        <div class="compare-row compare-row-head">
-          <span>Correo</span>
-          <span>Resultado de referencia</span>
+            <h2>Verificar correo</h2>
+
+            <div class="verify-row">
+                <input type="email" id="correo" class="verify-input" placeholder="correo@ejemplo.com">
+                <button id="btnVerificar" class="btn-verify">Verificar</button>
+            </div>
+
+            <div id="resultadoVerificacion" class="resultado-card oculto">
+
+                <div class="barra">
+                    <div id="barraVerificacion" class="progreso"></div>
+                </div>
+
+                <h2 id="porcentajeVerificacion">0%</h2>
+                <h3 id="nivelVerificacion">Sin analizar</h3>
+
+                <div class="listas">
+
+                    <div>
+                        <h4>Fortalezas</h4>
+                        <ul id="listaFortalezas"></ul>
+                    </div>
+
+                    <div>
+                        <h4>Debilidades</h4>
+                        <ul id="listaDebilidades"></ul>
+                    </div>
+
+                    <div>
+                        <h4>Recomendaciones</h4>
+                        <ul id="listaRecomendaciones"></ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    <section class="compare-card">
+
+        <h2>Comparar correos</h2>
+
+        <div class="compare-inputs">
+            <input type="email" id="correo1" placeholder="Primer correo">
+            <input type="email" id="correo2" placeholder="Segundo correo">
+            <button id="btnComparar">Comparar</button>
         </div>
-        <div class="compare-row">
-          <span>correo1@ejemplo.com</span>
-          <span class="result-bad">2 brechas de ejemplo (2019, 2021)</span>
-        </div>
-        <div class="compare-row">
-          <span>correo2@ejemplo.com</span>
-          <span class="result-ok">Sin coincidencias en datos de referencia</span>
-        </div>
-      </div>
-      <p class="collapse-note">Datos ilustrativos para esta demostración, no corresponden a brechas reales.</p>
-    </div>
-  </section>
 
-  <section class="tips-section">
-    <h2 class="section-label">// Cómo proteger tu correo</h2>
-    <div class="tips-grid">
-      <div class="tip-card">
-        <span class="tip-num">1</span>
-        <p>Activa la autenticación de dos factores (2FA) en todos tus servicios.</p>
-      </div>
-      <div class="tip-card">
-        <span class="tip-num">2</span>
-        <p>Usa un gestor de contraseñas para tener claves únicas en cada servicio.</p>
-      </div>
-      <div class="tip-card">
-        <span class="tip-num">3</span>
-        <p>Monitorea periódicamente tu correo en servicios de brechas.</p>
-      </div>
-      <div class="tip-card">
-        <span class="tip-num">4</span>
-        <p>No uses el mismo correo para servicios críticos (banco, trabajo) y registros casuales.</p>
-      </div>
-      <div class="tip-card">
-        <span class="tip-num">5</span>
-        <p>Considera usar alias de correo (SimpleLogin, AnonAddy) para sitios poco confiables.</p>
-      </div>
-      <div class="tip-card">
-        <span class="tip-num">6</span>
-        <p>Revisa los permisos de aplicaciones conectadas a tu cuenta de correo.</p>
-      </div>
-    </div>
-  </section>
+        <div id="resultadoComparacion" class="oculto">
 
-</main>
+            <div class="compare-result">
+
+                <div class="tarjeta">
+
+                    <h3>Correo 1</h3>
+
+                    <div class="barra">
+                        <div id="barraCorreo1" class="progreso"></div>
+                    </div>
+
+                    <p id="puntajeCorreo1">0%</p>
+                    <p id="nivelCorreo1">Sin analizar</p>
+
+                </div>
+
+                <div class="tarjeta">
+
+                    <h3>Correo 2</h3>
+
+                    <div class="barra">
+                        <div id="barraCorreo2" class="progreso"></div>
+                    </div>
+
+                    <p id="puntajeCorreo2">0%</p>
+                    <p id="nivelCorreo2">Sin analizar</p>
+
+                </div>
+
+            </div>
+
+            <h3>Ganador</h3>
+            <p id="ganadorComparacion">---</p>
+
+            <h3>¿Por qué es más seguro?</h3>
+            <ul id="listaDiferencias"></ul>
+
+        </div>
+
+    </section>
+
+    <section class="generator-card">
+
+        <h2>Generar correo seguro</h2>
+
+        <input type="text" id="nombreGenerador" placeholder="Ingresa tu nombre">
+
+        <select id="dominioGenerador">
+            <option value="gmail.com">gmail.com</option>
+            <option value="outlook.com">outlook.com</option>
+            <option value="hotmail.com">hotmail.com</option>
+            <option value="yahoo.com">yahoo.com</option>
+            <option value="icloud.com">icloud.com</option>
+        </select>
+
+        <button id="btnGenerar">Generar</button>
+
+        <div id="resultadoGenerador" class="oculto">
+
+            <div class="correo-generado-row">
+                <h3 id="correoGenerado">Correo generado</h3>
+                <button type="button" id="btnCopiarCorreo" class="btn-copy" title="Copiar al portapapeles">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2"/>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                    </svg>
+                    Copiar
+                </button>
+            </div>
+
+            <div class="barra">
+                <div id="barraGenerador" class="progreso"></div>
+            </div>
+
+            <p id="puntajeGenerado">0%</p>
+            <p id="nivelGenerado">Sin analizar</p>
+
+            <div class="listas">
+
+                <div>
+                    <h4>Fortalezas</h4>
+                    <ul id="listaFortalezasGenerador"></ul>
+                </div>
+
+                <div>
+                    <h4>Debilidades</h4>
+                    <ul id="listaDebilidadesGenerador"></ul>
+                </div>
+
+                <div>
+                    <h4>Recomendaciones</h4>
+                    <ul id="listaRecomendacionesGenerador"></ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="tips-section">
+        <h2 class="section-label">// Cómo proteger tu correo</h2>
+        <div class="tips-grid">
+            <div class="tip-card">
+                <span class="tip-num">1</span>
+                <p>Activa la autenticación de dos factores (2FA) en todos tus servicios.</p>
+            </div>
+            <div class="tip-card">
+                <span class="tip-num">2</span>
+                <p>Usa un gestor de contraseñas para tener claves únicas en cada servicio.</p>
+            </div>
+            <div class="tip-card">
+                <span class="tip-num">3</span>
+                <p>Monitorea periódicamente tu correo en servicios de brechas.</p>
+            </div>
+            <div class="tip-card">
+                <span class="tip-num">4</span>
+                <p>No uses el mismo correo para servicios críticos (banco, trabajo) y registros casuales.</p>
+            </div>
+            <div class="tip-card">
+                <span class="tip-num">5</span>
+                <p>Considera usar alias de correo (SimpleLogin, AnonAddy) para sitios poco confiables.</p>
+            </div>
+            <div class="tip-card">
+                <span class="tip-num">6</span>
+                <p>Revisa los permisos de aplicaciones conectadas a tu cuenta de correo.</p>
+            </div>
+        </div>
+    </section>
+    </main>
 
 <footer class="site-footer">
-  <div class="footer-brand">
-    <a href="index.html" style="display: flex; align-items: center; text-decoration: none; color: inherit; gap: 8px;">
-      <span class="logo-icon-sm">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3.2v5.3c0 4.6-3 7.9-7 9.5-4-1.6-7-4.9-7-9.5V6.2L12 3z"/></svg>
-      </span>
-      <span class="logo-text-sm">GHOST_NET</span>
+
+<div class="footer-brand">
+    <a href="index.html" style="display:flex;align-items:center;text-decoration:none;color:inherit;gap:8px;">
+        <span class="logo-icon-sm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M12 3l7 3.2v5.3c0 4.6-3 7.9-7 9.5-4-1.6-7-4.9-7-9.5V6.2L12 3z"/>
+            </svg>
+        </span>
+        <span class="logo-text-sm">GHOST_NET</span>
     </a>
-  </div>
+</div>
+
+<p class="footer-copy">2026 Ghost Internet</p>
+
+</footer>
+
+<script src="../JS/VerificarCorreo.js"></script>
 <script src="../JS/Sesion.js"></script>
 
-  <p class="footer-copy">2026 Ghost Internet</p>
-</footer>
 </body>
 </html>

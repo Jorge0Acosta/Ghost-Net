@@ -8,48 +8,78 @@
 </head>
 <body>
 
-<header class="navbar">
-  <a href="index.html" class="logo">
-    <span class="logo-icon">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3.2v5.3c0 4.6-3 7.9-7 9.5-4-1.6-7-4.9-7-9.5V6.2L12 3z"/></svg>
-    </span>
-    <span class="logo-text">GHOST_NET</span>
-  </a>
+ <!-- Fondos decorativos -->
+  <div class="fondo-grilla" aria-hidden="true"></div>
+  <div class="fondo-brillo" aria-hidden="true"></div>
 
-  <nav class="nav-links">
-    <a href="index.html" class="nav-link">Inicio</a>
-    <div class="nav-dropdown">
-      <button type="button" class="nav-link dropdown-toggle is-active">
-        Herramientas
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="dropdown-menu">
-        <a href="EvaluacionContraseña.html" class="dropdown-item">Contraseñas</a>
-        <a href="VerificarCorreo.html" class="dropdown-item">Correos</a>
-        <a href="PerfildeRiesgo.html" class="dropdown-item">Perfil de Riesgo</a>
-        <a href="Correo.html" class="dropdown-item is-current">Filtraciones</a>
+  <!-- ===== NAVEGACIÓN ===== -->
+  <nav class="barra-nav">
+  <div class="contenido-nav">
+
+    <a href="index.html" class="logo" aria-label="Ghost Internet - Ir al inicio">
+      <div class="logo__contenedor-icono">
+        <img src="../SVG/escudo.svg" alt="" class="logo__icono" aria-hidden="true" />
       </div>
-    </div>
-    <a href="Estadisticas.html" class="nav-link">Estadísticas</a>
-    <a href="simulador.html" class="nav-link">Simulador</a>
-  </nav>
+      <span class="logo__texto">
+        GHOST_NET
+      </span>
+    </a>
 
-  <div class="nav-actions">
+    <ul class="enlaces-nav" role="navigation" aria-label="Menú principal">
 
-    <!-- Se muestra cuando NO hay sesión iniciada -->
-    <div id="auth-invitado" class="auth-estado">
-      <a href="#" class="btn btn-outline">Iniciar sesión</a>
-      <a href="#" class="btn btn-filled">Registrarse</a>
-    </div>
+      <!-- ELIMINADA la clase --activo para que se vea igual que los demás -->
+      <li class="enlaces-nav_elemento">
+        <a href="index.html">Inicio</a>
+      </li>
 
-    <!-- Se muestra cuando SÍ hay sesión iniciada -->
-    <div id="auth-usuario" class="auth-estado oculto">
-      <span class="auth-usuario__nombre" id="nombre-usuario">Usuario</span>
-      <button class="btn btn-outline" type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
+      <li class="enlaces-nav__elemento menu-desplegable">
+        <a href="#" class="menu-desplegable__toggle">
+          <span>Herramientas</span>
+          <img
+            src="../SVG/flecha-herramientas.svg"
+            alt=""
+            class="icono-flecha"
+            aria-hidden="true"
+          />
+        </a>
+
+        <ul class="submenu">
+          <li><a href="EvaluacionContraseña.html">Contraseñas</a></li>
+          <li><a href="VerificarCorreo.html">Correos</a></li>
+          <li><a href="PerfildeRiesgo.html">Perfil de Riesgo</a></li>
+          <li><a href="Correo.html">Filtraciones</a></li>
+        </ul>
+      </li>
+
+      <li class="enlaces-nav__elemento">
+        <a href="Estadisticas.html">Estadísticas</a>
+      </li>
+
+      <li class="enlaces-nav__elemento">
+        <a href="Simuladores.html">Simulador</a>
+      </li>
+
+    </ul>
+
+    <!-- Zona de Autenticación (Iniciar Sesión / Registro / Cerrar Sesión) -->
+    <div class="zona-auth">
+
+      <!-- Se muestra cuando NO hay sesión iniciada -->
+      <div id="auth-invitado" class="auth-estado">
+        <button class="boton-borde" type="button" onclick="window.location.href='Registrarse.html'">Iniciar sesión</button>
+        <a href="Registrarse.html" class="boton-primario" style="text-decoration: none;">Registrarse</a>
+      </div>
+
+      <!-- Se muestra cuando SÍ hay sesión iniciada -->
+      <div id="auth-usuario" class="auth-estado oculto">
+        <span class="auth-usuario__nombre" id="nombre-usuario">Usuario</span>
+        <button class="boton-borde" type="button" id="btn-cerrar-sesion">Cerrar sesión</button>
+      </div>
+
     </div>
 
   </div>
-</header>
+</nav>
 
 <main class="dashboard-page">
 
@@ -65,13 +95,13 @@
         </div>
       </div>
       <div class="verify-row">
-        <input type="email" class="verify-input" placeholder="correo@ejemplo.com" value="correo@ejemplo.com">
-        <button type="button" class="btn-verify">
+        <input type="email" id="emailInput" class="verify-input" placeholder="correo@ejemplo.com" value="correo@ejemplo.com">
+        <button type="button" id="btnVerificar" class="btn-verify">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
-          Verificar
+          <span class="btn-verify-text">Verificar</span>
         </button>
       </div>
-      <p class="fine-print">* Simulación con datos de referencia. En producción se integrará con HaveIBeenPwned API.</p>
+      <p class="fine-print">* Datos en tiempo real vía XposedOrNot API (fuente gratuita de brechas de seguridad).</p>
     </div>
 
     <div class="dash-card risk-card">
@@ -81,11 +111,11 @@
       <div class="risk-ring">
         <div class="risk-ring-inner">
           <div class="shield">🛡</div>
-          <div class="label">ALTO</div>
+          <div class="label" id="nivelRiesgo">—</div>
         </div>
       </div>
-      <p class="risk-desc">Este correo ha sido encontrado en<br><b>3 brechas de seguridad</b></p>
-      <p class="risk-updated">Última actualización: <span>24/06/2025</span></p>
+      <p class="risk-desc" id="descripcionRiesgo">Ingresa un correo y presiona <b>Verificar</b></p>
+      <p class="risk-updated">Última actualización: <span id="fechaActualizacion">—</span></p>
     </div>
   </div>
 
@@ -94,7 +124,7 @@
       <div class="stat-top">
         <div class="stat-icon accent">🗄</div>
       </div>
-      <div class="stat-value accent">3</div>
+      <div class="stat-value accent" id="numBrechas">0</div>
       <div class="stat-label">Brechas encontradas</div>
       <div class="stat-bar accent"></div>
     </div>
@@ -102,7 +132,7 @@
       <div class="stat-top">
         <div class="stat-icon amber">👥</div>
       </div>
-      <div class="stat-value amber">1.2B+</div>
+      <div class="stat-value amber" id="registrosExpuestos">0</div>
       <div class="stat-label">Registros expuestos</div>
       <div class="stat-bar amber"></div>
     </div>
@@ -110,7 +140,7 @@
       <div class="stat-top">
         <div class="stat-icon blue">📅</div>
       </div>
-      <div class="stat-value blue">2024</div>
+      <div class="stat-value blue" id="ultimaBrecha">—</div>
       <div class="stat-label">Última brecha</div>
       <div class="stat-bar blue"></div>
     </div>
@@ -118,7 +148,7 @@
       <div class="stat-top">
         <div class="stat-icon purple">🛡</div>
       </div>
-      <div class="stat-value purple">ALTO</div>
+      <div class="stat-value purple" id="nivelRiesgoMini">—</div>
       <div class="stat-label">Nivel de riesgo</div>
       <div class="stat-bar purple"></div>
     </div>
@@ -131,25 +161,8 @@
         <thead>
           <tr><th>Servicio</th><th>Fecha</th><th>Registros expuestos</th><th>Gravedad</th></tr>
         </thead>
-        <tbody>
-          <tr>
-            <td><div class="service-cell"><div class="service-logo logo-linkedin">in</div> LinkedIn</div></td>
-            <td>2021</td>
-            <td>700M+</td>
-            <td><span class="badge alto">Alto</span></td>
-          </tr>
-          <tr>
-            <td><div class="service-cell"><div class="service-logo logo-adobe">A</div> Adobe</div></td>
-            <td>2013</td>
-            <td>152M+</td>
-            <td><span class="badge alto">Alto</span></td>
-          </tr>
-          <tr>
-            <td><div class="service-cell"><div class="service-logo logo-dropbox">⬡</div> Dropbox</div></td>
-            <td>2012</td>
-            <td>68M+</td>
-            <td><span class="badge media">Media</span></td>
-          </tr>
+        <tbody id="tablaBrechas">
+          <tr><td colspan="4" style="text-align:center; opacity:.6;">Verifica un correo para ver resultados</td></tr>
         </tbody>
       </table>
       <a href="#" class="view-all">Ver todas las brechas</a>
@@ -205,5 +218,6 @@
 </footer>
 
 <script src="../JS/Sesion.js"></script>
+<script src="../JS/Filtraciones.js"></script>
 </body>
 </html>

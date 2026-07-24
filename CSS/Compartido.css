@@ -266,3 +266,82 @@ img {
 @media (max-width: 900px) {
   .enlaces-nav { display: none; }
 }
+
+/* ===== DROPDOWN HERRAMIENTAS COMPARTIDO ===== */
+
+.menu-desplegable {
+  position: relative;
+}
+
+/* Botón principal (Herramientas + flecha) */
+.menu-desplegable__toggle {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between; 
+  gap: 8px;
+  text-decoration: none;
+  white-space: nowrap; /* Evita que la flecha se mueva de línea */
+}
+
+/* Flecha alineada correctamente */
+.icono-flecha {
+  width: 12px;
+  height: 12px;
+  display: inline-block; 
+  vertical-align: middle;
+  flex-shrink: 0; /* Evita que se deforme */
+  transition: transform 0.25s ease;
+}
+
+/* Submenú oculto */
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 15px;
+
+  background: #118baa;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+
+  padding: 8px 0;
+  min-width: 180px;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s ease;
+
+  z-index: 1000;
+}
+
+/* Mostrar submenú al pasar el mouse por encima */
+.menu-desplegable:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Rotar flecha en hover */
+.menu-desplegable:hover .icono-flecha {
+  transform: rotate(180deg);
+}
+
+/* Links del submenú */
+.submenu li a {
+  display: block;
+  padding: 10px 14px;
+  color: var(--color-texto) !important;
+  text-decoration: none;
+  font-size: 13px;
+  background: transparent !important; /* Evita heredar fondos extraños */
+}
+
+.submenu li a:hover {
+  color: var(--color-verde-fosforecente) !important;
+}
+
+/* ===== UTILIDADES ===== */
+.oculto {
+  display: none !important;
+}

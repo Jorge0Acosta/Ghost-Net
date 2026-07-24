@@ -1,0 +1,165 @@
+/* ===== ESTILOS DEL LABORATORIO DE SIMULADORES ===== */
+@import url('./Compartido.css');
+
+/* ===== PÁGINA DEL LABORATORIO ===== */
+
+.pagina-lab {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 140px 24px 64px;
+}
+
+/* ===== ENCABEZADO DEL LAB ===== */
+
+.lab-encabezado {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 40px;
+}
+
+.lab-encabezado__icono-contenedor {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radio-grande);
+  background: rgba(249, 40, 55, 0.1);
+  border: 1px solid rgba(249, 40, 55, 0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lab-encabezado__icono {
+  width: 24px;
+  height: 24px;
+}
+
+.lab-encabezado__titulo {
+  font-family: var(--fuente-codigo);
+  color: var(--color-verde-fosforecente);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.lab-encabezado__subtitulo {
+  font-family: var(--fuente-principal);
+  color: var(--color-gris-medio-claro);
+  font-size: 14px;
+  margin-top: 4px;
+  max-width: 500px;
+  line-height: 1.55;
+}
+
+/* ===== GRILLA DE TARJETAS ===== */
+
+.grilla-lab {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ===== TARJETA DE SIMULADOR ===== */
+
+.tarjeta-lab {
+  background: var(--color-card);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-extra-grande);
+  padding: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  text-decoration: none;
+  transition:
+    border-color var(--transicion-normal),
+    transform var(--transicion-rapida),
+    box-shadow var(--transicion-normal);
+}
+
+.tarjeta-lab:hover { transform: translateY(-4px); }
+
+.tarjeta-lab--verde:hover { border-color: rgba(0, 253, 135, 0.45); box-shadow: 0 8px 32px rgba(0, 253, 135, 0.1); }
+.tarjeta-lab--cyan:hover  { border-color: rgba(0, 200, 251, 0.45); box-shadow: 0 8px 32px rgba(0, 200, 251, 0.08); }
+.tarjeta-lab--rosa:hover  { border-color: rgba(239, 76, 233, 0.45); box-shadow: 0 8px 32px rgba(239, 76, 233, 0.08); }
+
+.tarjeta-lab__cabecera {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.tarjeta-lab__icono-contenedor {
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radio-mediano);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tarjeta-lab__icono-contenedor--verde { background: rgba(0, 253, 135, 0.12); }
+.tarjeta-lab__icono-contenedor--cyan  { background: rgba(0, 200, 251, 0.12); }
+.tarjeta-lab__icono-contenedor--rosa  { background: rgba(239, 76, 233, 0.12); }
+
+.tarjeta-lab__icono {
+  width: 22px;
+  height: 22px;
+}
+
+.tarjeta-lab__dificultad {
+  font-family: var(--fuente-codigo);
+  font-size: 10px;
+  padding: 3px 9px;
+  border-radius: var(--radio-pastilla);
+  border: 1px solid;
+}
+
+.tarjeta-lab__dificultad--facil     { color: var(--color-verde-fosforecente); border-color: var(--color-verde-fosforecente); }
+.tarjeta-lab__dificultad--intermedio { color: #ffb800; border-color: #ffb800; }
+.tarjeta-lab__dificultad--avanzado  { color: var(--color-rojo); border-color: var(--color-rojo); }
+
+.tarjeta-lab__titulo {
+  font-family: var(--fuente-codigo);
+  color: var(--color-texto);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.tarjeta-lab__descripcion {
+  font-family: var(--fuente-principal);
+  color: var(--color-gris-medio-claro);
+  font-size: 13px;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.tarjeta-lab__cta {
+  font-family: var(--fuente-codigo);
+  font-size: 13px;
+  padding: 10px;
+  border-radius: var(--radio-mediano);
+  border: 1px solid;
+  text-align: center;
+  display: block;
+  transition: background var(--transicion-rapida);
+}
+
+.tarjeta-lab__cta--verde { color: var(--color-verde-fosforecente); border-color: var(--color-verde-fosforecente); }
+.tarjeta-lab__cta--cyan  { color: var(--color-azul-claro); border-color: var(--color-azul-claro); }
+.tarjeta-lab__cta--rosa  { color: var(--color-roza-fosforecente); border-color: var(--color-roza-fosforecente); }
+
+.tarjeta-lab--verde:hover .tarjeta-lab__cta { background: rgba(0, 253, 135, 0.08); }
+.tarjeta-lab--cyan:hover  .tarjeta-lab__cta { background: rgba(0, 200, 251, 0.08); }
+.tarjeta-lab--rosa:hover  .tarjeta-lab__cta { background: rgba(239, 76, 233, 0.08); }
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 860px) {
+  .grilla-lab { grid-template-columns: 1fr; }
+}
+
+.tarjeta-lab--rojo:hover { border-color: rgba(249, 40, 55, 0.45); box-shadow: 0 8px 32px rgba(249, 40, 55, 0.1); }
+.tarjeta-lab__icono-contenedor--rojo { background: rgba(249, 40, 55, 0.12); }
+.tarjeta-lab__cta--rojo { color: var(--color-rojo); border-color: var(--color-rojo); }
+.tarjeta-lab--rojo:hover .tarjeta-lab__cta { background: rgba(249, 40, 55, 0.08); }

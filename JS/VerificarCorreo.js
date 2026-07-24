@@ -30,6 +30,8 @@ document.getElementById("btnVerificar").addEventListener("click", async () => {
     llenarLista("listaFortalezas", r.fortalezas);
     llenarLista("listaDebilidades", r.debilidades);
     llenarLista("listaRecomendaciones", r.recomendaciones);
+
+    document.getElementById("resultadoVerificacion").classList.remove("oculto");
 });
 
 // =============================
@@ -68,6 +70,8 @@ document.getElementById("btnComparar").addEventListener("click", async () => {
                 : "Empate";
 
     llenarLista("listaDiferencias", r.diferencias);
+
+    document.getElementById("resultadoComparacion").classList.remove("oculto");
 });
 
 // =============================
@@ -100,9 +104,39 @@ document.getElementById("btnGenerar").addEventListener("click", async () => {
     document.getElementById("puntajeGenerado").textContent = r.puntaje + "%";
     document.getElementById("nivelGenerado").textContent = r.nivel;
 
-    llenarLista("listaFortalezas", r.fortalezas || []);
-    llenarLista("listaDebilidades", r.debilidades || []);
-    llenarLista("listaRecomendaciones", r.recomendaciones || []);
+    llenarLista("listaFortalezasGenerador", r.fortalezas || []);
+    llenarLista("listaDebilidadesGenerador", r.debilidades || []);
+    llenarLista("listaRecomendacionesGenerador", r.recomendaciones || []);
+
+    document.getElementById("resultadoGenerador").classList.remove("oculto");
+});
+
+// =============================
+// COPIAR CORREO GENERADO
+// =============================
+
+document.getElementById("btnCopiarCorreo").addEventListener("click", async () => {
+    const btn = document.getElementById("btnCopiarCorreo");
+    const correo = document.getElementById("correoGenerado").textContent;
+
+    try {
+        await navigator.clipboard.writeText(correo);
+        btn.classList.add("copiado");
+        btn.innerHTML = "✓ Copiado";
+
+        setTimeout(() => {
+            btn.classList.remove("copiado");
+            btn.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="9" width="13" height="13" rx="2"/>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                </svg>
+                Copiar
+            `;
+        }, 1800);
+    } catch (err) {
+        alert("No se pudo copiar el correo");
+    }
 });
 
 // =============================

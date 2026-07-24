@@ -1,117 +1,318 @@
-const input = document.querySelector(".card-pass-input");
-const resultado = document.querySelector(".resultado");
-const togglePassword = document.querySelector(".card-eye");
+const API_BASE = "http://localhost:3000/api/contrasena";
 
-if (togglePassword && input) {
-    togglePassword.addEventListener("click", () => {
-        const isPassword = input.type === "password";
-        input.type = isPassword ? "text" : "password";
-        togglePassword.setAttribute("aria-label", isPassword ? "Ocultar contraseña" : "Mostrar contraseña");
-        togglePassword.setAttribute("title", isPassword ? "Ocultar contraseña" : "Mostrar contraseña");
-    });
-}
 
-input.addEventListener("input", async () => {
-    const contraseña = input.value;
+// =================================================
+// EVALUAR CONTRASEÑA
+// =================================================
 
-    if (!contraseña) {
-        if (resultado) {
-            resultado.textContent = "Escribe una contraseña para ver su nivel de seguridad.";
-            resultado.className = "resultado result-neutral";
-        }
+document.getElementById("evaluarBtn").addEventListener("click", async () => {
+
+    const password = document.getElementById("password").value;
+
+
+    if (!password) {
+        alert("Ingresa una contraseña");
         return;
     }
 
+
     try {
-        const response = await fetch("http://localhost:3000/api/evaluar", {
+
+        const res = await fetch(`${API_BASE}/verificar`, {
+
             method: "POST",
+
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ password: contraseña })
+
+            body: JSON.stringify({
+                contrasena: password
+            })
+
         });
 
-        const data = await response.json();
-        console.log("Respuesta API:", data);
 
-        mostrarResultado(data);
+        const data = await res.json();
 
-    } catch (error) {
-        console.log("Error: no se conectó a la api chaval", error);
-        if (resultado) {
-            resultado.textContent = "No se pudo conectar con el servidor.";
-            resultado.className = "resultado result-bad";
+
+        console.log("Respuesta verificar:", data);
+
+
+        if (!data.ok) {
+
+            alert("Error al evaluar contraseña");
+            return;
+
         }
+
+
+        const r = data.resultado;
+
+
+        document.getElementById("barraSeguridad").style.width =
+            r.puntaje + "%";
+
+
+        document.getElementById("porcentaje").textContent =
+            r.puntaje + "%";
+
+
+        document.getElementById("nivel").textContent =
+            r.nivel;
+
+
+
+        llenarLista(
+            "fortalezas",
+            r.fortalezas
+        );
+
+
+        llenarLista(
+            "debilidades",
+            r.debilidades
+        );
+
+
+        llenarLista(
+            "recomendaciones",
+            r.recomendaciones
+        );
+
+
+    } catch(error){
+
+        console.error(
+            "Error verificar:",
+            error
+        );
+
+        alert("No se pudo conectar con el servidor");
+
     }
+
+
 });
 
-function mostrarResultado(data) {
-    if (!resultado) return;
-    const nivel = data.nivel || "Débil";
-    const puntos = data.score ?? 0;
-    resultado.textContent = `${nivel} (${puntos} pts)`;
-    resultado.className = "resultado";
 
-    if (nivel === "Fuerte") {
-        resultado.classList.add("result-ok");
-    } else if (nivel === "Media") {
-        resultado.classList.add("result-medium");
-    } else {
-        resultado.classList.add("result-bad");
-    }
-}
 
-// ---------- GENERADOR DE CONTRASEÑAS SEGURAS ----------
-const btnGenerate = document.querySelector(".btn-generate");
-const genDisplay = document.querySelector(".gen-display");
 
-const CARACTERES = {
-    minusculas: "abcdefghijklmnopqrstuvwxyz",
-    mayusculas: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-    numeros: "0123456789",
-    simbolos: "!@#$%^&*()_-+=?"
-};
+// =================================================
+// MOSTRAR / OCULTAR PASSWORD
+// =================================================
 
-function generarPasswordSegura(longitud = 16) {
-    const todos = CARACTERES.minusculas + CARACTERES.mayusculas + CARACTERES.numeros + CARACTERES.simbolos;
-    const randomValues = new Uint32Array(longitud);
-    crypto.getRandomValues(randomValues);
+document.getElementById("mostrarPassword")
+.addEventListener("click",()=>{
 
-    let password = "";
-    password += CARACTERES.minusculas[randomValues[0] % CARACTERES.minusculas.length];
-    password += CARACTERES.mayusculas[randomValues[1] % CARACTERES.mayusculas.length];
-    password += CARACTERES.numeros[randomValues[2] % CARACTERES.numeros.length];
-    password += CARACTERES.simbolos[randomValues[3] % CARACTERES.simbolos.length];
 
-    for (let i = 4; i < longitud; i++) {
-        password += todos[randomValues[i] % todos.length];
+    const input =
+    document.getElementById("password");
+
+
+    if(input.type === "password"){
+
+        input.type="text";
+
+    }else{
+
+        input.type="password";
+
     }
 
-    return password.split("").sort(() => Math.random() - 0.5).join("");
+
+});
+
+
+
+
+// =================================================
+// GENERAR CONTRASEÑA
+// =================================================
+
+const botonGenerar =
+document.querySelector(".btn-generate");
+
+
+if(botonGenerar){
+
+
+botonGenerar.addEventListener("click", async()=>{
+
+
+    try{
+
+
+        const res = await fetch(`${API_BASE}/generar`,{
+
+
+            method:"POST",
+
+
+            headers:{
+                "Content-Type":"application/json"
+            },
+
+
+            body:JSON.stringify({
+
+                longitud:16
+
+            })
+
+
+        });
+
+
+
+        const data = await res.json();
+
+
+        console.log("Respuesta generar:",data);
+
+
+
+        if(data.ok){
+
+
+            document.querySelector(".gen-display").textContent =
+            data.resultado.contrasena;
+
+
+        }
+
+
+
+    }catch(error){
+
+
+        console.error(
+            "Error generar:",
+            error
+        );
+
+
+    }
+
+
+
+});
+
+
 }
+// =================================================
+// COMPARAR CONTRASEÑAS (SOLUCIÓN DEFINITIVA)
+// =================================================
+const btnComparar = document.getElementById("btnComparar");
 
-if (btnGenerate && genDisplay) {
-    btnGenerate.addEventListener("click", () => {
-        const nuevaPassword = generarPasswordSegura(16);
-        genDisplay.textContent = nuevaPassword;
-        genDisplay.style.color = "var(--text-primary)";
-        genDisplay.title = "Clic para copiar";
-        genDisplay.style.cursor = "pointer";
-    });
+if (btnComparar) {
+    btnComparar.addEventListener("click", async () => {
+        const password1 = document.getElementById("password1").value;
+        const password2 = document.getElementById("password2").value;
 
-    genDisplay.addEventListener("click", async () => {
-        const texto = genDisplay.textContent;
-        if (!texto || texto === "Genera una contraseña segura...") return;
+        if (!password1 || !password2) {
+            alert("Debes ingresar ambas contraseñas.");
+            return;
+        }
 
         try {
-            await navigator.clipboard.writeText(texto);
-            const original = genDisplay.textContent;
-            genDisplay.textContent = "Copiado ✔";
-            setTimeout(() => {
-                genDisplay.textContent = original;
-            }, 900);
+            const res = await fetch(`${API_BASE}/comparar`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    contrasena1: password1,
+                    contrasena2: password2
+                })
+            });
+
+            const data = await res.json();
+            console.log("Respuesta del servidor:", data);
+
+            if (!data.ok) {
+                alert(data.mensaje || "Error al comparar");
+                return;
+            }
+
+            const r = data.resultado;
+
+            // 1. Renderizar el ganador
+            document.getElementById("ganadorComparacion").textContent = 
+                r.ganador === "Empate" ? "¡Es un Empate!" : `¡Ganadora: ${r.ganador}!`;
+
+            // 2. Renderizar Contraseña 1
+            if (r.p1) {
+                document.getElementById("barraPassword1").style.width = r.p1.puntaje + "%";
+                document.getElementById("puntajePassword1").textContent = r.p1.puntaje + "%";
+                document.getElementById("nivelPassword1").textContent = r.p1.nivel;
+            }
+
+            // 3. Renderizar Contraseña 2
+            if (r.p2) {
+                document.getElementById("barraPassword2").style.width = r.p2.puntaje + "%";
+                document.getElementById("puntajePassword2").textContent = r.p2.puntaje + "%";
+                document.getElementById("nivelPassword2").textContent = r.p2.nivel;
+            }
+
+            // 4. Renderizar la lista de diferencias
+            llenarLista("diferenciasComparar", r.diferencias);
+
         } catch (error) {
-            console.log("No se pudo copiar al portapapeles:", error);
+            console.error("Error en la petición:", error);
+            alert("Error de conexión");
         }
     });
+}
+
+
+
+// =================================================
+// LLENAR LISTAS
+// =================================================
+
+function llenarLista(id,items){
+
+
+    const ul =
+    document.getElementById(id);
+
+
+
+    if(!ul) return;
+
+
+
+    ul.innerHTML="";
+
+
+
+    if(!items || items.length===0){
+
+
+        ul.innerHTML="<li>Sin información</li>";
+
+        return;
+
+    }
+
+
+
+    items.forEach(texto=>{
+
+
+        const li =
+        document.createElement("li");
+
+
+        li.textContent=texto;
+
+
+        ul.appendChild(li);
+
+
+    });
+
+
+
 }
