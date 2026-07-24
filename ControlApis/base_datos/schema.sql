@@ -1,10 +1,7 @@
 -- database/schema.sql
 -- Ejecuta este script completo en MySQL Workbench (rayo / Ctrl+Shift+Enter)
 
-CREATE DATABASE IF NOT EXISTS ghost_net
-CHARACTER SET utf8mb4
-COLLATE utf8mb4_unicode_ci;
-USE ghost_net;
+USE railway;
 
 /*TABLA USUARIOS*/
 CREATE TABLE usuarios(

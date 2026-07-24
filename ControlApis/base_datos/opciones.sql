@@ -1,7 +1,6 @@
 -- database/opciones.sql
 -- Ejecuta esto DESPUÉS de schema.sql (las preguntas ya deben existir)
-USE ghost_net;
-
+USE railway;
 -- Escala: Siempre=3, A veces=2, Rara vez=1, Nunca=0
 -- (invertida en preguntas 2 y 9, donde "Siempre" es una mala práctica)
 
