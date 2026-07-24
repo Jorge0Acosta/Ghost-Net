@@ -1,6 +1,6 @@
 // Filtraciones.js — Ghost_Net: conecta el botón "Verificar" con el backend real (XposedOrNot)
 
-const API_URL = 'http://localhost:3000/api/filtraciones/verificar';
+const API_URL = 'http://ghost-net-api.onrender.com/api/filtraciones/verificar';
 
 const emailInput = document.getElementById('emailInput');
 const btnVerificar = document.getElementById('btnVerificar');
@@ -29,7 +29,7 @@ async function verificarCorreo() {
     renderResultado(data);
   } catch (err) {
     console.error(err);
-    alert('No se pudo conectar con el servidor. Verifica que el backend (npm start) esté corriendo en localhost:3000.');
+    alert('No se pudo conectar con el servidor. Verifica que el backend (npm start) esté corriendo en ghost-net-api.onrender.com.');
   } finally {
     setCargando(false);
   }

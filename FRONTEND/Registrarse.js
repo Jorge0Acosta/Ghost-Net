@@ -1,6 +1,6 @@
 // Conecta los formularios de Registrarse.html con la API de Base de Datos (puerto 3001)
 
-const API_URL = "http://localhost:3000/api";
+const API_URL = "http://ghost-net-api.onrender.com/api";
 
 // ---------- REGISTRO ----------
 const registerForm = document.getElementById("registerForm");

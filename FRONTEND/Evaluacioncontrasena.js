@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000/api/contrasena";
+const API_BASE = "http://ghost-net-api.onrender.com/api/contrasena";
 
 
 // =================================================

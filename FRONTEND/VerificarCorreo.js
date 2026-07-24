@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3000/api/correo";
+const API_URL = "http://ghost-net-api.onrender.com/api/correo";
 // =============================
 // VERIFICAR CORREO
 // =============================
