@@ -1,4 +1,4 @@
-const verificarCorreo = require("./verificarCorreo");
+const verificarCorreo = require("./verificarcorreo");
 
 function generarCorreo(nombre, dominio) {
 
