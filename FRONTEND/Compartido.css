@@ -263,8 +263,122 @@ img {
 
 /* ===== RESPONSIVE COMPARTIDO ===== */
 
-@media (max-width: 900px) {
-  .enlaces-nav { display: none; }
+/*==========================
+    MENU HAMBURGUESA
+==========================*/
+
+.menu-hamburguesa{
+
+    display:none;
+
+    font-size:30px;
+
+    color:var(--color-verde-fosforecente);
+
+    cursor:pointer;
+
+}
+
+
+/* RESPONSIVE*/
+
+@media (max-width:900px){
+
+    .menu-hamburguesa{
+
+        display:block;
+
+        z-index:1100;
+
+    }
+
+
+    .enlaces-nav{
+
+        position:fixed;
+
+        top:60px;
+
+        right:-100%;
+
+        width:260px;
+
+        height:calc(100vh - 60px);
+
+        background:#061118;
+
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:10px;
+
+        padding:25px;
+
+        transition:.35s;
+
+        border-left:1px solid var(--color-borde);
+
+    }
+
+
+    .enlaces-nav.activo{
+
+        right:0;
+
+    }
+
+
+    .enlaces-nav__elemento{
+
+        width:100%;
+
+    }
+
+
+    .enlaces-nav__elemento a{
+
+        width:100%;
+
+    }
+
+
+    .zona-auth{
+
+        position:fixed;
+
+        right:-100%;
+
+        bottom:0;
+
+        width:260px;
+
+        background:#061118;
+
+        display:flex;
+
+        flex-direction:column;
+
+        gap:12px;
+
+        padding:25px;
+
+        border-left:1px solid var(--color-borde);
+
+        transition:.35s;
+
+    }
+
+
+    .zona-auth.activo{
+
+        right:0;
+
+    }
+
+
 }
 
 /* ===== DROPDOWN HERRAMIENTAS COMPARTIDO ===== */
