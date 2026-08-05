@@ -801,46 +801,72 @@ function renderizarDonut(canvasId, resultados, tipo) {
 }
 
 function renderizarListaDesglose(contenedorId, resultados, total) {
-  const contenedor = document.getElementById(contenedorId);
-  if (!contenedor) return;
+    const contenedor = document.getElementById(contenedorId);
+    if (!contenedor || !resultados) return;
 
-  contenedor.innerHTML = "";
+    contenedor.innerHTML = "";
 
-  resultados.forEach(item => {
-    const porcentaje = total > 0 ? Math.round((item.cantidad / total) * 100) : 0;
-    const color = PALETA_NIVELES[item.resultado] || "#00C8FB";
+    // Orden jerárquico deseado
+    const ordenJerarquico = 
+    [
+        "Excelente",
+        "Segura",
+        "Seguro",
+        "Regular",
+        "Insegura",
+        "Inseguro",
+        "Muy insegura",
+        "Muy ins."
+    ];
 
-    const html = `
-      <div class="fila-desglose">
-        <div class="fila-desglose__meta">
-          <span class="fila-desglose__etiqueta">${item.resultado}</span>
-          <div class="fila-desglose__cifras">
-            <strong style="color: ${color}">${item.cantidad.toLocaleString()}</strong>
-            <span class="porcentaje">${porcentaje}%</span>
-          </div>
+    // Ordenamos una copia del arreglo según el rango jerárquico
+    const resultadosOrdenados = [...resultados].sort((a, b) => {
+        let idxA = ordenJerarquico.indexOf(a.resultado);
+        let idxB = ordenJerarquico.indexOf(b.resultado);
+
+        if (idxA === -1) idxA = 99;
+        if (idxB === -1) idxB = 99;
+
+        return idxA - idxB;
+    });
+
+    resultadosOrdenados.forEach(item => {
+        const porcentaje = total > 0 ? Math.round((item.cantidad / total) * 100) : 0;
+        const color = PALETA_NIVELES[item.resultado] || "#00C8FB";
+
+        const html = `
+        <div class="fila-desglose">
+            <div class="fila-desglose__meta">
+            <span class="fila-desglose__etiqueta">${item.resultado}</span>
+            <div class="fila-desglose__cifras">
+                <strong style="color: ${color}">${item.cantidad.toLocaleString()}</strong>
+                <span class="porcentaje">${porcentaje}%</span>
+            </div>
+            </div>
+            <div class="barra-progreso">
+            <div class="barra-progreso__relleno" style="width: ${porcentaje}%; background-color: ${color}"></div>
+            </div>
         </div>
-        <div class="barra-progreso">
-          <div class="barra-progreso__relleno" style="width: ${porcentaje}%; background-color: ${color}"></div>
-        </div>
-      </div>
-    `;
-    contenedor.insertAdjacentHTML("beforeend", html);
-  });
+        `;
+        contenedor.insertAdjacentHTML("beforeend", html);
+    });
 }
 
 function renderizarResumenFooter(contenedorId, resultados, total) {
   const contenedor = document.getElementById(contenedorId);
-  if (!contenedor) return;
+  if (!contenedor || !resultados) return;
 
   let seguros = 0;
   let enRiesgo = 0;
 
   resultados.forEach(item => {
     const res = item.resultado.toLowerCase();
-    if (res.includes("excelente") || res.includes("segur")) {
-      seguros += item.cantidad;
-    } else if (res.includes("insegur") || res.includes("muy") || res.includes("regular")) {
+    
+    // PRIMERO evaluamos si es inseguro/muy inseguro/regular para no confundir "insegura" con "segura"
+    if (res.includes("insegur") || res.includes("muy") || res.includes("regular")) {
       enRiesgo += item.cantidad;
+    } else if (res.includes("excelente") || res.includes("segur")) {
+      seguros += item.cantidad;
     }
   });
 
