@@ -10,8 +10,11 @@ const {
     obtenerPasswordsMasComunes
 } = require("../serviciosExternos/passwordsService");
 
-//  CACHE
+const {
+    obtenerEstadisticasBD
+} = require("../servicios/estadisticasBD");
 
+//  CACHE
 let cacheEstadisticas = null;
 let ultimaActualizacion = 0;
 let actualizandoCache = false;
@@ -137,7 +140,15 @@ async function obtenerEstadisticas(req, res) {
 
         }
 
-        res.status(200).json(cacheEstadisticas);
+        const estadisticasBD = await obtenerEstadisticasBD();
+
+        res.status(200).json({
+
+            ...cacheEstadisticas,
+
+            registros: estadisticasBD
+
+        });
 
     }
 

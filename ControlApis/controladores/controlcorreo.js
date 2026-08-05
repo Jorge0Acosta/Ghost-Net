@@ -1,15 +1,27 @@
 const verificarCorreo = require("../servicios/verificarcorreo");
 const compararCorreo = require("../servicios/compararcorreos");
 const generarCorreo = require("../servicios/generarcorreo");
+const { pool } = require("../configuracion/db");
 
 // =========================
 // VERIFICAR CORREO
 // =========================
-exports.verificarCorreo = (req, res) => {
+exports.verificarCorreo = async (req, res) => {
     try {
         const { correo } = req.body;
 
         const resultado = verificarCorreo(correo);
+
+        // Guardar solo verificaciones válidas
+        if (resultado.nivel !== "Inválido") {
+
+            await pool.execute(
+                `INSERT INTO verificaciones_correos (resultado)
+                VALUES (?)`,
+                [resultado.nivel]
+            );
+
+        }
 
         res.json({
             ok: true,

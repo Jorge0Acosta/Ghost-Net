@@ -5,8 +5,7 @@ Chart.defaults.font.family = "'Courier New', monospace";
 Chart.defaults.font.size = 11;
 
 /* ===================================================
-   VARIABLES GLOBALES
-   =================================================== */
+   VARIABLES GLOBALES*/
 
 let graficaLinea = null;
 let graficaBarras = null;
@@ -91,6 +90,8 @@ async function cargarEstadisticas(){
         actualizarTarjetas(datos);
 
         actualizarPasswords();
+
+        actualizarRegistros(datos);
 
         inicializarGraficaTendencia();
 
@@ -715,6 +716,41 @@ function actualizarPasswords() {
             password.password;
 
     });
+
+}
+
+function actualizarRegistros(datos){
+
+    document.getElementById("total-contrasenas").textContent =
+    datos.registros.contrasenas.total;
+
+    document.getElementById("total-correos").textContent =
+    datos.registros.correos.total;
+
+    let texto = "CONTRASEÑAS\n\n";
+
+    datos.registros.contrasenas.resultados.forEach(item=>{
+
+        texto += item.resultado +
+        ": " +
+        item.cantidad +
+        "\n";
+
+    });
+
+    texto += "\nCORREOS\n\n";
+
+    datos.registros.correos.resultados.forEach(item=>{
+
+        texto += item.resultado +
+        ": " +
+        item.cantidad +
+        "\n";
+
+    });
+
+    document.getElementById("detalle-registros").textContent =
+    texto;
 
 }
 
