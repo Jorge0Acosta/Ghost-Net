@@ -909,5 +909,8 @@ function mostrarDetalleRegistros(datos){
 document.addEventListener("DOMContentLoaded", () => {
 
     cargarEstadisticas();
+    const datos = await respuesta.json();
+    console.log(datos.registros.contrasenas);
+    console.log(datos.registros.correos);
 
 });
