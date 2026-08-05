@@ -806,28 +806,19 @@ function renderizarListaDesglose(contenedorId, resultados, total) {
 
     contenedor.innerHTML = "";
 
-    // Orden jerárquico deseado
-    const ordenJerarquico = 
-    [
-        "Excelente",
-        "Segura",
-        "Seguro",
-        "Regular",
-        "Insegura",
-        "Inseguro",
-        "Muy insegura",
-        "Muy ins."
-    ];
+    // Función auxiliar para saber el nivel de jerarquía (1 es el más seguro, 4 el peor)
+    const obtenerPeso = (texto) => {
+        const t = (texto || "").toString().trim().toLowerCase();
+        if (t.includes("excelente")) return 1;
+        if (t.includes("segur") && !t.includes("insegur")) return 2;
+        if (t.includes("regular")) return 3;
+        if (t.includes("muy") || t.includes("insegur")) return 4;
+        return 5; // Cualquier otro
+    };
 
-    // Ordenamos una copia del arreglo según el rango jerárquico
+    // Ordenamos copias
     const resultadosOrdenados = [...resultados].sort((a, b) => {
-        let idxA = ordenJerarquico.indexOf(a.resultado);
-        let idxB = ordenJerarquico.indexOf(b.resultado);
-
-        if (idxA === -1) idxA = 99;
-        if (idxB === -1) idxB = 99;
-
-        return idxA - idxB;
+        return obtenerPeso(a.resultado) - obtenerPeso(b.resultado);
     });
 
     resultadosOrdenados.forEach(item => {
@@ -853,36 +844,44 @@ function renderizarListaDesglose(contenedorId, resultados, total) {
 }
 
 function renderizarResumenFooter(contenedorId, resultados, total) {
-  const contenedor = document.getElementById(contenedorId);
-  if (!contenedor || !resultados) return;
+    const contenedor = document.getElementById(contenedorId);
+    if (!contenedor || !resultados) return;
 
-  let seguros = 0;
-  let enRiesgo = 0;
+    let seguros = 0;
+    let enRiesgo = 0;
 
-  resultados.forEach(item => {
-    const res = item.resultado.toLowerCase();
-    
-    // PRIMERO evaluamos si es inseguro/muy inseguro/regular para no confundir "insegura" con "segura"
-    if (res.includes("insegur") || res.includes("muy") || res.includes("regular")) {
-      enRiesgo += item.cantidad;
-    } else if (res.includes("excelente") || res.includes("segur")) {
-      seguros += item.cantidad;
-    }
-  });
+    resultados.forEach(item => {
+        // Normalizamos el texto: minúsculas y sin espacios extras
+        const res = (item.resultado || "").toString().trim().toLowerCase();
 
-  const porcSeguros = total > 0 ? Math.round((seguros / total) * 100) : 0;
-  const porcRiesgo = total > 0 ? Math.round((enRiesgo / total) * 100) : 0;
+        // Evaluamos expresamente si es peligroso / regular / inseguro
+        const esRiesgo = res.includes("insegur") || 
+                        res.includes("muy") || 
+                        res.includes("regular") || 
+                        res.includes("riesgo") ||
+                        res.includes("debil") ||
+                        res.includes("débil");
 
-  contenedor.innerHTML = `
-    <div>
-      <span class="footer-meta">SEGUROS O EXCELENTE</span>
-      <div class="footer-val footer-val--verde">${seguros.toLocaleString()} • ${porcSeguros}%</div>
-    </div>
-    <div>
-      <span class="footer-meta">EN RIESGO / REGULAR</span>
-      <div class="footer-val footer-val--rojo">${enRiesgo.toLocaleString()} • ${porcRiesgo}%</div>
-    </div>
-  `;
+        if (esRiesgo) {
+        enRiesgo += item.cantidad;
+        } else {
+        seguros += item.cantidad;
+        }
+    });
+
+    const porcSeguros = total > 0 ? Math.round((seguros / total) * 100) : 0;
+    const porcRiesgo = total > 0 ? Math.round((enRiesgo / total) * 100) : 0;
+
+    contenedor.innerHTML = `
+        <div>
+        <span class="footer-meta">SEGUROS O EXCELENTE</span>
+        <div class="footer-val footer-val--verde">${seguros.toLocaleString()} • ${porcSeguros}%</div>
+        </div>
+        <div>
+        <span class="footer-meta">EN RIESGO / REGULAR</span>
+        <div class="footer-val footer-val--rojo">${enRiesgo.toLocaleString()} • ${porcRiesgo}%</div>
+        </div>
+    `;
 }
 
 /* ===================================================
