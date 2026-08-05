@@ -96,6 +96,8 @@ async function cargarEstadisticas(){
 
         actualizarPasswords();
 
+        actualizarRegistros(datos);
+
         inicializarGraficaTendencia();
 
         inicializarGraficaBarras();
