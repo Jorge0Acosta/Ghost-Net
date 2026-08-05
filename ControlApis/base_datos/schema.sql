@@ -1,6 +1,4 @@
 -- database/schema.sql
--- Ejecuta este script completo en MySQL Workbench (rayo / Ctrl+Shift+Enter)
-
 USE railway;
 
 /*TABLA USUARIOS*/
@@ -98,3 +96,31 @@ INSERT INTO preguntas(pregunta) VALUES
 ('¿Cuál es la longitud promedio de tus contraseñas?'),
 ('¿Cuánta información personal compartes en redes sociales?'),
 ('¿Sabes identificar intentos de phishing o ingeniería social?');
+
+/*ESTADÍSTICAS DE VERIFICACIONES*/
+
+/*VERIFICACIONES DE CONTRASEÑAS*/
+CREATE TABLE verificaciones_contrasenas(
+    id_verificacion INT AUTO_INCREMENT PRIMARY KEY,
+    resultado ENUM(
+        'Muy insegura',
+        'Insegura',
+        'Regular',
+        'Segura',
+        'Excelente'
+    ) NOT NULL,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+/*VERIFICACIONES DE CORREOS*/
+CREATE TABLE verificaciones_correos(
+    id_verificacion INT AUTO_INCREMENT PRIMARY KEY,
+    resultado ENUM(
+        'Muy inseguro',
+        'Inseguro',
+        'Regular',
+        'Seguro',
+        'Excelente'
+    ) NOT NULL,
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP
+);

@@ -1,15 +1,25 @@
 const verificarContrasena = require("../servicios/verificarContrasena");
 const compararContrasenas = require("../servicios/compararContrasenas");
 const generarContrasena = require("../servicios/generarContrasena");
+const { pool } = require("../configuracion/db");
 
-// =================================================
 // VERIFICAR CONTRASEÑA
-// =================================================
-exports.verificarContrasena = (req, res) => {
+exports.verificarContrasena = async (req, res) => {
     try {
         const { contrasena } = req.body;
 
         const resultado = verificarContrasena(contrasena);
+
+        // Guardar solo verificaciones válidas
+        if (resultado.nivel !== "Inválida") {
+
+            await pool.execute(
+                `INSERT INTO verificaciones_contrasenas (resultado)
+                VALUES (?)`,
+                [resultado.nivel]
+            );
+
+        }
 
         res.json({
             ok: true,
