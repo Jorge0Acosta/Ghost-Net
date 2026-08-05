@@ -11,6 +11,9 @@ let graficaLinea = null;
 let graficaBarras = null;
 let graficaPastel = null;
 
+let graficaDonutContrasenas = null;
+let graficaDonutCorreos = null;
+
 let ETIQUETAS_AÑOS = [];
 let DATOS_BRECHAS = [];
 let DATOS_REGISTROS = [];
@@ -92,8 +95,6 @@ async function cargarEstadisticas(){
         actualizarTarjetas(datos);
 
         actualizarPasswords();
-
-        actualizarRegistros(datos);
 
         inicializarGraficaTendencia();
 
@@ -721,39 +722,139 @@ function actualizarPasswords() {
 
 }
 
-function actualizarRegistros(datos){
+const PALETA_NIVELES = {
+  "Excelente": "#00FD87",
+  "Segura": "#00C8FB",
+  "Seguro": "#00C8FB",
+  "Regular": "#ffb800",
+  "Insegura": "#f7823e",
+  "Inseguro": "#f7823e",
+  "Muy ins.": "#f92837",
+  "Muy insegura": "#f92837"
+};
 
-    document.getElementById("total-contrasenas").textContent =
-    datos.registros.contrasenas.total;
+function actualizarRegistros(datos) {
+  const contrasenas = datos.registros.contrasenas;
+  const correos = datos.registros.correos;
 
-    document.getElementById("total-correos").textContent =
-    datos.registros.correos.total;
+  // 1. Cifras generales
+  document.getElementById("total-contrasenas").textContent = contrasenas.total.toLocaleString();
+  document.getElementById("total-correos").textContent = correos.total.toLocaleString();
+  
+  const totalVerificaciones = contrasenas.total + correos.total;
+  document.getElementById("total-verificaciones").textContent = `👤 ${totalVerificaciones.toLocaleString()}`;
 
-    let texto = "CONTRASEÑAS\n\n";
+  document.getElementById("donut-total-contrasenas").textContent = contrasenas.total.toLocaleString();
+  document.getElementById("donut-total-correos").textContent = correos.total.toLocaleString();
 
-    datos.registros.contrasenas.resultados.forEach(item=>{
+  // 2. Renderizar Donut Charts
+  renderizarDonut("grafica-donut-contrasenas", contrasenas.resultados, 'contrasenas');
+  renderizarDonut("grafica-donut-correos", correos.resultados, 'correos');
 
-        texto += item.resultado +
-        ": " +
-        item.cantidad +
-        "\n";
+  // 3. Renderizar Lista de Barras de Progreso
+  renderizarListaDesglose("desglose-contrasenas", contrasenas.resultados, contrasenas.total);
+  renderizarListaDesglose("desglose-correos", correos.resultados, correos.total);
 
-    });
+  // 4. Renderizar Resumen inferior (Seguros vs Riesgo)
+  renderizarResumenFooter("resumen-contrasenas", contrasenas.resultados, contrasenas.total);
+  renderizarResumenFooter("resumen-correos", correos.resultados, correos.total);
+}
 
-    texto += "\nCORREOS\n\n";
+function renderizarDonut(canvasId, resultados, tipo) {
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
 
-    datos.registros.correos.resultados.forEach(item=>{
+  const labels = resultados.map(item => item.resultado);
+  const data = resultados.map(item => item.cantidad);
+  const bgColors = resultados.map(item => PALETA_NIVELES[item.resultado] || "#00C8FB");
 
-        texto += item.resultado +
-        ": " +
-        item.cantidad +
-        "\n";
+  if (tipo === 'contrasenas' && graficaDonutContrasenas) graficaDonutContrasenas.destroy();
+  if (tipo === 'correos' && graficaDonutCorreos) graficaDonutCorreos.destroy();
 
-    });
+  const nuevaGrafica = new Chart(canvas, {
+    type: "doughnut",
+    data: {
+      labels: labels,
+      datasets: [{
+        data: data,
+        backgroundColor: bgColors,
+        borderWidth: 2,
+        borderColor: "#0a1e2e",
+        hoverOffset: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      cutout: "75%",
+      plugins: {
+        legend: { display: false },
+        tooltip: ESTILO_TOOLTIP
+      }
+    }
+  });
 
-    document.getElementById("detalle-registros").textContent =
-    texto;
+  if (tipo === 'contrasenas') graficaDonutContrasenas = nuevaGrafica;
+  if (tipo === 'correos') graficaDonutCorreos = nuevaGrafica;
+}
 
+function renderizarListaDesglose(contenedorId, resultados, total) {
+  const contenedor = document.getElementById(contenedorId);
+  if (!contenedor) return;
+
+  contenedor.innerHTML = "";
+
+  resultados.forEach(item => {
+    const porcentaje = total > 0 ? Math.round((item.cantidad / total) * 100) : 0;
+    const color = PALETA_NIVELES[item.resultado] || "#00C8FB";
+
+    const html = `
+      <div class="fila-desglose">
+        <div class="fila-desglose__meta">
+          <span class="fila-desglose__etiqueta">${item.resultado}</span>
+          <div class="fila-desglose__cifras">
+            <strong style="color: ${color}">${item.cantidad.toLocaleString()}</strong>
+            <span class="porcentaje">${porcentaje}%</span>
+          </div>
+        </div>
+        <div class="barra-progreso">
+          <div class="barra-progreso__relleno" style="width: ${porcentaje}%; background-color: ${color}"></div>
+        </div>
+      </div>
+    `;
+    contenedor.insertAdjacentHTML("beforeend", html);
+  });
+}
+
+function renderizarResumenFooter(contenedorId, resultados, total) {
+  const contenedor = document.getElementById(contenedorId);
+  if (!contenedor) return;
+
+  let seguros = 0;
+  let enRiesgo = 0;
+
+  resultados.forEach(item => {
+    const res = item.resultado.toLowerCase();
+    if (res.includes("excelente") || res.includes("segur")) {
+      seguros += item.cantidad;
+    } else if (res.includes("insegur") || res.includes("muy") || res.includes("regular")) {
+      enRiesgo += item.cantidad;
+    }
+  });
+
+  const porcSeguros = total > 0 ? Math.round((seguros / total) * 100) : 0;
+  const porcRiesgo = total > 0 ? Math.round((enRiesgo / total) * 100) : 0;
+
+  contenedor.innerHTML = `
+    <div>
+      <span class="footer-meta">SEGUROS O EXCELENTE</span>
+      <div class="footer-val footer-val--verde">${seguros.toLocaleString()} • ${porcSeguros}%</div>
+    </div>
+    <div>
+      <span class="footer-meta">EN RIESGO / REGULAR</span>
+      <div class="footer-val footer-val--rojo">${enRiesgo.toLocaleString()} • ${porcRiesgo}%</div>
+    </div>
+  `;
 }
 
 /* ===================================================

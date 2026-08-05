@@ -218,42 +218,79 @@
     </div>
   </main>
 
-  <section class="panel">
-
-      <h2 class="panel__titulo">
-          // Estadísticas de registros Ghost-Net
-      </h2>
-
-      <div class="grilla-resumen">
-
-          <article class="tarjeta-resumen">
-
-              <span class="tarjeta-resumen__cifra" id="total-contrasenas">0</span>
-
-              <span class="tarjeta-resumen__etiqueta">
-                  Contraseñas verificadas
-              </span>
-
-          </article>
-
-          <article class="tarjeta-resumen">
-
-              <span class="tarjeta-resumen__cifra" id="total-correos">0</span>
-
-              <span class="tarjeta-resumen__etiqueta">
-                  Correos verificados
-              </span>
-
-          </article>
-
+ <section class="panel">
+    <!-- Encabezado de la sección -->
+    <div class="panel__encabezado">
+      <div>
+        <span class="panel__subtitulo">// REGISTROS INTERNOS</span>
+        <h2 class="panel__titulo">Estadísticas de la plataforma Ghost-Net</h2>
       </div>
-
-      <div class="panel">
-
-          <pre id="detalle-registros"></pre>
-
+      <div class="panel__badge-total">
+        <span id="total-verificaciones">0</span> verificaciones
       </div>
+    </div>
 
+    <div class="grilla-estadisticas">
+      <!-- Tarjeta 1: Contraseñas -->
+      <article class="tarjeta-dash">
+        <header class="tarjeta-dash__header">
+          <div class="tarjeta-dash__titulo-box">
+            <div class="icono-box icono-box--verde">🔒</div>
+            <div>
+              <h3>Contraseñas</h3>
+              <span class="tarjeta-dash__sub">verificadas en la plataforma</span>
+            </div>
+          </div>
+          <span class="tarjeta-dash__cifra-total" id="total-contrasenas">0</span>
+        </header>
+
+        <div class="tarjeta-dash__cuerpo">
+          <!-- Gráfico Donut Chart.js -->
+          <div class="contenedor-donut">
+            <canvas id="grafica-donut-contrasenas"></canvas>
+            <div class="donut-centro">
+              <strong id="donut-total-contrasenas">0</strong>
+              <span>TOTAL</span>
+            </div>
+          </div>
+
+          <!-- Lista de Desglose con Barras de Progreso -->
+          <div class="lista-desglose" id="desglose-contrasenas"></div>
+        </div>
+
+        <footer class="tarjeta-dash__footer" id="resumen-contrasenas"></footer>
+      </article>
+
+      <!-- Tarjeta 2: Correos -->
+      <article class="tarjeta-dash">
+        <header class="tarjeta-dash__header">
+          <div class="tarjeta-dash__titulo-box">
+            <div class="icono-box icono-box--azul">✉️</div>
+            <div>
+              <h3>Correos</h3>
+              <span class="tarjeta-dash__sub">verificadas en la plataforma</span>
+            </div>
+          </div>
+          <span class="tarjeta-dash__cifra-total" id="total-correos">0</span>
+        </header>
+
+        <div class="tarjeta-dash__cuerpo">
+          <!-- Gráfico Donut Chart.js -->
+          <div class="contenedor-donut">
+            <canvas id="grafica-donut-correos"></canvas>
+            <div class="donut-centro">
+              <strong id="donut-total-correos">0</strong>
+              <span>TOTAL</span>
+            </div>
+          </div>
+
+          <!-- Lista de Desglose con Barras de Progreso -->
+          <div class="lista-desglose" id="desglose-correos"></div>
+        </div>
+
+        <footer class="tarjeta-dash__footer" id="resumen-correos"></footer>
+      </article>
+    </div>
   </section>
 
   <footer class="pie-pagina">
