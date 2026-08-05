@@ -22,6 +22,9 @@ let DATOS_SEVERIDAD = [];
 
 let PASSWORDS = [];
 
+let graficaContrasenas = null;
+let graficaCorreos = null;
+
 /* Colores */
 
 const COLORES_EMPRESAS = [
@@ -90,6 +93,10 @@ async function cargarEstadisticas(){
         actualizarTarjetas(datos);
 
         actualizarPasswords();
+
+        crearGraficasRegistros(datos);
+
+        mostrarDetalleRegistros(datos);
 
         actualizarRegistros(datos);
 
@@ -751,6 +758,184 @@ function actualizarRegistros(datos){
 
     document.getElementById("detalle-registros").textContent =
     texto;
+
+}
+
+function crearGraficasRegistros(datos){
+
+    const ctx1=document.getElementById("grafica-contrasenas");
+
+    if(ctx1){
+
+        if(graficaContrasenas){
+
+            graficaContrasenas.destroy();
+
+        }
+
+        graficaContrasenas=new Chart(ctx1,{
+
+            type:"doughnut",
+
+            data:{
+
+                labels:Object.keys(datos.registros.contrasenas),
+
+                datasets:[{
+
+                    data:Object.values(datos.registros.contrasenas),
+
+                    backgroundColor:[
+
+                        "#00FD87",
+
+                        "#19C5FF",
+
+                        "#FFC107",
+
+                        "#FF7A00",
+
+                        "#F92837"
+
+                    ]
+
+                }]
+
+            },
+
+            options:{
+
+                plugins:{
+
+                    legend:{display:false}
+
+                }
+
+            }
+
+        });
+
+    }
+
+    const ctx2=document.getElementById("grafica-correos");
+
+    if(ctx2){
+
+        if(graficaCorreos){
+
+            graficaCorreos.destroy();
+
+        }
+
+        graficaCorreos=new Chart(ctx2,{
+
+            type:"doughnut",
+
+            data:{
+
+                labels:Object.keys(datos.registros.correos),
+
+                datasets:[{
+
+                    data:Object.values(datos.registros.correos),
+
+                    backgroundColor:[
+
+                        "#00FD87",
+
+                        "#19C5FF",
+
+                        "#FFC107",
+
+                        "#F92837"
+
+                    ]
+
+                }]
+
+            },
+
+            options:{
+
+                plugins:{
+
+                    legend:{display:false}
+
+                }
+
+            }
+
+        });
+
+    }
+
+}
+
+function mostrarDetalleRegistros(datos){
+
+    const totalContrasenas=
+    Object.values(datos.registros.contrasenas)
+    .reduce((a,b)=>a+b,0);
+
+    const totalCorreos=
+    Object.values(datos.registros.correos)
+    .reduce((a,b)=>a+b,0);
+
+    document.getElementById("total-contrasenas").textContent=
+    totalContrasenas;
+
+    document.getElementById("total-correos").textContent=
+    totalCorreos;
+
+    const detalle1=
+    document.getElementById("detalle-contrasenas");
+
+    detalle1.innerHTML="";
+
+    Object.entries(datos.registros.contrasenas).forEach(([nivel,cantidad])=>{
+
+        const porcentaje=
+        totalContrasenas?
+        ((cantidad/totalContrasenas)*100).toFixed(1):0;
+
+        detalle1.innerHTML+=`
+
+        <div class="fila-estado">
+
+            <span>${nivel}</span>
+
+            <strong>${cantidad} (${porcentaje}%)</strong>
+
+        </div>
+
+        `;
+
+    });
+
+    const detalle2=
+    document.getElementById("detalle-correos");
+
+    detalle2.innerHTML="";
+
+    Object.entries(datos.registros.correos).forEach(([nivel,cantidad])=>{
+
+        const porcentaje=
+        totalCorreos?
+        ((cantidad/totalCorreos)*100).toFixed(1):0;
+
+        detalle2.innerHTML+=`
+
+        <div class="fila-estado">
+
+            <span>${nivel}</span>
+
+            <strong>${cantidad} (${porcentaje}%)</strong>
+
+        </div>
+
+        `;
+
+    });
 
 }
 

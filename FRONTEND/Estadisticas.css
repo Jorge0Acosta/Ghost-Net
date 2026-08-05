@@ -407,3 +407,85 @@
   color: var(--color-cafe-verdoso, #57636f);
   font-size: 12px;
 }
+
+.panel-registros{
+
+    margin-top:40px;
+
+}
+
+.contenedor-registros{
+
+    display:flex;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+}
+
+.tarjeta-registro{
+
+    flex:1;
+
+    min-width:420px;
+
+    background:#081827;
+
+    border:1px solid rgba(0,253,135,.18);
+
+    border-radius:18px;
+
+    padding:30px;
+
+}
+
+.tarjeta-registro h3{
+
+    color:white;
+
+    margin-bottom:10px;
+
+}
+
+.tarjeta-registro h1{
+
+    color:#00FD87;
+
+    font-size:52px;
+
+    margin:0;
+
+}
+
+.tarjeta-registro p{
+
+    color:#5D8A9C;
+
+    margin-bottom:20px;
+
+}
+
+.tarjeta-registro canvas{
+
+    width:260px !important;
+
+    height:260px !important;
+
+    margin:auto;
+
+}
+
+.fila-estado{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    padding:8px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.05);
+
+    color:white;
+
+}
