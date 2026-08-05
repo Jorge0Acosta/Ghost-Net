@@ -96,7 +96,7 @@
         </section>
 
         <section class="verify-card">
-            <h2 class="section-label">// Verificar contraseña</h2>
+            <h2 class="section-label">Verificar contraseña</h2>
             <div class="verify-row">
                 <div class="password-wrapper">
                     <input type="password" id="password" class="verify-input" placeholder="Ingresa tu contraseña...">
@@ -316,10 +316,10 @@
                 }
                 
                 if (p1 === p2) {
-                    resultado.textContent = '✅ Las contraseñas coinciden';
+                    resultado.textContent = 'Las contraseñas coinciden';
                     document.getElementById('diferenciasComparar').innerHTML = '<li>Ambas contraseñas son idénticas.</li>';
                 } else {
-                    resultado.textContent = '❌ Las contraseñas NO coinciden';
+                    resultado.textContent = 'las contraseñas NO coinciden';
                     var diff = [];
                     if (p1.length !== p2.length) {
                         diff.push('• Longitud diferente: ' + p1.length + ' vs ' + p2.length + ' caracteres');

@@ -1,6 +1,8 @@
 /* =========================
    TOKENS
    ========================= */
+@import url('./Compartido.css');
+
 :root {
     --bg: #0a0e14;
     --bg-card: #0f1620;
