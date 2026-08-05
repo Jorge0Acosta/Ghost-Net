@@ -218,41 +218,39 @@
     </div>
   </main>
 
-  <section class="panel panel-registros">
+  <section class="panel">
 
       <h2 class="panel__titulo">
           // Estadísticas de registros Ghost-Net
       </h2>
 
-      <div class="contenedor-registros">
+      <div class="grilla-resumen">
 
-          <div class="tarjeta-registro">
+          <article class="tarjeta-resumen">
 
-              <h3>🔐 Contraseñas</h3>
+              <span class="tarjeta-resumen__cifra" id="total-contrasenas">0</span>
 
-              <h1 id="total-contrasenas">0</h1>
+              <span class="tarjeta-resumen__etiqueta">
+                  Contraseñas verificadas
+              </span>
 
-              <p>Verificaciones realizadas</p>
+          </article>
 
-              <canvas id="grafica-contrasenas"></canvas>
+          <article class="tarjeta-resumen">
 
-              <div id="detalle-contrasenas"></div>
+              <span class="tarjeta-resumen__cifra" id="total-correos">0</span>
 
-          </div>
+              <span class="tarjeta-resumen__etiqueta">
+                  Correos verificados
+              </span>
 
-          <div class="tarjeta-registro">
+          </article>
 
-              <h3>📧 Correos</h3>
+      </div>
 
-              <h1 id="total-correos">0</h1>
+      <div class="panel">
 
-              <p>Verificaciones realizadas</p>
-
-              <canvas id="grafica-correos"></canvas>
-
-              <div id="detalle-correos"></div>
-
-          </div>
+          <pre id="detalle-registros"></pre>
 
       </div>
 
