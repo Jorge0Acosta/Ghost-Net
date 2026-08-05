@@ -98,8 +98,6 @@ async function cargarEstadisticas(){
 
         mostrarDetalleRegistros(datos);
 
-        actualizarRegistros(datos);
-
         inicializarGraficaTendencia();
 
         inicializarGraficaBarras();
@@ -723,41 +721,6 @@ function actualizarPasswords() {
             password.password;
 
     });
-
-}
-
-function actualizarRegistros(datos){
-
-    document.getElementById("total-contrasenas").textContent =
-    datos.registros.contrasenas.total;
-
-    document.getElementById("total-correos").textContent =
-    datos.registros.correos.total;
-
-    let texto = "CONTRASEÑAS\n\n";
-
-    datos.registros.contrasenas.resultados.forEach(item=>{
-
-        texto += item.resultado +
-        ": " +
-        item.cantidad +
-        "\n";
-
-    });
-
-    texto += "\nCORREOS\n\n";
-
-    datos.registros.correos.resultados.forEach(item=>{
-
-        texto += item.resultado +
-        ": " +
-        item.cantidad +
-        "\n";
-
-    });
-
-    document.getElementById("detalle-registros").textContent =
-    texto;
 
 }
 
