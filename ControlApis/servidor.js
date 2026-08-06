@@ -47,7 +47,6 @@ app.use(express.json());
 const correoRoutes = require("./rutas/correoRoutes");
 const passwordRoutes = require("./rutas/contrasenaRoutes");
 const usuarioRoutes = require("./rutas/usuarioRouter");
-const riesgoRoutes = require("./rutas/riesgoRouter");
 const estadisticasRoutes = require("./rutas/rutaEstadistica");
 const filtracionesRoutes = require("./rutas/filtracionesRouter");
 
